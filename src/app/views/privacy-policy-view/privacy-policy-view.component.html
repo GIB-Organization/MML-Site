@@ -1,0 +1,45 @@
+<div class="privacy_policy">
+    <section class="container">
+        <h6 class="h3 mb-5 font_semi__bold text-center"> {{'views.privacyPolicy.privacyPolicy' | translate}} </h6>
+        <div class="mt-5 grey_color font_size__13 font_light">
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.privacyUserInformation' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.privacyUserInformationText' | translate : { appName: ( 'appName' | translate ) } }} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.usePersonalinformation' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.usePersonalinformationText' | translate}} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.shareinformation' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.shareinformationText' | translate}} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.protectionInformation' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.protectionInformationText' | translate}} </p>
+                <ul class="ps-3">
+                    @for(item of [1,2,3]; track item){
+                        <li class="mb-3"> {{'views.privacyPolicy.protection' + item | translate}} </li>
+                    }
+                </ul>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.securityMeasures' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.securityMeasuresText' | translate}} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.cookies' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.cookiesText1' | translate}} </p>
+                <p> {{'views.privacyPolicy.cookiesText2' | translate}} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.implementationStatement' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.implementationStatementText' | translate}} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.privacyPolicy.policyChanges' | translate}} </app-underline-title-component>
+                <p> {{'views.privacyPolicy.policyChangesText' | translate}} </p>
+            </div>
+        </div>
+    </section>
+</div> 

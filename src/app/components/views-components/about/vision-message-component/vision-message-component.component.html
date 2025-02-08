@@ -1,0 +1,11 @@
+<div class="vision_message py-5">
+    <section class="container py-5">
+        <div class="row text-center">
+            @for(item of data; track item.title){
+            <aside class="col-md-6 mb-3">
+                <app-card-component [data]="item"></app-card-component>
+            </aside>
+            }
+        </div>
+    </section>
+</div>

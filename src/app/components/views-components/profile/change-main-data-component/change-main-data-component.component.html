@@ -1,0 +1,36 @@
+<div class="mb-4">
+    <app-shadow-box-component classes="profile_cards p-4 font_size__15 mb-3">
+        <p class="mb-4"> {{ 'public.nationalId' | translate }}: <span class="grey_color"> {{authStoreQuery.nationalId}} </span> </p>
+        <form action="">
+            <div class="mb-3">
+                <app-base-label-component for="username" classes="form-label" [required]="true"> {{'public.name' |
+                    translate}} </app-base-label-component>
+                <input type="text" [formControl]="fullName" class="form-control" id="username">
+                @if(!fullName.valid && fullName.touched){
+                <app-input-validation-alert-component> {{'errors.name' | translate}}
+                </app-input-validation-alert-component>
+                }
+            </div>
+            <div class="mb-3">
+                <app-base-label-component for="phone" classes="form-label" [required]="true"> {{'public.phone' |
+                    translate}} </app-base-label-component>
+                <input [minlength]="10" [maxlength]="10" InputNumber type="phone" [formControl]="phoneNumber" class="form-control" id="phone">
+                @if(!phoneNumber.valid && phoneNumber.touched){
+                <app-input-validation-alert-component> {{'errors.phone' | translate}}
+                </app-input-validation-alert-component>
+                }
+            </div>
+            <div class="mb-3">
+                <app-base-label-component for="email" classes="form-label" [required]="true"> {{'public.email' |
+                    translate}} </app-base-label-component>
+                <input type="email" [formControl]="email" class="form-control" id="email">
+                @if(!email.valid && email.touched){
+                <app-input-validation-alert-component> {{'errors.email' | translate}}
+                </app-input-validation-alert-component>
+                }
+            </div>
+        </form>
+    </app-shadow-box-component>
+    <app-base-button-component [disabled]="form.invalid || !form.dirty" [loading]="isLoading()" (clicked)="submit()" classes="px-5 btn-primary rounded-pill white_color font_size__14 shadow-sm"> {{
+        'public.save' | translate }} </app-base-button-component>
+</div>

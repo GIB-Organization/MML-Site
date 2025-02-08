@@ -1,0 +1,39 @@
+<!-- <div class="row mb-3">
+    <aside class="col-3">
+        <p-inputNumber [maxlength]="10" placeholder="{{'views.profile.invoices.invoiceId' | translate}}" inputStyleClass="form-control" inputId="idInput" [useGrouping]="false">
+        </p-inputNumber>
+    </aside>
+    <aside class="col-3">
+        <app-base-button-component classes="btn-primary w-100 font_size__13"> {{'public.search' | translate}} </app-base-button-component>
+    </aside>
+</div> -->
+
+<app-shadow-box-component classes="profile_cards p-4">
+    <app-loading-content-component [loading]="isLoading()">
+    <app-defer-block-component>
+        <app-empty-data-component [empty]="!invoices()?.length">
+        @for(item of invoices(); track item; let last = $last){
+            <div class="row font_size__13">
+                <aside class="col-md-5">
+                    <p> {{'views.profile.invoices.invoiceId' | translate}} <br/> <span class="p-1 px-2 text-white primary_bg rounded"> #{{item.id}} </span> </p>
+                    <p class="grey_color"> {{item.email}} </p>
+                    <p class="grey_color"> {{item.invoiceDate | date : 'fullDate'}} </p>
+                </aside>
+                <aside class="col-md-4">
+                    <p> {{'views.profile.invoices.invoiceDetails' | translate}} </p>
+                    <p class="grey_color"> {{item[invoiceStoreQuery.detailsKey]}} </p>
+                </aside>
+                <aside class="col-md-3">
+                    <span class="secondary_color mb-3 d-block"> {{ item.totalPrice | currency : settingsQuery.currency }} </span>
+                    <app-base-link-component [external]="true" [path]="item.invoiceUrl" download="true"  classes="btn-outline-primary font_size__12" icon="download"> {{'public.download' | translate}} </app-base-link-component>
+                    <!-- <app-base-button-component (clicked)="downloadService.downloadFileByUrl(item.invoiceUrl)"  classes="btn-outline-primary font_size__12" icon="download"> {{'public.download' | translate}} </app-base-button-component> -->
+                </aside>
+            </div>
+            @if(!last){
+                <p-divider/>
+            }
+        }
+        </app-empty-data-component> 
+    </app-defer-block-component>
+    </app-loading-content-component>
+</app-shadow-box-component>

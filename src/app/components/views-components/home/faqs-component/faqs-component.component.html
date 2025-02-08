@@ -1,0 +1,20 @@
+<div class="faqs_section my-5">
+    <section class="py-5 container">
+        <app-underline-title-component class="text-center">
+            {{'views.home.faqs.title' | translate}}
+        </app-underline-title-component>
+        <div class="row">
+            <aside class="col-md-7 mx-auto">
+                <p-accordion [activeIndex]="0" styleClass="faqs_accordion">
+                    @for(item of faqs(); track item){
+                        <p-accordionTab tabStyleClass="mb-3 border_radius__10" [header]="item[websiteStoreQuery.faqTitleKey]">
+                            <p>
+                                {{item[websiteStoreQuery.faqDescKey]}}
+                            </p>
+                        </p-accordionTab>
+                    }
+                </p-accordion>
+            </aside>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,40 @@
+<div class="filter_tabs px-2 d-flex flex-nowrap">
+    <app-base-button-component (clicked)="setActiveTab(EQuotationsTabs.thirdParty)"
+        classes="font_size__12 rounded-bottom-0 p-3 {{setActiveTabClasses(EQuotationsTabs.thirdParty)}}">
+        {{'views.insuranceShow.thirdPartyInsurance' | translate }} </app-base-button-component>
+    <app-base-button-component (clicked)="setActiveTab(EQuotationsTabs.comprehensive)"
+        classes="font_size__12 rounded-bottom-0 p-3 {{setActiveTabClasses(EQuotationsTabs.comprehensive)}}">
+        {{'views.insuranceShow.comprehensiveInsurance' | translate : {price: (3444 | currency : settingsQuery.currency)
+        } }} </app-base-button-component>
+</div>
+<div class="shadow border rounded p-4 font_size__12">
+    <div class="row">
+        @if(activeTab() === EQuotationsTabs.comprehensive){
+            <aside class="col-md-4 mb-md-0 mb-3">
+                <div>
+                    <app-base-label-component classes="form-label"> {{'views.insuranceShow.maintenanceType' | translate}}
+                    </app-base-label-component>
+                    <div class="d-flex">
+                        <app-base-button-component (clicked)="isAgencyModel.set(true)" classes="rounded-0 font_size__12 shadow-sm p-2 {{isAgencyModel()?'btn-primary':'btn-light'}}" icon="building"> {{'views.insuranceShow.agency' | translate}}</app-base-button-component>
+                        <app-base-button-component (clicked)="isAgencyModel.set(false)" classes="rounded-0 font_size__12 shadow-sm p-2 {{!isAgencyModel()?'btn-primary':'btn-light'}}" icon="wrench"> {{'views.insuranceShow.workshop' | translate}} </app-base-button-component>
+                    </div>
+                </div>
+            </aside>
+        }
+        <aside class="col-md-4 mb-md-0 mb-3">
+            <app-base-label-component classes="form-label"> {{'views.insuranceShow.companies' | translate}} </app-base-label-component>
+            <p-dropdown [(ngModel)]="companyModel" [showClear]="true" inputId="companies" [options]="companiesStoreQuery.companies" [optionLabel]="companiesStoreQuery.companyNameKey"></p-dropdown>
+        </aside>
+        <aside class="col-md-4 mb-md-0 mb-3">
+            <app-base-label-component classes="form-label"> {{'views.insuranceShow.sorting' | translate}} </app-base-label-component>
+            <p-dropdown [(ngModel)]="sortingModel" [showClear]="true" inputId="sorting" [options]="sortingService.sortingList" optionValue="key">
+                <ng-template let-selectedItem pTemplate="selectedItem">
+                    {{selectedItem.name | translate}}
+                </ng-template>
+                <ng-template let-item pTemplate="item">
+                    {{item.name | translate}}
+                </ng-template>
+            </p-dropdown>
+        </aside>
+    </div>
+</div>

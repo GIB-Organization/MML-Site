@@ -1,0 +1,314 @@
+<div class="drivers_section">
+    @if(additionalDataFormService.drivers.length < 3){ <div class="d-flex">
+        <app-base-button-component (click)="additionalDataFormService.addDriver()" icon="car"
+            classes="btn-outline-secondary p-3 font_size__13 mb-4 me-2"> {{'views.insuranceShow.addDriver' | translate |
+            uppercase}} </app-base-button-component>
+</div>
+}
+<app-base-alert-component class="font_size__10" type="secondary"> {{'views.insuranceShow.noAdditionalDrivers' |
+    translate}} </app-base-alert-component>
+@if(true){
+@for(driver of additionalDataFormService.drivers.controls; track driver; let index = $index){
+<ng-container>
+    <div class="row">
+        <aside class="col-md-1">
+            <app-base-button-component (click)="additionalDataFormService.removeDriver(index)" icon="times"
+                classes="btn-outline-danger p-2 font_size__13 mt-4"></app-base-button-component>
+        </aside>
+        <aside class="col-md-11">
+            <div class="row mt-4">
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="driverId">{{'views.insuranceShow.driverId' | translate}}</app-base-label-component>
+                        <p-inputNumber [maxlength]="10" [minlength]="10"
+                            [formControl]="additionalDataFormService.idNumber(index)" inputStyleClass="form-control"
+                            [useGrouping]="false" inputId="driverId">
+                        </p-inputNumber>
+                        @if(additionalDataFormService.idNumber(index).touched &&
+                        additionalDataFormService.idNumber(index).invalid){
+                        <app-input-validation-alert-component> {{'errors.idNumber' | translate}}
+                        </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="birthYear">{{'views.insuranceShow.birthYear' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.birthYear(index)" inputId="birthYear"
+                            [options]="dateFactoryService.createDateLists(additionalDataFormService.idNumber(index).value??1).years"></p-dropdown>
+                        @if(additionalDataFormService.birthYear(index).touched &&
+                        additionalDataFormService.birthYear(index).invalid){
+                        <app-input-validation-alert-component> {{'errors.required' | translate}}
+                        </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="birthMonth">{{'views.insuranceShow.birthMonth' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.birthMonth(index)" inputId="birthMonth"
+                            [options]="dateFactoryService.createDateLists(additionalDataFormService.idNumber(index).value??1).months"
+                            optionValue="id">
+                            <ng-template let-selectedItem pTemplate="selectedItem">
+                                {{selectedItem.name | translate}}
+                            </ng-template>
+                            <ng-template let-item pTemplate="item">
+                                {{item.name | translate}}
+                            </ng-template>
+                        </p-dropdown>
+                        @if(additionalDataFormService.birthMonth(index).touched &&
+                        additionalDataFormService.birthMonth(index).invalid){
+                        <app-input-validation-alert-component> {{'errors.required' | translate}}
+                        </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="eduLevel">{{'views.insuranceShow.eduLevel' | translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.educationLevel(index)" inputId="eduLevel"
+                            [options]="lookupsStoreQuery.lookups[ELookupCategory.educations]"
+                            [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="mappingCode"></p-dropdown>
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="childsUnder16">{{'views.insuranceShow.childsUnder16' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.childrenUnder16(index)"
+                            inputId="childsUnder16" [options]="CHILDREN_UNDER_16"></p-dropdown>
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="drivePercent">{{'views.insuranceShow.drivePercent' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.drivingPercent(index)"
+                            inputId="drivePercent"
+                            [options]="lookupsStoreQuery.lookups[ELookupCategory.drivingPercentages]"
+                            [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="mappingCode"></p-dropdown>
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="driveRestrictions">{{'views.insuranceShow.driveRestrictions' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.driverLicenseRestrict(index)"
+                            inputId="driveRestrictions"
+                            [options]="lookupsStoreQuery.lookups[ELookupCategory.medicalConditions]"
+                            [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="mappingCode"></p-dropdown>
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="5yearsAccidents">{{'views.insuranceShow.5yearsAccidents' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.accidents5Years(index)"
+                            inputId="5yearsAccidents" [options]="FIVE_YEARS_ACCIDENTS"></p-dropdown>
+                    </div>
+                </aside>
+                <aside class="col-md-4"></aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="relation">{{'views.insuranceShow.relation' | translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.relativeRelation(index)" inputId="relation"
+                            [options]="lookupsStoreQuery.lookups[ELookupCategory.relationships]"
+                            [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="mappingCode"></p-dropdown>
+                    </div>
+                </aside>
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="anyViolations">{{'views.insuranceShow.anyViolations' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.otherViolations(index)"
+                            inputId="anyViolations" [options]="YES_NO" optionValue="id">
+                            <ng-template let-selectedItem pTemplate="selectedItem">
+                                {{selectedItem.name | translate}}
+                            </ng-template>
+                            <ng-template let-item pTemplate="item">
+                                {{item.name | translate}}
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </aside>
+                <!-- hidden -->
+                <ng-container>
+                    <aside class="col-md-4">
+                        @if(additionalDataFormService.otherViolations(index).value){
+                        <div class="mb-4">
+                            <app-base-label-component [required]="true" classes="form-label d-block"
+                                for="violationType">{{'views.insuranceShow.violationType' |
+                                translate}}</app-base-label-component>
+                            <p-multiSelect [formControl]="additionalDataFormService.violationsTypes(index)"
+                                inputId="violationType"
+                                [options]="lookupsStoreQuery.lookups[ELookupCategory.violations]"
+                                [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="mappingCode" />
+                            @if(additionalDataFormService.violationsTypes(index).touched &&
+                            additionalDataFormService.violationsTypes(index).invalid ){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}}
+                            </app-input-validation-alert-component>
+                            }
+                        </div>
+                        }
+                    </aside>
+                </ng-container>
+                <!-- hidden -->
+
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="isOwnerAddress">{{'views.insuranceShow.isOwnerAddress' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.sameAddress(index)"
+                            inputId="isOwnerAddress" [options]="YES_NO"
+                            optionValue="id">
+                            <ng-template let-selectedItem pTemplate="selectedItem">
+                                {{selectedItem.name | translate}}
+                            </ng-template>
+                            <ng-template let-item pTemplate="item">
+                                {{item.name | translate}}
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </aside>
+                <!-- hidden -->
+                <ng-container>
+                    <aside class="col-md-4">
+                        @if(!additionalDataFormService.sameAddress(index).value){
+                        <div class="mb-4">
+                            <app-base-label-component [required]="true" classes="form-label d-block"
+                                for="residenceCity">{{'views.insuranceShow.residenceCity' |
+                                translate}}</app-base-label-component>
+                            <p-dropdown [virtualScroll]="true" [virtualScrollItemSize]="40"
+                                [formControl]="additionalDataFormService.residenceCityId(index)" inputId="residenceCity"
+                                [options]="addressStoreQuery.cities"
+                                [optionLabel]="addressStoreQuery.keyName"
+                                optionValue="mappingCode"></p-dropdown>
+                            @if(additionalDataFormService.residenceCityId(index).touched &&
+                            additionalDataFormService.residenceCityId(index).invalid){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}}
+                            </app-input-validation-alert-component>
+                            }
+                        </div>
+                        }
+                    </aside>
+                    <aside class="col-md-4">
+                        @if(!additionalDataFormService.sameAddress(index).value){
+                        <div class="mb-4">
+                            <app-base-label-component [required]="true" classes="form-label d-block"
+                                for="workCity">{{'views.insuranceShow.workCity' |
+                                translate}}</app-base-label-component>
+                            <p-dropdown [virtualScroll]="true" [virtualScrollItemSize]="40"
+                                [formControl]="additionalDataFormService.workCityId(index)" inputId="workCity"
+                                [options]="addressStoreQuery.cities"
+                                [optionLabel]="addressStoreQuery.keyName"
+                                optionValue="mappingCode"></p-dropdown>
+                            @if(additionalDataFormService.workCityId(index).touched &&
+                            additionalDataFormService.workCityId(index).invalid){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}}
+                            </app-input-validation-alert-component>
+                            }
+                        </div>
+                        }
+                    </aside>
+                </ng-container>
+                <!-- hidden -->
+
+                <aside class="col-md-4">
+                    <div class="mb-4">
+                        <app-base-label-component classes="form-label d-block"
+                            for="anotherCountryLicense">{{'views.insuranceShow.anotherCountryLicense' |
+                            translate}}</app-base-label-component>
+                        <p-dropdown (onChange)="additionalDataFormService.hasCountryLicense($event.value, index)"
+                            [formControl]="additionalDataFormService.anotherCountryLicense(index)"
+                            inputId="anotherCountryLicense" [options]="YES_NO"
+                            optionValue="id">
+                            <ng-template let-selectedItem pTemplate="selectedItem">
+                                {{selectedItem.name | translate}}
+                            </ng-template>
+                            <ng-template let-item pTemplate="item">
+                                {{item.name | translate}}
+                            </ng-template>
+                        </p-dropdown>
+                    </div>
+                </aside>
+            </div>
+            <div class="row">
+                @for(license of additionalDataFormService.licenses(index).controls; track license; let licenseIndex
+                = $index){
+                <aside class="col-2 d-flex">
+                    @if(additionalDataFormService.licenses(index).length > 1 && licenseIndex > 0){
+                        <app-base-button-component (click)="additionalDataFormService.removeCountryLicense(index, licenseIndex)" icon="times"
+                            classes="btn-outline-danger p-2 font_size__13 mt-4 me-2"></app-base-button-component>
+                    }
+                    @if(additionalDataFormService.licenses(index).length < 3 && licenseIndex === 0){
+                        <app-base-button-component (click)="additionalDataFormService.addCountryLicense(index)" icon="plus"
+                            classes="btn-outline-success p-2 font_size__13 mt-4"></app-base-button-component>
+                    }
+                </aside>
+                <aside class="col-10">
+                    <!-- hidden -->
+                    <div class="row">
+                        <ng-container>
+                            <aside class="col-md-6">
+                                @if(additionalDataFormService.anotherCountryLicense(index).value){
+                                <div class="mb-4">
+                                    <app-base-label-component [required]="true" classes="form-label d-block"
+                                        for="country">{{'views.insuranceShow.country' |
+                                        translate}}</app-base-label-component>
+                                    <p-dropdown [virtualScroll]="true" [virtualScrollItemSize]="40"
+                                        [formControl]="additionalDataFormService.licenseCountryId(index, licenseIndex)"
+                                        inputId="country" [options]="addressStoreQuery.countries"
+                                        [optionLabel]="addressStoreQuery.keyName" optionValue="mappingCode"></p-dropdown>
+                                    @if(additionalDataFormService.licenseCountryId(index, licenseIndex).touched &&
+                                    additionalDataFormService.licenseCountryId(index, licenseIndex).invalid){
+                                    <app-input-validation-alert-component> {{'errors.required' | translate}}
+                                    </app-input-validation-alert-component>
+                                    }
+                                </div>
+                                }
+                            </aside>
+                            <aside class="col-md-6">
+                                @if(additionalDataFormService.anotherCountryLicense(index).value){
+                                <div class="mb-4">
+                                    <app-base-label-component [required]="true" classes="form-label d-block"
+                                        for="licenseHoldYears">{{'views.insuranceShow.licenseHoldYears' |
+                                        translate}}</app-base-label-component>
+                                    <p-dropdown
+                                        [formControl]="additionalDataFormService.yearsHoldingLicense(index,licenseIndex)"
+                                        inputId="licenseHoldYears" [options]="YEARS_HOLDING_LICENSE"></p-dropdown>
+                                    @if(additionalDataFormService.yearsHoldingLicense(index,licenseIndex).touched &&
+                                    additionalDataFormService.yearsHoldingLicense(index,licenseIndex).invalid){
+                                    <app-input-validation-alert-component> {{'errors.required' | translate}}
+                                    </app-input-validation-alert-component>
+                                    }
+                                </div>
+                                }
+                            </aside>
+                        </ng-container>
+                    </div>
+
+                    <!-- hidden -->
+                </aside>
+                }
+            </div>
+        </aside>
+    </div>
+
+
+</ng-container>
+}
+}
+</div>

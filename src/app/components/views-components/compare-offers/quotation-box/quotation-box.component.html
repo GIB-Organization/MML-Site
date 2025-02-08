@@ -1,0 +1,84 @@
+<div class="shadow border border_radius__10">
+    <div class="p-3">
+        <div class="row align-items-stretch">
+            <aside class="col-md-2">
+                <div class="d-flex flex-column justify-content-center h-100 align-items-center">
+                    <div class="col-7">
+                        <app-base-image-component  path="success.png" alt="company logo"></app-base-image-component>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-md-6 border-start border-end">
+                <div class="h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h6 class="company_title mb-md-0 font_size__14"> {{company()?.[companiesStoreQuery.companyNameKey]}} </h6>
+                        <app-company-speed-rate></app-company-speed-rate>
+                    </div>
+                    <p class="grey_color font_size__13 font_light">
+                        {{choosedProduct()[quotationStoreQuery.productDescKey]}}
+                    </p>
+                    @if(comprehensiveOrThird() === EQuotationsTabs.comprehensive){
+                        <div class="row">
+                            @for(item of choosedProduct().benefits; track item){
+                                <div class="col-md-12">
+                                    <div class="form-check mt-1">
+                                        <input class="form-check-input" [checked]="isDefaultBenefit(item)" [disabled]="isDefaultBenefit(item)" type="checkbox" (change)="toggleBenefit(item, $event)" id="benefit-{{choosedProduct().productId}}-{{item.benefitId}}">
+                                        <label class="form-check-label font_light grey_color font_size__12" for="benefit-{{choosedProduct().productId}}-{{item.benefitId}}">
+                                            {{item?.[quotationStoreQuery.benefitNameKey]}} <span class="secondary_color font_bold"> ({{ item.benefitPrice | currency : settingsQuery.currency }}) </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </aside>
+            <aside class="col-md-4">
+                <div class="d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <ul class="list-unstyled mb-3 p-0 font_size__10 font_light">
+                            @for(item of choosedProduct().priceDetails;track item){
+                                <li class="d-flex justify-content-between align-items-center py-1">
+                                    <span>{{('priceDetailsCodes.' + item.priceTypeCode) | translate}}</span>
+                                    <b class="font_size__12">{{ item.priceValue | currency: settingsQuery.currency }}</b>
+                                </li>
+                            }
+                            <li class="d-flex justify-content-between align-items-center py-1 font_size__15 mt-4">
+                                <b>{{'views.insuranceShow.total' | translate}}</b>
+                                <b>{{ choosedProduct().productPrice | currency: settingsQuery.currency }}</b>
+                            </li>
+                        </ul>
+                        @if(comprehensiveOrThird() === EQuotationsTabs.comprehensive){
+                            <div class="row align-items-center">
+                                <div class="col-7">
+                                    <app-base-label-component classes="font_size__12" [isPopover]="true" popoverContent="{{'views.insuranceShow.enduranceTooltip' | translate}}"> 
+                                        {{'views.insuranceShow.endurance' | translate}} 
+                                    </app-base-label-component>
+                                </div>
+                                <div class="col-5">
+                                    <p-dropdown (onChange)="changeProduct($event.value)" inputId="products" [options]="quotation()?.products" optionLabel="deductibleValue"></p-dropdown>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <app-base-button-component
+                        (clicked)="submit()"
+                        classes="btn-primary mt-3 text-white shadow col-12 rounded-pill font_size__13 text-uppercase">
+                        {{'public.buy' | translate}} </app-base-button-component>
+                </div>
+            </aside>
+        </div>
+    </div>
+    @if(comprehensiveOrThird() !== EQuotationsTabs.comprehensive){
+        <div class="box_footer secondary_bg px-4 p-4 rounded-bottom-3">
+            <div class="row align-items-center py-3">
+                <aside class="col-md-8 mb-md-0 mb-3">
+                    <h6 class="font_size__15 text-white mb-0 text-md-start text-center"> {{'views.insuranceShow.replaceWithComprehensive' | translate :{price: (comprehensivePrice() | currency : settingsQuery.currency)} }} </h6>
+                </aside>
+                <aside class="col-md-4">
+                    <app-base-button-component (clicked)="comprehensiveOrThird.set(EQuotationsTabs.comprehensive)" classes="btn-light text-uppercase rounded-pill col-12 font_size__13"> {{'views.insuranceShow.chooseComprehensive' | translate}} </app-base-button-component>
+                </aside>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,11 @@
+<div class="main_layout">
+    <app-navbar-component></app-navbar-component>
+    <div class="mt-5 pt-5">
+        <app-breadcrumb-component></app-breadcrumb-component>
+    </div>
+    <div [@routeAnimations]="getRouteAnimationData()">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer-contact-component></app-footer-contact-component>
+    <app-footer-component></app-footer-component>
+</div>

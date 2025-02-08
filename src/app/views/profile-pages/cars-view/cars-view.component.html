@@ -1,0 +1,39 @@
+<!-- <div class="row mb-3">
+    <aside class="col-3">
+        <p-inputNumber [maxlength]="10" placeholder="{{'views.home.insuranceForm.serialNumber' | translate}}"
+            inputStyleClass="form-control" inputId="idInput" [useGrouping]="false">
+        </p-inputNumber>
+    </aside>
+    <aside class="col-3">
+        <app-base-button-component classes="btn-primary w-100 font_size__13"> {{'public.search' | translate}}
+        </app-base-button-component>
+    </aside>
+</div> -->
+
+<app-shadow-box-component classes="profile_cards p-4">
+    <app-defer-block-component>
+        <app-empty-data-component [empty]="!cars()?.length">
+            <div class="row">
+                @for(car of cars(); track car; let index = $index){
+                <aside class="col-md-4 text-center font_size__13 mb-4">
+                    <div>
+                        <app-base-image-component classes="col-4" path="logo/BMW.svg"
+                            alt="car logo"></app-base-image-component>
+                        <p class="my-2 grey_color">
+                            {{'views.profile.cars.carInfo' | translate}}
+                            <br />
+                            {{car.brand}} {{car.model}} {{car.year}}
+                        </p>
+                        <div class="d-flex justify-content-center"><app-car-pallet-component
+                                [plateNumber]="car.plateNumber"
+                                [carCharsAr]="car.plateChars"></app-car-pallet-component></div>
+                        <app-base-button-component (click)="carsStoreService.deleteCar(car.id, index, ref)" [loading]="isDeleting()"
+                            icon="trash" classes="btn-outline-danger rounded-pill mx-auto mt-2 font_size__12">
+                            {{'public.delete' | translate}} </app-base-button-component>
+                    </div>
+                </aside>
+                }
+            </div>
+        </app-empty-data-component>
+    </app-defer-block-component>
+</app-shadow-box-component>

@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import 'styles/core/variables';
+// override bootstrap colors
+// $primary: $primaryColor;
+// $secondary: $secondaryColor;
+
+// @import 'bootstrap/scss/bootstrap';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'styles/core/fonts';
+@import 'styles/core/global';
+@import 'styles/core/responsive';
+@import 'styles/core/rtl';
+
+
+:root{
+    --primary: #{$primaryColor};
+    --bs-blue: #{$primaryColor};
+    --primaryColor: #{$primaryColor};
+    --secondaryColor: #{$secondaryColor};
+    --white: #{$white};
+    --black: #{$black};
+    --grey: #{$grey};
+    --fontLight: #{$fontLight};
+    --fontExtraLight: #{$fontExtraLight};
+    --fontBlack: #{$fontBlack};
+    --fontBold: #{$fontBold};
+    --fontExtraBold: #{$fontExtraBold};
+    --fontMedium: #{$fontMedium};
+    --fontRegular: #{$fontRegular};
+    --fontSemiBold: #{$fontSemiBold};
+    --fontThin: #{$fontThin};
+    --transition: #{$transition};
+    --primaryColorFilter: #{$primaryColorFilter};
+    --whiteColorFilter: #{$whiteColorFilter};
+    --greyColorFilter: #{$greyColorFilter};
+
+    --breakpoint-sm: #{$breakpoint-sm};
+    --breakpoint-md: #{$breakpoint-md};
+    --breakpoint-lg: #{$breakpoint-lg};
+    --breakpoint-xl: #{$breakpoint-xl};
+    --breakpoint-xxl: #{$breakpoint-xxl};
+
+}

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row py-4">
+        <aside class="col-md-4 mx-auto text-center">
+            <app-loading-content-component [loading]="isLoading()">
+                @if(checkoutStatus() === EPaymentStatus.success){
+                    <app-base-image-component classes="col-3" path="payment-check.png" alt="success"></app-base-image-component>
+                    <br />
+                    <p class="my-4 secondary_color">
+                        {{ "views.paymentStatus.success" | translate }}
+                    </p>
+                    <br />
+                    <app-base-link-component icon="arrow-right" classes="btn btn-primary px-4 py-3 font_size__13"
+                        [path]="'/' + ERoutes.profile">
+                        {{ "views.paymentStatus.goToPolicies" | translate | uppercase }}
+                    </app-base-link-component>
+                    }
+                    @if(checkoutStatus() === EPaymentStatus.fail){
+                    <app-base-image-component classes="col-3" path="payment-fail.png" alt="success"></app-base-image-component>
+                    <br />
+                    <p class="my-4 secondary_color">
+                        {{ "views.paymentStatus.fail" | translate }}
+                    </p>
+                    }
+                    @if(checkoutStatus() === EPaymentStatus.pending){
+                    <app-base-image-component classes="col-3" path="payment-pending.png"
+                        alt="pending"></app-base-image-component>
+                    <br />
+                    <p class="my-4 secondary_color">
+                        {{ "views.paymentStatus.pending" | translate }}
+                    </p>
+                    }
+            </app-loading-content-component>
+        </aside>
+    </div>
+</div>

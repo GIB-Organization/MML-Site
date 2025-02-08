@@ -1,0 +1,72 @@
+$white: #fffffe;
+$black: #252D27;
+$grey: #adadad;
+$primaryColor: #ffb449;
+$secondaryColor: #3a5f62;
+$fontLight: 'FTLight';
+$fontExtraLight: 'FTExtraLight';
+$fontRegular: 'FTRegular';
+$fontMedium: 'FTMedium';
+$fontExtraBold: 'FTExtraBold';
+$fontBold: 'FTBold';
+$fontBlack: 'FTBlack';
+$fontExtraLight: 'FTExtraLight';
+$fontThin: 'FTThin';
+$fontSemiBold: 'FTSemiBold';
+$transition: all 0.3s ease-in-out;
+$primaryColorFilter: brightness(0) saturate(100%) invert(80%) sepia(72%) saturate(876%) hue-rotate(321deg) brightness(101%) contrast(102%);
+$whiteColorFilter: brightness(0) invert(1);
+$greyColorFilter: brightness(0) saturate(100%) invert(47%) sepia(7%) saturate(522%) hue-rotate(166deg) brightness(94%) contrast(93%);
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+@mixin transition($i) {
+    transition: all $i ease-in-out;
+}
+
+@mixin transparency($color,$j) {
+    background-color: rgba($color, $j) !important;
+}
+
+@mixin fontawesome($icon) {
+    position: absolute;
+    content: '#{$icon}';
+    font-weight: 900;
+    font-family: 'Font Awesome 5 Free';
+}
+
+@mixin gr-tr($color1, $color2, $k, $l) {
+    background: -webkit-linear-gradient(to right bottom, $color1#{$k}, $color2#{$l});
+    background: -webkit-linear-gradient(to right bottom, $color1#{$k}, $color2#{$l});
+    background: -moz-linear-gradient(to right bottom, $color1#{$k}, $color2#{$l});
+    background: -ms-linear-gradient(to right bottom, $color1#{$k}, $color2#{$l});
+    background: -o-linear-gradient(to right bottom, $color1#{$k}, $color2#{$l});
+    background: linear-gradient(to right bottom, $color1#{$k}, $color2#{$l});
+}
+
+@mixin prefixes($property, $attributes) {
+    -webkit-#{$property}: $attributes;
+    -moz-#{$property}: $attributes;
+    -ms-#{$property}: $attributes;
+    -o-#{$property}: $attributes;
+    #{$property}: #{$attributes};
+}
+
+%transition {
+    transition: $transition !important;
+}
+
+@mixin absolute-position($top: 0, $right: 0, $width: 100%, $height: 100%){
+    position: absolute;
+    content: '';
+    top: #{$top};
+    right: #{$right};
+    width: #{$width};
+    height: #{$height};
+}
+
+

@@ -1,0 +1,7 @@
+<div class="card bg-transparent border-0">
+    <app-base-image-component [path]="data.img" alt="steps"></app-base-image-component>
+    <div class="card-body">
+        <h5 class="card-title font_size__17"> {{data.title | translate}} </h5>
+        <p class="card-text font_size__11">{{data.description| translate : {appName: ('appName' | translate)} }}</p>
+    </div>
+</div>

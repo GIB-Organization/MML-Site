@@ -1,0 +1,14 @@
+@if(external){
+    <a target="_blank" [href]="sanitizer.bypassSecurityTrustUrl(path)" [download]="download" class="btn" [class]="classes"  rel="noopener noreferrer">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </a>
+}
+@else {
+    <a [routerLink]="[path]" [routerLinkActive]="activeClasses" class="btn" [class]="classes">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </a>
+}
+<ng-template #content>
+    @if(icon){<i class="pi pi-{{icon}} me-3"></i>}
+    <ng-content></ng-content>
+</ng-template>

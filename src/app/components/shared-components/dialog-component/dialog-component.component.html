@@ -1,0 +1,12 @@
+<p-dialog [modal]="true" [(visible)]="visible" [style]="{minWidth: '50vw', maxWidth: '80vw'}">
+    <ng-template pTemplate="headless">
+        <div class="position-relative">
+            <app-base-button-component (clicked)="visible.set(false)" classes="btn-primary rounded-circle p-2 position-absolute top-0 start-100 translate-middle">
+                <i class="pi pi-times d-inline-block px-1"></i>
+            </app-base-button-component>
+            <div style="max-height: 90vh; overflow-y: auto;">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

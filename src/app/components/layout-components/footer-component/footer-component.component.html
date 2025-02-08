@@ -1,0 +1,83 @@
+<app-defer-block-component>
+    <footer class="py-5 secondary_bg text-white font_light">
+        <section class="container pt-5">
+            <div class="row">
+                <aside class="col-md-10 mx-auto">
+                    <div class="row">
+                        <aside class="col-md-3 mb-3">
+                            <div>
+                                <app-base-image-component path="logo/logo-white.svg" alt="logo"></app-base-image-component>
+                                <p class="font_size__11 mt-4">{{'layout.footer.description' | translate}}</p>
+                                <div class="d-flex mt-4">
+                                    @for(link of socialMedia; track link.icon){
+                                    <app-base-link-component [external]="true" [path]="link.path">
+                                        <i class="pi pi-{{link.icon}} primary_color font_size__20"></i>
+                                    </app-base-link-component>
+                                    }
+                                </div>
+                            </div>
+                        </aside>
+                        <aside class="col-md-3 mb-3">
+                            <div>
+                                <p class="mb-4 font_size__14 font_semi__bold"> {{'layout.footer.contactUs' | translate}}
+                                </p>
+                                <ul class="list-unstyled font_size__13">
+                                    <li class="mb-3"> <app-sided-icon-component iconClass="font_size__11" icon="phone">
+                                            {{settingsQuery.generalSettings?.phone}} </app-sided-icon-component> </li>
+                                    <li class="mb-3"> <app-sided-icon-component iconClass="font_size__11" icon="envelope">
+                                            {{settingsQuery.generalSettings?.email}} </app-sided-icon-component> </li>
+                                    <li class="mb-3"> <app-sided-icon-component iconClass="font_size__11" icon="map-marker">
+                                            {{'layout.footer.location' | translate}} </app-sided-icon-component> </li>
+                                </ul>
+                            </div>
+                        </aside>
+                        <aside class="col-md-3 mb-3">
+                            <div>
+                                <p class="mb-4 font_size__14 font_semi__bold"> {{'layout.footer.importantLinks' |
+                                    translate}} </p>
+                                <ul class="list-unstyled font_size__13">
+                                    <li class="mb-3">
+                                        <app-base-link-component classes="p-0 font_size__13 white_color primary_hover"
+                                            [path]="ERoutes.privacyPolicy"> {{'layout.footer.links.privacyPolicy' |
+                                            translate}} </app-base-link-component>
+                                    </li>
+                                    <li class="mb-3">
+                                        <app-base-link-component classes="p-0 font_size__13 white_color primary_hover"
+                                            [path]="ERoutes.termsConditions"> {{'layout.footer.links.terms' | translate}}
+                                        </app-base-link-component>
+                                    </li>
+                                    <li class="mb-3">
+                                        <app-base-link-component classes="p-0 font_size__13 white_color primary_hover"
+                                            path=""> {{'layout.footer.links.faqs' | translate}} </app-base-link-component>
+                                    </li>
+                                    <li class="mb-3">
+                                        <app-base-link-component classes="p-0 font_size__13 white_color primary_hover"
+                                            [path]="ERoutes.contact"> {{'layout.footer.links.contactUs' | translate}}
+                                        </app-base-link-component>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                        <aside class="col-md-3 mb-3">
+                            <div>
+                                <p class="mb-4 font_size__14 font_semi__bold"> {{'layout.footer.authorizedBy' | translate}}
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-9 col-5 mb-md-3 mb-0"><app-base-image-component
+                                            path="svg/InsuranceAuthorityWhiteEn.svg" alt="scb"></app-base-image-component>
+                                    </div>
+                                    <div class="col-md-4 col-3"><app-base-image-component path="svg/roaya-logo.svg"
+                                            alt="scb"></app-base-image-component></div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </aside>
+            </div>
+            <div class="text-center font_size__11 mt-3">
+                <p class="mb-0"> {{ 'layout.footer.copyrights' | translate }} <span class="grey_color"> &copy;
+                        {{getCurrentYear()}} {{ 'appName' | translate }} </span> </p>
+            </div>
+        </section>
+    </footer>
+</app-defer-block-component>

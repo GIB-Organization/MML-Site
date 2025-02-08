@@ -1,0 +1,95 @@
+<div class="privacy_policy">
+    <section class="container">
+        <h6 class="h3 mb-5 font_semi__bold text-center"> {{'views.termsAndConditions.termsAndConditions' | translate}} </h6>
+        <div class="mt-5 grey_color font_size__13 font_light">
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.termsAndConditions' | translate}} </app-underline-title-component>
+                <p> {{'views.termsAndConditions.termsAndConditionText' | translate : { appName: ( 'appName' | translate ) } }} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.introductionsAnddefinitions' | translate}} </app-underline-title-component>
+                <p> <b class="text-dark"> {{'views.termsAndConditions.userDefintion' | translate}}: </b> {{'views.termsAndConditions.userDefintionText' | translate}} </p>
+                <p> <b class="text-dark"> {{'views.termsAndConditions.weDefintion' | translate}}: </b> {{'views.termsAndConditions.weDefintionText' | translate : { appName: ( 'appName' | translate ) } }} </p>
+                <p> <b class="text-dark"> {{'appName' | translate}}: </b> {{'views.termsAndConditions.appDefintionText' | translate : { appName: ( 'appName' | translate ) } }} </p>
+                <p> <b class="text-dark"> {{'views.termsAndConditions.userInfoDefintion' | translate}}: </b> {{'views.termsAndConditions.userInfoDefintionText' | translate  : {appName : ('appName' | translate)} }} </p>
+                <p> <b class="text-dark"> {{'views.termsAndConditions.websiteDefintion' | translate}}: </b> {{'views.termsAndConditions.websiteDefintionText' | translate }} </p>
+                <p> <b class="text-dark"> {{'views.termsAndConditions.contentDefintion' | translate}}: </b> {{'views.termsAndConditions.contentDefintionText' | translate }} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.userEligibility' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2,3]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.userEligibilityText' + item | translate : {appName : ('appName' | translate)} }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.accountsAndRegistration' | translate}} </app-underline-title-component>
+                <p> {{'views.termsAndConditions.accountsAndRegistrationText' | translate}} </p>
+                <ol class="ps-3">
+                    @for(item of [1,2,3,4,5,6]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.accountsAndRegistration' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.responsibility' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2,3]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.responsibility' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.servicesProvided' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2,3]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.servicesProvided' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.orderServices' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2,3,4,5,6]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.orderServices' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.paymentMethods' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2,3,4,5]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.paymentMethods' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.compensation' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.compensation' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.restrictingAndTermination' | translate}} </app-underline-title-component>
+                <p> {{'views.termsAndConditions.restrictingAndTerminationText' | translate : { appName: ( 'appName' | translate ) } }} </p>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.applicableLaw' | translate}} </app-underline-title-component>
+                <ol class="ps-3">
+                    @for(item of [1,2,3]; track item){
+                        <li class="mb-3"> {{'views.termsAndConditions.applicableLaw' + item | translate : { appName: ( 'appName' | translate ) } }} </li>
+                    }
+                </ol>
+            </div>
+            <div class="mb-5">
+                <app-underline-title-component> {{'views.termsAndConditions.companyInformation' | translate}} </app-underline-title-component>
+                @for(item of [1,2,3]; track item; let last = $last){
+                    <p class="mb-3" [class.font_regular]="last" [class.text-dark]="last"> {{'views.termsAndConditions.companyInformation' + item | translate : { appName: ( 'appName' | translate ) } }} </p>
+                }
+            </div>
+        </div>
+    </section>
+</div> 

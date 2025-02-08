@@ -1,0 +1,20 @@
+.faqs_section{
+    .faqs_accordion{
+            .p-accordion-tab{
+                background-color: var(--bs-gray-200);
+                .p-accordion-header-link{
+                    background-color: transparent;
+                    color: var(--secondaryColor);
+                    display: flex;
+                    flex-direction: row-reverse;
+                    border-width: 0;
+                    .p-accordion-header-text{
+                        margin-inline-end: auto;
+                    }
+                }
+                .p-accordion-content{
+                    background-color: transparent;
+                }
+            }
+    }
+}

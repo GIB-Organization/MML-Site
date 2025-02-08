@@ -1,0 +1,15 @@
+@import 'styles/core/variables';
+
+.company_goals {
+    .underlied_title {
+        --secondaryColor: var(--primaryColor);
+
+        ::ng-deep {
+            .underline_title {
+                &:before {
+                    @include absolute-position(calc(100% + 10px), calc(100% - 70px), 70px, 3px);
+                }
+            }
+        }
+    }
+}

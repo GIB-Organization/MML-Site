@@ -1,0 +1,9 @@
+.dialog_content{
+    border-radius: 100px !important;
+    ::ng-deep{
+        .close_dialog{
+            width: 40px !important;
+            height: 40px !important;
+        }
+    }
+}

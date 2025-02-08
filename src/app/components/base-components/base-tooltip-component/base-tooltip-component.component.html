@@ -1,0 +1,20 @@
+<span [class]="classes" [pTooltip]="tooltipContent" [tooltipStyleClass]="popoverType !== EPopover.text ? 'image_tooltip' : ''" tooltipPosition="bottom">
+    @if(isQuestionHead){
+    <i class="pi pi-question-circle primary_color"></i>
+    }
+    @else {
+    <ng-content select="head"></ng-content>
+    }
+</span>
+
+<ng-template #tooltipContent>
+    @if(popoverType === EPopover.text){
+    <span class="font_size__12 text-capitalize">
+        {{ popoverContent }}
+    </span>
+    }
+    @else {
+    <app-base-image-component width="300" [path]="popoverContent" alt="popover image"></app-base-image-component>
+    }
+
+</ng-template>

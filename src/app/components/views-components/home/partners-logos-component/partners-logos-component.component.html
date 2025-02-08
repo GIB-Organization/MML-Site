@@ -1,0 +1,15 @@
+<div class="partners_logos py-5 my-5 position-relative">
+    <div class="container">
+        <div class="text-center">
+            <p class="font_size__25"> {{'views.home.partnersLogos.platform' | translate : { appName: ('appName' | translate) } }} </p>
+            <p class="font_size__30 font_bold"> {{'views.home.partnersLogos.easyFast' | translate}} </p>
+        </div>
+        <div class="row mt-5 pt-5">
+            @for(item of logos; track item){
+                <aside class="col-md-2 col-6 my-2">
+                    <app-base-image-component [path]="item" [alt]="item"></app-base-image-component>
+                </aside>
+            }
+        </div>
+    </div>
+</div>

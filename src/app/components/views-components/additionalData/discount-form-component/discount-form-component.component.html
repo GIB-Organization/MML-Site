@@ -1,0 +1,132 @@
+<div class="discount_form" [formGroup]="additionalDataFormService.form">
+    <div class="row">
+        <aside class="col-md-6">
+            <div class="mb-4">
+                <app-base-label-component [required]="true" classes="form-label d-block"
+                    for="currency-us">{{'views.insuranceShow.estimatedVehicleValue' |
+                    translate}}</app-base-label-component>
+                <p-inputNumber [formControl]="additionalDataFormService.estimatedValue" inputStyleClass="form-control"
+                    inputId="currency-us" mode="currency" currency="SAR"> </p-inputNumber>
+                @if(additionalDataFormService.estimatedValue.touched &&
+                additionalDataFormService.estimatedValue.invalid){
+                <app-input-validation-alert-component> {{'errors.required' | translate}}
+                </app-input-validation-alert-component>
+                }
+            </div>
+        </aside>
+        <aside class="col-md-6">
+            <div class="mb-4">
+                <app-base-label-component classes="form-label d-block"
+                    for="usePurpose">{{'views.insuranceShow.usePurpose' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.usePurpose" inputId="usePurpose"
+                    [options]="lookupsStoreQuery.lookups[ELookupCategory.vehicleUses]"
+                    [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="mappingCode"></p-dropdown>
+            </div>
+        </aside>
+        <aside class="col-md-6">
+            <div class="mb-4">
+                <app-base-label-component classes="form-label d-block"
+                    for="birthYear" [required]="true">{{'views.home.insuranceForm.birthYear' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.ownerBirthYear" inputId="birthYear"
+                    [options]="dateFactoryService.createDateLists(insuranceInquireStoreQuery.inquireResponse.idNumber??1).years"></p-dropdown>
+                @if(false){
+                <app-input-validation-alert-component> {{'errors.required' | translate}}
+                </app-input-validation-alert-component>
+                }
+            </div>
+        </aside>
+        <aside class="col-md-6">
+            <div class="mb-4">
+                <app-base-label-component classes="form-label d-block"
+                    for="birthMonth" [required]="true">{{'views.home.insuranceForm.birthMonth' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.ownerBirthMonth" optionLabel="name" optionValue="id" inputId="birthMonth"
+                    [options]="dateFactoryService.createDateLists(insuranceInquireStoreQuery.inquireResponse.idNumber??1).months">
+                    <ng-template let-selectedItem pTemplate="selectedItem">
+                        {{selectedItem.name | translate}}
+                    </ng-template>
+                    <ng-template let-item pTemplate="item">
+                        {{item.name | translate}}
+                    </ng-template>
+                </p-dropdown>
+                @if(false){
+                <app-input-validation-alert-component> {{'errors.required' | translate}}
+                </app-input-validation-alert-component>
+                }
+            </div>
+        </aside>
+        <!-- <aside class="col-md-12 mb-3">
+            <div class="form-check mb-4">
+                <input formControlName="getDiscount" class="form-check-input" type="checkbox" id="flexCheckChecked"
+                    checked>
+                <label class="form-check-label font_light grey_color font_size__12" for="flexCheckChecked">
+                    {{'views.insuranceShow.discountBelong' | translate}}
+                </label>
+            </div>
+        </aside>
+        <aside class="col-12">
+            @if(additionalDataFormService.getDiscount.value){
+            <ng-container>
+                <p class="font_size__12 grey_color mb-4"> {{'views.insuranceShow.verifyAffiliate' | translate}} </p>
+                <div class="mb-4">
+                    @for(item of affiliationRadios; track item.id; let index =
+                    $index){
+                    <div class="form-check form-check-inline">
+                        <input formControlName="promoType" class="form-check-input" type="radio" [id]="item.id + index"
+                            [value]="item.value">
+                        <label class="form-check-label font_size__13" [for]="item.id + index">{{item.label |
+                            translate | titlecase}}</label>
+                    </div>
+                    }
+                </div>
+            </ng-container>
+
+            <div class="row align-items-center">
+                <aside class="col-md-6 mb-3">
+                    @switch (additionalDataFormService.promoType.value) {
+                    @case (EPromoTypeEnum.email) {
+                    <ng-container>
+                        <input formControlName="workMail" type="email" class="form-control"
+                            placeholder="{{'views.insuranceShow.enterEmail' | translate}}" />
+                        @if(additionalDataFormService.workMail.invalid && additionalDataFormService.workMail.touched){
+                        <app-input-validation-alert-component> {{'errors.required' | translate}}
+                        </app-input-validation-alert-component>
+                        }
+                    </ng-container>
+                    }
+                    @case (EPromoTypeEnum.id) {
+                    <ng-container>
+                        <div class="row">
+                            <aside class="col-6">
+                                <p-dropdown formControlName="partyType" inputId="partyType" [options]="partyTypeArr"
+                                    optionValue="id" optionLabel="name"></p-dropdown>
+                            </aside>
+                            <aside class="col-6">
+                                <p-inputNumber formControlName="partyId" placeholder="{{'public.id' | translate}}"
+                                    inputStyleClass="form-control" [useGrouping]="false"> </p-inputNumber>
+                            </aside>
+                        </div>
+
+                    </ng-container>
+                    }
+                    @case (EPromoTypeEnum.code) {
+                    <ng-container>
+                        <input formControlName="promoCode" type="text" class="form-control"
+                            placeholder="{{'views.insuranceShow.promoCode' | translate}}" />
+                    </ng-container>
+                    }
+                    }
+                </aside>
+                <aside class="col-md-6 d-flex mb-3">
+                    <app-base-button-component class="col mx-1"
+                        classes="btn-primary rounded-pill text-white font_size__12 w-100 shadow"> {{'public.verify' |
+                        translate | uppercase}} </app-base-button-component>
+                    <app-base-button-component
+                        (clicked)="additionalDataFormService.promoType.setValue(EPromoTypeEnum.email)" class="col mx-1"
+                        classes="btn-secondary rounded-pill text-white font_size__12 w-100 shadow"> {{'public.cancel' |
+                        translate | uppercase}} </app-base-button-component>
+                </aside>
+            </div>
+            }
+        </aside> -->
+    </div>
+</div>

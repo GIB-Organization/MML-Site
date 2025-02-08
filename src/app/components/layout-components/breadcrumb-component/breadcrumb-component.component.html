@@ -1,0 +1,12 @@
+<div class="base_breadcrumb mt-5">
+    <section class="container">
+        <nav class="mb-4" aria-label="breadcrumb">
+            <ol class="breadcrumb font_size__11">
+                <li class="breadcrumb-item"><a routerLink="/">{{'layout.navbar.home' | translate | titlecase}}</a></li>
+                @for(item of breadcrumbService.breadcrumbs; track item.label){
+                    <li class="breadcrumb-item" aria-current="page"><a [routerLink]="item.path" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="text-dark" class="">{{item.label | translate | titlecase}}</a></li>
+                }
+            </ol>
+        </nav>
+    </section>
+</div>

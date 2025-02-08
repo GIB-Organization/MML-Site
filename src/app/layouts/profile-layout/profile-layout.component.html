@@ -1,0 +1,15 @@
+<div class="profile_layout mb-5">
+    <section class="container">
+        <h6 class="h3 mb-5 font_semi__bold"> {{title | translate}} </h6>
+        <div class="row">
+            <aside class="col-md-3 mb-4">
+                <app-profile-sidebar-component></app-profile-sidebar-component>
+            </aside>
+            <aside class="col-md-9 mb-4">
+                <div [@routeAnimations]="getRouteAnimationData()">
+                    <router-outlet></router-outlet>
+                </div>
+            </aside>
+        </div>
+    </section>
+</div>

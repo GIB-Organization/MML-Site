@@ -1,0 +1,12 @@
+<div class="blog_details pt-5">
+    <section class="container">
+        <app-loading-content-component [loading]="isLoading()">
+                <div class="col-md-8 mx-auto">
+                    <h6 class="h3 text-center text-black"> {{blog()?.[websiteStoreQuery.blogTitleKey]}} </h6>
+                    <app-sided-icon-component classes="justify-content-center font_size__15 my-3 font_light text-dark" iconClass="primary_color" icon="calendar"> {{blog()?.createdDate | date : 'medium'}} </app-sided-icon-component>
+                    <app-base-image-component [isAssets]="false" classes="mb-4"  [path]="blog()?.imageUrl??''" alt="blog image"></app-base-image-component>
+                    <p class="mb-5" [innerHTML]=" sanitizer.bypassSecurityTrustHtml(blog()?.[websiteStoreQuery.blogDescKey]??'')"></p>
+                </div>
+        </app-loading-content-component>
+    </section>
+</div>

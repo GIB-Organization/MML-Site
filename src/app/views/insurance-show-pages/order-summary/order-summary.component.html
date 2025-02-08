@@ -1,0 +1,156 @@
+<div class="additional_data">
+    <app-title-box-component title="views.insuranceShow.orderSummary" subtitle="views.insuranceShow.offersValid" step="{{'/' + ERoutes.insuranceShow + '/' + ERoutes.compareOffers}}"></app-title-box-component>
+    <div class="shadow border rounded">
+        <div class="row align-items-stretch">
+            <aside class="col-md-7 mb-md-0 mb-4">
+                <div class="p-4">
+                    <div class="row font_size__12">
+                        <div class="col-md-6">
+                            <app-base-label-component classes="mb-2"> {{'views.insuranceShow.applicantName' |
+                                translate}}
+                            </app-base-label-component>
+                            <p class="grey_color"> {{fullName}} </p>
+                        </div>
+                        <div class="col-md-6">
+                            <app-base-label-component classes="mb-2"> {{'views.insuranceShow.applicantId' | translate}}
+                            </app-base-label-component>
+                            <p class="grey_color"> {{insuranceInquireStoreQuery.inquireResponse.idNumber}} </p>
+                        </div>
+                        <div class="col-md-6">
+                            <app-base-label-component classes="mb-2"> {{'views.home.insuranceForm.serialNumber' |
+                                translate}} </app-base-label-component>
+                            <p class="grey_color"> {{insuranceInquireStoreQuery.inquireResponse.serialNumber}} </p>
+                        </div>
+                        <div class="col-md-6">
+                            <app-base-label-component classes="mb-2"> {{'views.insuranceShow.vehicleDesc' | translate}}
+                            </app-base-label-component>
+                            <p class="grey_color"> {{vehicleDesc}} </p>
+                        </div>
+                        <div class="col-md-6">
+                            <app-base-label-component classes="mb-2"> {{'views.insuranceShow.docStartDate' | translate}}
+                            </app-base-label-component>
+                            <p class="grey_color"> {{quotationStoreQuery.selectedQuotationData?.quotation?.quotationDate | date}} </p>
+                        </div>
+                        <div class="col-md-6">
+                            <app-base-label-component classes="mb-2"> {{'views.insuranceShow.docExpireDate' |
+                                translate}}
+                            </app-base-label-component>
+                            <p class="grey_color"> {{quotationStoreQuery.selectedQuotationData?.quotation?.quotationExpiryDate| date}} </p>
+                        </div>
+                        <div class="col-md-6">
+                            <app-car-pallet-component [carCharsAr]="insuranceInquireStoreQuery.carPlateChars" [plateNumber]="insuranceInquireStoreQuery.carPlateNumber"></app-car-pallet-component>
+                        </div>
+                        <div class="col-md-6">
+                            <app-base-image-component classes="col-3" path="logo/BMW.svg" alt="car numbers"></app-base-image-component>
+                        </div>
+                        <div class="col-12"><p-divider></p-divider></div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <app-base-label-component classes="mb-2" [required]="true" for="email"> {{'views.insuranceShow.requesterEmail' |
+                                    translate}} </app-base-label-component>
+                                <input class="form-control" [formControl]="email" id="email" type="email" />
+                                @if(email.invalid && email.touched){
+                                    <app-input-validation-alert-component> {{'errors.email' | translate}} </app-input-validation-alert-component>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div>
+                                <app-base-label-component for="phone" classes="mb-2" [required]="true"> {{'views.insuranceShow.requesterNumber' |
+                                    translate}} </app-base-label-component>
+                                    <input InputNumber [maxLength]="10" [minLength]="10" [formControl]="phone" class="form-control" id="phone"/>
+                                    @if(phone.invalid && phone.touched){
+                                        <app-input-validation-alert-component> {{'errors.phone' | translate}} </app-input-validation-alert-component>
+                                    }
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div>
+                                <app-base-label-component classes="mb-2" [required]="true" for="iban"> {{'views.insuranceShow.iban' | translate}}
+                                </app-base-label-component>
+                                <input type="text" class="form-control" [formControl]="iban" id="iban"/>
+                                @if(iban.invalid && iban.touched){
+                                    <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div>
+                                <app-base-label-component classes="mb-2" [required]="true" for="bankName"> {{'views.insuranceShow.bankName' | translate}}
+                                </app-base-label-component>
+                                <input type="text" class="form-control" id="bankName" [formControl]="bankName" />
+                                @if(bankName.invalid && bankName.touched){
+                                    <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 d-flex flex-wrap">
+                        @for(payment of constantsService.paymentLogos; track payment.id){
+                            <div class="form-check form-check-inline col">
+                                <app-base-label-component classes="btn d-flex justify-content-center {{(paymentMethodId.value === payment.id) && 'btn-outline-primary' }}" [for]="payment.id + '-payment'"> 
+                                    <app-base-image-component [path]="payment.path" alt="payment logo"></app-base-image-component>
+                                </app-base-label-component>
+                                <input [value]="payment.id" type="radio" class="btn-check" [id]="payment.id + '-payment'" [formControl]="paymentMethodId" />
+                            </div>
+                        }
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" [formControl]="termsConditions" type="checkbox" id="termsConditions">
+                            <label class="form-check-label font_light grey_color font_size__12" for="termsConditions">
+                                {{'views.insuranceShow.termsConditions' | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row-reverse">
+                        <app-base-button-component
+                            [disabled]="isLoading() || formGetter.invalid"
+                            [loading]="isLoading()"
+                            (clicked)="createCheckout()"
+                            classes="btn-primary px-4 py-2 rounded-pill font_size__12 ms-2 mb-2">
+                            {{'views.insuranceShow.payNow' | translate | uppercase }} </app-base-button-component>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-md-5 primary_bg rounded-end rounded-4">
+                <div class="py-4 h-100">
+                    <div class="bg-light p-3 h-100">
+                        <div class="px-5 text-center">
+                            <app-base-image-component path="logo/logo.svg" alt="IC Logo"></app-base-image-component>
+                        </div>
+                        <p-divider type="dashed" [style]="{height: '3px'}"></p-divider>
+                        <ul class="list-unstyled m-0 p-0 font_size__12 font_light">
+                            @for(item of quotationStoreQuery.selectedQuotationData?.choosedProduct?.priceDetails; track item){
+                                <li class="d-flex justify-content-between align-items-center py-2">
+                                    <span>{{('priceDetailsCodes.' + item.priceTypeCode) | translate}}</span>
+                                    <b class="font_size__15">{{ item.priceValue | currency: settingsQuery.currency }}</b>
+                                </li>
+                            }
+                        </ul>
+                        <p-divider type="dashed" [style]="{height: '3px'}"></p-divider>
+                        <ul class="list-unstyled m-0 p-0 font_size__12 font_light">
+                            
+                            @for(item of (quotationStoreQuery.selectedQuotationData?.choosedBenefits); track item){
+                                <li class="d-flex justify-content-between align-items-center py-2">
+                                    <span> - {{benifitName(item)}}</span>
+                                    <b class="font_size__14">{{ item.benefitPrice| currency: settingsQuery.currency }}</b>
+                                </li>
+                            }
+                            
+                        </ul>
+                        <p-divider type="dashed" [style]="{height: '3px'}"></p-divider>
+                        <ul class="list-unstyled m-0 p-0 font_size__18 font_light">
+                            <li class="d-flex justify-content-between align-items-center py-2">
+                                <b>{{'views.insuranceShow.allTotal' | translate}}</b>
+                                <b>{{ quotationStoreQuery.selectedQuotationData?.choosedProduct?.productPrice| currency: settingsQuery.currency }}</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>

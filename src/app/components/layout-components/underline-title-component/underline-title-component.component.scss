@@ -1,0 +1,8 @@
+@import 'styles/core/variables';
+.underline_title{
+    $width: 70px;
+    &::before{
+        @include absolute-position(calc(100% + 10px), calc(50% - $width/2), $width, 3px);
+        background-color: var(--secondaryColor);
+    }
+}

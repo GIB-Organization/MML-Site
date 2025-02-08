@@ -1,0 +1,16 @@
+<div class="mb-2">
+    <app-base-label-component for="emailInput" classes="form-label" [required]="true"> {{'public.email' | translate}} </app-base-label-component>
+    <input type="email" class="form-control" [formControl]="loginFormService.email" id="emailInput">
+    @if(loginFormService.email.invalid && loginFormService.email.touched){
+        <app-input-validation-alert-component> {{'errors.email' | translate}} </app-input-validation-alert-component>
+    }
+</div>
+<div class="mb-2">
+    <app-base-label-component for="passwordInput" classes="form-label" [required]="true"> {{'public.password' | translate}} </app-base-label-component>
+    <p-password [feedback]="false" [formControl]="loginFormService.password" [toggleMask]="true" inputStyleClass="form-control" inputId="passwordInput"/>
+    @if(loginFormService.password.invalid && loginFormService.password.touched){
+        <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+    }
+</div>
+
+<app-base-button-component [loading]="isLoading()" (clicked)="login()" [disabled]="loginFormService.form.invalid" classes="btn-primary rounded-pill col-12 font_size__13 shadow"> {{'views.auth.login' | translate | uppercase}} </app-base-button-component>

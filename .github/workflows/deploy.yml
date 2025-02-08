@@ -1,0 +1,26 @@
+name: Deploy GIB App
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: ng build --prod
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-ssh@v2
+        # with:
+        #   ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy to server
+        run: |
+          scp -r ./dist/* your_user@your_server:/path/to/deploy

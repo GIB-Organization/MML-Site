@@ -1,0 +1,26 @@
+<div class="insurance_steps">
+    <div class="container my-5">
+        <div class="row">
+            <aside class="col-lg-2 d-lg-block d-none">
+                <div class="steps shadow p-2 rounded">
+                    <ul class="list-unstyled  m-0">
+                        @for(item of steps; track item.text; let index = $index){
+                            <li class="my-1">
+                                <app-base-link-component [path]="item.link" classes="d-flex justify-content-between py-1 grey_color" activeClasses="text-dark">
+                                    <span class="font_size__13"> {{item.text | translate}} </span>
+                                    <span> {{index + 1}} </span>
+                                </app-base-link-component>
+                            </li>
+                        }
+                    </ul>
+                    <a class="stretched-link"></a>
+                </div>
+            </aside>
+            <aside class="col-lg-10">
+                <div [@routeAnimations]="getRouteAnimationData()">
+                    <router-outlet></router-outlet>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>

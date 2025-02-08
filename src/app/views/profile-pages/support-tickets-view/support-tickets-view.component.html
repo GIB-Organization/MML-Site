@@ -1,0 +1,78 @@
+<div class="row mb-3">
+  <aside class="col-3">
+    <app-base-button-component (clicked)="newTicketDialog = true" classes="btn-primary w-100 font_size__13">
+      {{ "views.profile.supportTicket.addTicket" | translate }}
+    </app-base-button-component>
+  </aside>
+</div>
+
+<app-shadow-box-component classes="profile_cards p-4">
+  <app-loading-content-component [loading]="isLoading()">
+    <app-defer-block-component>
+      <app-empty-data-component [empty]="!tickets()?.length">
+        @for(item of tickets()?.slice()?.reverse(); track item){
+        <div class="mb-3 py-2 font_size__13 shadow-sm {{item.isReplied && 'font_bold'}}">
+          <div class="d-flex">
+            <div class="col-1 px-2">
+              <app-base-image-component alt="ticket icon" path="svg/ticket-icon.svg"></app-base-image-component>
+            </div>
+
+            <div class="flex-fill">
+              <p class="grey_color font_size__11">#{{item.id}}</p>
+              <p class="font_size__12">{{'views.profile.supportTicket.subject' | translate}}: <span
+                  class="grey_color">{{item.subject}}</span></p>
+              <p class="font_size__12">{{'views.profile.supportTicket.details' | translate}}: <span
+                  class="grey_color">{{item.lastMessage}}</span></p>
+              <p class="font_size__12">{{'views.profile.supportTicket.status' | translate}}: <span
+                  [class]="item.status===ETicketStatus.open ? 'primary_color':'secondary_color'">{{'ticketStatus.' + item.status | translate}}</span></p>
+            </div>
+
+            <!-- @if(item.isReplied){
+              <div class="col-1 px-2">
+                <i class="pi pi-envelope primary_color"></i>
+              </div>
+            } -->
+          </div>
+        </div>
+        }
+      </app-empty-data-component>
+    </app-defer-block-component>
+  </app-loading-content-component>
+</app-shadow-box-component>
+
+<app-dialog-component [(visible)]="newTicketDialog">
+  <div class="bg-white p-4">
+    <h5 class="mb-4">
+      {{ "views.profile.supportTicket.addTicket" | translate }}
+    </h5>
+    <div class="mb-3">
+      <app-base-label-component classes="mb-2" [required]="true" for="subjectInput">
+        {{ "views.profile.supportTicket.subject" | translate }}
+      </app-base-label-component>
+      <input [formControl]="subject" type="text" class="form-control" id="subjectInput" />
+      @if(!subject.valid && subject.touched){
+      <app-input-validation-alert-component> {{'errors.required' | translate}}
+      </app-input-validation-alert-component>
+      }
+    </div>
+    <div class="mb-3">
+      <app-base-label-component classes="mb-2" [required]="true" for="detailsInput">
+        {{ "views.profile.supportTicket.details" | translate }}
+      </app-base-label-component>
+      <textarea [formControl]="details" cols="10" rows="5" type="text" class="form-control"
+        id="detailsInput"></textarea>
+      @if(!details.valid && details.touched){
+      <app-input-validation-alert-component> {{'errors.required' | translate}}
+      </app-input-validation-alert-component>
+      }
+    </div>
+    <p-fileUpload [showCancelButton]="true" (onSelect)="setFile($event)" mode="basic"
+      styleClass="btn btn-outline-secondary font_light font_size__13 px-4 py-2 mb-4"
+      chooseLabel="{{ 'views.profile.supportTicket.uploadFile' | translate }}" chooseIcon="pi pi-upload"
+      maxFileSize="10000000" />
+    <app-base-button-component [disabled]="form.invalid" [loading]="isCreatingTicket()" (clicked)="sendForm()"
+      classes="font_size__13 btn btn-primary white py-2 px-4">
+      {{ "public.send" | translate }}
+    </app-base-button-component>
+  </div>
+</app-dialog-component>

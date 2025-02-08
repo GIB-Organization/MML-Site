@@ -1,0 +1,8 @@
+.apply_steps{
+    background-color: var(--bs-gray-200);
+    ::ng-deep{
+        img{
+            width: 150px;
+        }
+    }
+}

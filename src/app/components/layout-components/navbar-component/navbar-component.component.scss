@@ -1,0 +1,11 @@
+@import 'styles/core/variables';
+.navbar{
+    .nav-item{
+        .nav-link{
+            @extend %transition;
+            &.active, &:hover{
+                color: var(--primaryColor) !important;
+            }
+        }
+    }
+}

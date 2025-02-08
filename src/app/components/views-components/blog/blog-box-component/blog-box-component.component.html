@@ -1,0 +1,8 @@
+<a [routerLink]="['../' + ERoutes.blogPage, blogSlug()]" routerLinkActive="router-link-active">
+    <div class="blog_box">
+        <app-base-image-component [isAssets]="false"  [path]="blogImg()" alt="blog image"></app-base-image-component>
+        <h6 class="h5 text-black my-3 single_line__ellipsis pe-4"> {{blogTitle()}} </h6>
+        <app-sided-icon-component classes="font_size__13 mb-2 font_light primary_color" iconClass="primary_color" icon="calendar"> {{blogDate() | date : 'mediumDate'}} </app-sided-icon-component>
+        <!-- <p class="font_size__12 single_line__ellipsis grey_color font_light pe-5"> {{blog()[websiteStoreQuery.blogDescKey]}} </p> -->
+    </div>
+</a>

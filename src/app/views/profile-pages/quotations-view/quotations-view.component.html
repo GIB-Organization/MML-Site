@@ -1,0 +1,35 @@
+<!-- <div class="row mb-3" [formGroup]="filter">
+    <aside class="col-3">
+        <input formControlName="policyId" placeholder="{{'views.home.insuranceForm.policyId' | translate}}" class="form-control" id="idInput">
+    </aside>
+    <aside class="col-3">
+        <input formControlName="sequenceNumber" placeholder="{{'views.home.insuranceForm.serialNumber' | translate}}" class="form-control" id="sequenceNumber"/>
+    </aside>
+    <aside class="col-3">
+        <input formControlName="idNumber" placeholder="{{'views.home.insuranceForm.id' | translate}}" class="form-control" id="idNumber"/>
+    </aside>
+</div> -->
+
+
+
+<app-shadow-box-component classes="profile_cards py-4">
+    <app-loading-content-component [loading]="isLoading()">
+        <p-tabView styleClass="tabs_view">
+            @for(status of policyStatusEnumKeys; track status){
+            <p-tabPanel class="px-0"
+                header="{{'policyTabsStatus.' + EPolicyTabs[status] | translate}}({{policiesTabs()[EPolicyTabs[status]] ? policiesTabs()[EPolicyTabs[status]].length:0}})">
+                <app-defer-block-component>
+                    <app-empty-data-component [empty]="!policiesTabs()[EPolicyTabs[status]]">
+                        @for(item of policiesTabs()[EPolicyTabs[status]]; track item.policyId; let last = $last){
+                            <app-policy-box [policy]="item"></app-policy-box>
+                            @if(!last){
+                                <p-divider />
+                            }
+                        }
+                    </app-empty-data-component>
+                </app-defer-block-component>
+            </p-tabPanel>
+            }
+        </p-tabView>
+    </app-loading-content-component>
+</app-shadow-box-component>

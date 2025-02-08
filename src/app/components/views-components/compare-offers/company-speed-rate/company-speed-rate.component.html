@@ -1,0 +1,14 @@
+
+
+<app-base-tooltip-component [isQuestionHead]="false" popoverContent="{{'views.insuranceShow.companySpeed' | translate: {speed:value()} }}">
+    <div ngProjectAs="head" [formGroup]="formGroup" class="flex justify-content-center">
+        <p-rating formControlName="value" stars="4" [readonly]="true">
+            <ng-template pTemplate="onicon">
+                <app-base-image-component path="ico/Groupgood.svg" alt="good"></app-base-image-component>
+            </ng-template>
+            <ng-template pTemplate="officon">
+                <app-base-image-component path="ico/Groupbad.svg" alt="bad"></app-base-image-component>
+            </ng-template>
+        </p-rating>
+    </div>
+</app-base-tooltip-component>

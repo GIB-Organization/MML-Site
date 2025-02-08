@@ -1,0 +1,7 @@
+@if(isAssets === true){
+    <img class="img-fluid" [class]="classes" (click)="imageClicked()" src="assets/img/{{path}}" [alt]="alt">
+}
+
+@else {
+    <img class="img-fluid" [class]="classes" (click)="imageClicked()" [src]="path" [alt]="alt">
+}

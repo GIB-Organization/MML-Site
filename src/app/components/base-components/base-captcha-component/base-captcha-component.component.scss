@@ -1,0 +1,32 @@
+.custom_captcha {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    ::ng-deep{
+            img{
+                width: 40px;
+            }
+    }
+    canvas{
+        border-radius: var(--bs-border-radius);
+    }
+    .captcha-refresh {
+        width: 20px;
+        cursor: pointer;
+        transform-origin: center;
+        transition: all 0.3s;
+        padding-block: 12px;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:active {
+            transform: scale(1.1) rotate(30deg);
+        }
+    }
+
+    .custom-captcha .customTextField {
+        flex-grow: 1 !important;
+    }
+}

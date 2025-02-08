@@ -1,0 +1,11 @@
+<div class="main_layout pt-5">
+    <app-navbar-component></app-navbar-component>
+    <div class="pt-5" [@slideInOutAnimation]="getRouteAnimationData()">  
+        <router-outlet></router-outlet>
+    </div>
+    
+    <!-- <app-defer-block-component>
+        <app-footer-contact-component></app-footer-contact-component>
+    </app-defer-block-component> -->
+    <app-footer-component></app-footer-component>
+</div>

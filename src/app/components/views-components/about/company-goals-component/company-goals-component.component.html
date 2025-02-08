@@ -1,0 +1,21 @@
+<div class="company_goals py-5">
+    <section class="container py-5">
+        <div class="row align-items-center">
+            <aside class="col-md-6">
+                <app-base-image-component path="company-goals-img.png" alt="goals image"></app-base-image-component>
+            </aside>
+            <aside class="col-md-6 mt-md-0 mt-3">
+                <app-underline-title-component class="underlied_title">
+                    <span class="font_size__25">
+                        {{'views.about.companyGoals' | translate}}
+                    </span>
+                </app-underline-title-component>
+                <ul class="ps-3">
+                    @for(goal of [0,1,2,3]; track goal){
+                        <li class="mb-4"><span class="grey_color font_size__12"> {{'views.about.goals.goal' + (goal+1) | translate}} </span></li>
+                    }
+                </ul>
+            </aside>
+        </div>
+    </section>
+</div>

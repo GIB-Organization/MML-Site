@@ -1,0 +1,9 @@
+@defer (on viewport) {
+<ng-content></ng-content>
+}
+@loading(after 100ms; minimum 1s) {
+<app-placeholder-content-component></app-placeholder-content-component>
+}
+@placeholder {
+<app-placeholder-content-component></app-placeholder-content-component>
+}

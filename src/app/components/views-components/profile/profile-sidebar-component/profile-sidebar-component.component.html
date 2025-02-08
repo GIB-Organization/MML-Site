@@ -1,0 +1,25 @@
+<app-shadow-box-component>
+    <div class="profile_sidebar">
+        <ul class="list-unstyled m-0 px-0 py-3">
+            <li>
+                @for(item of sidedLinks; track item.path){
+                <app-base-link-component activeClasses="active_link text-dark border-primary border-3"
+                    classes="col-12 text-start p-3 font_size__13 border border-top-0 border-start-0 border-bottom-0 rounded-0"
+                    [path]="item.path">
+                    <app-base-image-component [path]="item.icon" alt="icon" classes="me-3"></app-base-image-component>
+                    {{ item.text | translate }}
+                </app-base-link-component>
+                }
+            </li>
+            <li>
+                <app-base-button-component
+                (clicked)="logout()"
+                    classes="col-12 text-start p-3 font_size__13 border border-top-0 border-start-0 border-bottom-0 rounded-0">
+                    <app-base-image-component path="svg/logout.svg" alt="icon"
+                        classes="me-3"></app-base-image-component>
+                    {{ 'views.profile.signout' | translate }}
+                </app-base-button-component>
+            </li>
+        </ul>
+    </div>
+</app-shadow-box-component>

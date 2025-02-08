@@ -1,0 +1,28 @@
+html[lang='ar']{
+    .p-float-label > label{
+        left: unset;
+        right: 0.75rem;
+    }
+    :is(.company_goals, .privacy_policy) .underline_title:before{
+        right: 0 !important;
+    }
+    .p-input-icon-right > .p-icon-wrapper {
+        right: unset;
+        left: 0.75rem !important;
+    }
+    .p-dropdown .p-dropdown-clear-icon{
+        right: unset;
+        left: 3rem;
+    }
+    .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text{
+        margin: 0 1rem 0 0 !important;
+    }
+    .p-button .p-button-icon-left {
+        margin-left: .5rem;
+        margin-right: 0;
+    }
+    .p-autocomplete .p-autocomplete-loader{
+        right: unset;
+        left: 0.75rem;
+    }
+}

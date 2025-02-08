@@ -1,0 +1,16 @@
+::ng-deep{
+    .p-tooltip{
+        box-shadow: unset;
+        .p-tooltip-text{
+            width: 250px;
+        }
+        &.image_tooltip{
+            .p-tooltip-text{
+                box-shadow: unset;
+                width: 550px;
+                background-color: transparent;
+                padding: 0;
+            }
+        }
+    }
+}

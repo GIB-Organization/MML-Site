@@ -1,0 +1,26 @@
+<div class="shadow border rounded p-4">
+    <div class="row align-items-center">
+        <aside class="col-md-5 mb-3 mb-md-0">
+            <div class="d-flex align-items-center">
+                <div class="flex-shrink-0 col-2">
+                    <app-base-image-component path="logo/BMW.svg" alt="car logo"></app-base-image-component>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <app-base-label-component classes="font_size__14"> {{'views.insuranceShow.vehicleDesc' | translate}} </app-base-label-component>
+                    <p class="grey_color font_size__14 font_light mb-0"> {{ insuranceInquireStoreQuery.inquireResponse.maker + ' - ' +  insuranceInquireStoreQuery.inquireResponse.model }} </p>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-md col-12 mb-3 mb-md-0">
+            <div>
+                <app-base-label-component classes="font_size__14" [isPopover]="true" popoverContent="prices-table.png" [popoverType]="EPopover.img"> 
+                    {{'views.insuranceShow.discountEntitle' | translate}} 
+                </app-base-label-component>
+                <p class="grey_color font_size__14 font_light mb-0"> {{'views.insuranceShow.noCut' | translate}} </p>
+            </div>
+        </aside>
+        <aside class="col-md col-12">
+            <app-car-pallet-component [plateNumber]="insuranceInquireStoreQuery.inquireResponse.plateNumber??000" carCharsAr="{{this.insuranceInquireStoreQuery.inquireResponse.plateText1}} {{this.insuranceInquireStoreQuery.inquireResponse.plateText2}} {{this.insuranceInquireStoreQuery.inquireResponse.plateText3}}"></app-car-pallet-component>
+        </aside>
+    </div>
+</div>

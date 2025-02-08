@@ -1,0 +1,24 @@
+<div class="blogs">
+    <section class="container">
+        <h6 class="h3 mb-5 font_semi__bold"> {{'views.blog.title' | translate}} </h6>
+        <app-loading-content-component [loading]="isLoading()">
+            <app-empty-data-component [empty]="!blogs()?.length">
+                <div class="row">
+                    @for(item of blogs();track item.id ){
+                    <aside class="col-md-4 mb-3">
+                        <app-blog-box-component [blogImg]="item.imageUrl" [blogSlug]="item.slug"
+                            [blogTitle]="item[websiteStoreQuery.blogTitleKey]"
+                            [blogDate]="item.createdDate"></app-blog-box-component>
+                    </aside>
+                    }
+
+                </div>
+                <div class="d-flex justify-content-center mb-5 mt-4">
+                    <app-paginator-component (paginationChange)="getBlogs($event)"
+                        [totalRecords]="websiteStoreQuery.blogsCount"
+                        [(pagination)]="pagination"></app-paginator-component>
+                </div>
+            </app-empty-data-component>
+        </app-loading-content-component>
+    </section>
+</div>

@@ -1,0 +1,26 @@
+<app-dialog-component [(visible)]="visible">
+    <div class="row mx-0 align-items-stretch">
+        <aside class="col-md-6 secondary_bg text-center py-5 text-white">
+            <app-base-image-component alt="logo" path="logo/logo-white.svg"></app-base-image-component>
+            <p class="font_size__18 font_bold my-5"> {{ authDialogService.visibleForm().title| translate}} </p>
+            <p class="font_size__13 my-5"> {{authDialogService.visibleForm().subtitle| translate}} </p>
+            <app-base-button-component
+                (clicked)="authDialogService.visibleForm().currentComponent === EFormType.login ? authDialogService.openComponent(EFormType.register) : authDialogService.openComponent(EFormType.login)"
+                classes="btn-outline-light rounded-pill px-5 font_size__13"> {{ authDialogService.visibleForm().buttonText | translate |
+                uppercase}} </app-base-button-component>
+        </aside>
+        <aside class="col-md-6 bg-white overflow-auto" style="max-height: 435px">
+            <div class="h-100 d-flex flex-column justify-content-evenly">
+                <div class="px-3 py-4">
+                    <h6 class="font_size__16 font_semi__bold mb-3"> {{authDialogService.visibleForm().headingText| translate}} </h6>
+                    <ng-container *ngComponentOutlet="authDialogService.visibleForm().component" />
+                    @if(authDialogService.visibleForm().currentComponent === EFormType.login){
+                    <app-base-button-component (clicked)="authDialogService.openComponent(EFormType.forgotPassword)"
+                        classes="btn-transparent primary_color rounded-pill px-0 font_size__13 mt-4">
+                        {{'views.auth.forgotPassword' | translate}} </app-base-button-component>
+                    }
+                </div>
+            </div>
+        </aside>
+    </div>
+</app-dialog-component>

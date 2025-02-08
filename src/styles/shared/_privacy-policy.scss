@@ -1,0 +1,11 @@
+@import 'styles/core/variables';
+.privacy_policy{
+    ::ng-deep {
+        .underline_title {
+            &:before {
+                background-color: var(--primaryColor);
+                @include absolute-position(calc(100% + 10px), calc(100% - 70px), 70px, 3px);
+            }
+        }
+    }
+}

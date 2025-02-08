@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-between flex-wrap mb-3">
+    <div>
+        <h4 class="mb-2"> {{title() | translate}} </h4>
+        <p class="grey_color font_size__11"> {{subtitle() | translate : {h:remainingTime.hours,m:remainingTime.minutes,s:remainingTime.seconds} }}
+        </p>
+    </div>
+    <app-base-link-component [path]="step()" icon="arrow-left" classes="btn-outline-primary rounded-pill font_size__13 px-3 py-2">
+        {{'views.insuranceShow.previousStep' | translate | uppercase}} </app-base-link-component>
+</div>

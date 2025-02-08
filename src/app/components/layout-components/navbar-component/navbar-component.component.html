@@ -1,0 +1,27 @@
+<app-auth-dialog-component [(visible)]="authDialogService.visible"></app-auth-dialog-component>
+
+<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a routerLink="/"><app-base-image-component path="logo/logo.svg" alt="image"></app-base-image-component> </a> 
+        <button class="navbar-toggler" (click)="isMenuCollapsed = !isMenuCollapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @for(item of navLinks; track item.lang; let first = $first){
+                    <li class="nav-item">
+                        <a class="nav-link font_semi__bold text-dark font_size__13" aria-current="page" [routerLink]="[item.link]" routerLinkActive="active" > {{'layout.navbar.'+item.lang | translate}}</a>
+                    </li>
+                }
+            </ul>
+            
+            <button (click)="switchLang()" class="btn btn-transparent text-dark font_size__13"> {{'layout.navbar.lang' | translate}} </button>
+            @if(!isAuthenticated()){
+                <button (click)="authDialogService.openLoginDialog()" class="btn btn-primary rounded-pill ms-3 font_size__13 px-4 shadow text-light"> {{'layout.navbar.login' | translate}} </button>
+            }@else {
+                <app-base-link-component classes="btn-primary rounded-pill ms-3 font_size__13 px-4 shadow text-light" [path]="ERoutes.profile"> {{authStoreQuery.userName}} </app-base-link-component>
+            }
+        </div>
+    </div>
+</nav>

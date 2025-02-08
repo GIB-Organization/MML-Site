@@ -1,0 +1,9 @@
+@import 'styles/core/variables';
+.partners_logos{
+    &:before{
+        @include absolute-position(-100px, calc(100% - 300px), 500px, 500px);
+        background-image: url('/assets/img/svg/front-bg.svg');
+        background-size: cover;
+        z-index: -1;
+    }
+}

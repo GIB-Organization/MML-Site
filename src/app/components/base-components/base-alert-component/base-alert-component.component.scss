@@ -1,0 +1,10 @@
+.alert{
+    &.alert-primary{
+        --bs-alert-bg: var(--primaryColor);
+        --bs-alert-color: var(--secondaryColor);
+    }
+    &.alert-secondary{
+        --bs-alert-bg: var(--secondaryColor);
+        --bs-alert-color: var(--white);
+    }
+}

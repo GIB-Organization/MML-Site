@@ -1,0 +1,13 @@
+@if (!empty) {
+<ng-content></ng-content>
+}
+@else {
+<div class="text-center">
+    <div class="col-5 mx-auto mb-4">
+        <app-base-image-component path="svg/empty-orders.svg" alt="empty-icon"></app-base-image-component>
+    </div>
+    <p>
+        {{ message | translate }}
+    </p>
+</div>
+}

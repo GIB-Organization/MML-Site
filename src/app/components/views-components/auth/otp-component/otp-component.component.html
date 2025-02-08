@@ -1,0 +1,7 @@
+<div class="mb-4">
+    <app-base-label-component for="numberInput" classes="form-label" [required]="true"> {{'public.code' | translate}} </app-base-label-component>
+    <div class="text-center" dir="ltr">
+        <p-inputOtp [formControl]="otp" [integerOnly]="true" />
+    </div>
+</div>
+<app-base-button-component [loading]="isLoading()" (clicked)="otpFormService.sendOtp(otp.value)" [disabled]="otp.invalid" classes="btn-primary rounded-pill col-12 font_size__13 shadow"> {{'public.send' | translate | uppercase}} </app-base-button-component>

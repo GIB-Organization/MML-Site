@@ -1,0 +1,79 @@
+<div class="contact_us">
+    <section class="container">
+        <h6 class="h3 mb-5 font_semi__bold"> {{'views.contact.title' | translate}} </h6>
+        <div class="row pt-4">
+            <aside class="col-md-4 mb-3">
+                <div>
+                    <p class="grey_color font_size__11 font_light"> {{'views.contact.description' | translate}} </p>
+                    <h6 class="h6 font_semi__bold my-4"> {{'views.contact.contactDirect' | translate}} </h6>
+                    <ul class="list-unstyled m-0">
+                        <li> <app-base-link-component classes="font_size__13 grey_color" [external]="true" path="tel:{{settingsQuery.generalSettings?.phone}}"> {{settingsQuery.generalSettings?.phone}} </app-base-link-component> </li>
+                        <li> <app-base-link-component classes="font_size__13 grey_color" [external]="true" path="mailto:{{settingsQuery.generalSettings?.email}}"> {{settingsQuery.generalSettings?.email}} </app-base-link-component> </li>
+                    </ul>
+                </div>
+            </aside>
+            <aside class="col-md-8 mb-3 font_semi__bold">
+                <div class="row">
+                    <aside class="col-md-6">
+                        <div class="mb-4">
+                            <app-base-label-component classes="form-label" [required]="true" for="nameInput"> {{ 'public.name' | translate }} </app-base-label-component>
+                            <input [formControl]="fullName" type="text" class="form-control" id="nameInput" placeholder="{{'public.name' | translate}}">
+                            @if(fullName.invalid && fullName.touched){
+                                <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                            }
+                        </div>
+                    </aside>
+                    <aside class="col-md-6">
+                        <div class="mb-4">
+                            <app-base-label-component classes="form-label" [required]="true" for="emailInput"> {{ 'public.email' | translate }} </app-base-label-component>
+                            <input [formControl]="email" type="email" class="form-control" id="emailInput" placeholder="{{'public.email' | translate}}">
+                            @if(email.invalid && email.touched){
+                                <app-input-validation-alert-component> {{'errors.email' | translate}} </app-input-validation-alert-component>
+                            }
+                        </div>
+                    </aside>
+                    <aside class="col-md-6">
+                        <div class="mb-4">
+                            <app-base-label-component classes="form-label" [required]="true" for="phoneInput"> {{ 'public.phone' | translate }} </app-base-label-component>
+                            <input [formControl]="phone" type="phone" [minLength]="10" [maxLength]="10" pattern="[0-9]+" class="form-control" id="phoneInput" placeholder="{{'public.phone' | translate}}">
+                            @if(phone.invalid && phone.touched){
+                                <app-input-validation-alert-component> {{'errors.phone' | translate}} </app-input-validation-alert-component>
+                            }
+                        </div>
+                    </aside>
+                    <aside class="col-md-6">
+                        <div class="mb-4">
+                            <app-base-label-component classes="form-label" [required]="true" for="subjectInput"> {{ 'public.subject' | translate }} </app-base-label-component>
+                            <input [formControl]="subject" type="text" class="form-control" id="subjectInput" placeholder="{{'public.subject' | translate}}">
+                            @if(subject.invalid && subject.touched){
+                                <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                            }
+                        </div>
+                    </aside>
+                    <aside class="col-md-12">
+                        <div class="mb-4">
+                            <app-base-label-component classes="form-label" [required]="true" for="messageInput"> {{ 'public.message' | translate }} </app-base-label-component>
+                            <textarea [formControl]="message" cols="20" rows="6" class="form-control" id="messageInput" placeholder="{{'public.message' | translate}}"></textarea>
+                            @if(message.invalid && message.touched){
+                                <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                            }
+                        </div>
+                    </aside>
+                    <aside class="col-md-3 mb-5">
+                        <app-base-button-component [disabled]="form.invalid" [loading]="isContacting()" (clicked)="submit()" classes="btn-primary text-light rounded-pill w-100"> {{'public.send' | translate}} </app-base-button-component>
+                    </aside>
+                </div>
+            </aside>
+        </div>
+    </section>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.2212312728834!2d46.7175007!3d24.684920599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0387b84e7265%3A0x588d54fe06387f33!2z2LTYsdmD2Kkg2KfZhNiu2YTZitisINmE2YjYs9in2LfYqSDYp9mE2KrYo9mF2YrZhiDZiNin2LnYp9iv2Kkg2KfZhNiq2KPZhdmK2YY!5e0!3m2!1sar!2ssa!4v1696323600861!5m2!1sar!2ssa"
+      width="100%"
+      height="350"
+      style="border:0;"
+      frameborder="0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+</div>

@@ -1,0 +1,415 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Motor.API",
+    "version": "1.0"
+  },
+  "servers":[
+    {"url":"https://109.199.127.34/"}
+  ],
+  "paths": {
+    "/api/v1/basicInfo/vechileInfo": {
+      "post": {
+        "tags": [
+          "BasicInfo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicVechileInfoRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicVechileInfoRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicVechileInfoRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/basicInfo/inquire": {
+      "post": {
+        "tags": [
+          "BasicInfo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InquireRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InquireRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InquireRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/lookup": {
+      "get": {
+        "tags": [
+          "Lookup"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/lookup/getLoockupsByCategoriesIds": {
+      "post": {
+        "tags": [
+          "Lookup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/quotation/requestQuotation": {
+      "put": {
+        "tags": [
+          "Quotation"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuotationRequestDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuotationRequestDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuotationRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BasicVechileInfoRequestDTO": {
+        "required": [
+          "customNumber",
+          "insuranceReason",
+          "insuredBirthDate",
+          "insuredId",
+          "modelYear",
+          "oldOwnerId",
+          "policyEffectiveDate",
+          "sequenceNumber",
+          "vehicleIdentifier"
+        ],
+        "type": "object",
+        "properties": {
+          "policyEffectiveDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "insuredId": {
+            "pattern": "^[1-2]{1}[0-9]{9}$",
+            "type": "integer",
+            "format": "int32"
+          },
+          "vehicleIdentifier": {
+            "$ref": "#/components/schemas/VehicleIdentifier"
+          },
+          "insuranceReason": {
+            "$ref": "#/components/schemas/InsuranceReason"
+          },
+          "insuredBirthDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "oldOwnerId": {
+            "pattern": "^[1-2]{1}[0-9]{9}$",
+            "type": "integer",
+            "format": "int32"
+          },
+          "sequenceNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "customNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "modelYear": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateOnly": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "month": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "day": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          },
+          "dayOfYear": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "dayNumber": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DayOfWeek": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "DriverDTO": {
+        "type": "object",
+        "properties": {
+          "driverId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "licenseTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "birthDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "educationLevelId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "drivingPersintage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "medicalCondition": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isSameOwnerCity": {
+            "type": "boolean"
+          },
+          "homeCity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "workCity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "accidentLast5Years": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InquireRequestDto": {
+        "required": [
+          "sellerId",
+          "idNumber",
+          "purpose",
+          "serialNumber",
+          "startDate",
+          "vehicleRegisterType",
+          "vehicleYear"
+        ],
+        "type": "object",
+        "properties": {
+          "purpose": {
+            "$ref": "#/components/schemas/InsurancePurpose"
+          },
+          "vehicleRegisterType": {
+            "$ref": "#/components/schemas/VehicleRegisterTypeEnum"
+          },
+          "idNumber": {
+            "pattern": "^[1-2]{1}[0-9]{9}$",
+            "type": "integer",
+            "format": "int32"
+          },
+          "serialNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "$ref": "#/components/schemas/DateOnly"
+          },
+          "vehicleYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sellerId": {
+            "pattern": "^[1-2]{1}[0-9]{9}$",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InsurancePurpose": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "InsuranceReason": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "QuotationRequestDTO": {
+        "type": "object",
+        "properties": {
+          "refranceNumber": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "basicVechileInfoRequestDTO": {
+            "$ref": "#/components/schemas/BasicVechileInfoRequestDTO"
+          },
+          "drivers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DriverDTO"
+            },
+            "nullable": true
+          },
+          "usingTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estimatedVechilePrice": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VehicleIdentifier": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "VehicleRegisterTypeEnum": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}
