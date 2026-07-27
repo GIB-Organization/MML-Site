@@ -24,6 +24,9 @@ export class PaymentStoreQuery extends Query<IPaymentStore>{
   get paymentMethod(){
     return this._store.getValue().paymentMethod;
   }
+  get data(){
+    return this._store.getValue().data;
+  }
 
   set setPaymentMethod(method:EPaymentsTypes){
     this._store.update({

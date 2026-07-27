@@ -9,3 +9,11 @@
         }
     }
 }
+
+::ng-deep app-base-image-component img.logo {
+    width: min(200px, 52vw);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}

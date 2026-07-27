@@ -1,8 +1,14 @@
 <div class="insurance_tabs">
-    <div class="col-md-4 mx-auto">
-        <div class="border rounded-pill d-flex flex-nowrap align-content-center">
+    <div [ngClass]="visibleTabsCount > 1 ? 'col-12 col-md-6 mx-auto' : 'col-12 col-md-4 mx-auto'">
+        <div class="border rounded-pill d-flex flex-wrap align-content-center justify-content-center">
             @for(item of tabs; track item.lang){
-                @if(item.show){ <span role="button" class="col text-center font_size__13 py-3 rounded-pill text-uppercase" [ngClass]="{'primary_bg secondary_color': item.active, 'grey_color': !item.active}"> {{'views.home.insuranceTabs.'+ item.lang | translate}} </span> }
+                @if(item.show){
+                    <span role="button" (click)="openTab(item)" class="col text-center font_size__13 py-3 rounded-pill text-uppercase"
+                    [ngClass]="{'primary_bg text-white': item.active, 'grey_color': !item.active}">
+                    {{'views.home.insuranceTabs.'+ item.lang | translate}}
+
+                    </span>
+                }
             }
         </div>
     </div>

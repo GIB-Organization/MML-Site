@@ -74,7 +74,7 @@
           "registerType": "نوع تسجيل المركبة",
           "form": "استمارة",
           "customCard": "بطاقات مخصصة",
-          "id": "رقم الهوية / الإقامة",
+          "id": "رقم الهوية / الإقامة / الشركة",
           "serialNumber": "رقم التسلسل",
           "insuranceDate": "تاريخ بدء التأمين",
           "confirmCode": "كود التحقق",
@@ -90,8 +90,7 @@
           "policyId": "معرف السياسة"
         },
         "partnersLogos": {
-          "platform": "منصة {{appName}}  ،،،،",
-          "easyFast": "وفر وقتك وأمن سيارتك"
+          "platform": "منصة {{appName}}  ،،،،"
         },
         "applySteps": {
           "howTo": "كيف تتقدم بطلب التأمين؟",
@@ -281,11 +280,24 @@
         "enterCode": "أدخل الرمز",
         "passwordChanged": "تم تغيير كلمة المرور بنجاح."
       },
-      "insuranceShow": {
+      "insuranceShow": {        
+        "Subspecialty": "التخصص الدقيق",
+        "policyPeriod": "عدد سنوات التغطية",
+        "experiencePeriod": "عدد سنوات الخبرة",
+        "malpracticeClaimQuestion": "هل أقيمت ضدك مطالبات أو دعاوي قضائية بسبب إهمال أو خطأ في ممارسة مهنتك؟",
+        "malpracticeClaimDetails": "تفاصيل سجل المطالبات",
+        "previousInsuranceQuestion": "هل لديك تأمين سابق يغطي الأخطاء الطبية؟",
+        "previousPolicyNumber": "رقم الوثيقة السابقة",
+        "previousPolicyEndDate": "تاريخ نهاية الوثيقة السابقة",
+        "previousInsuranceCompanyCode": "اسم شركة التأمين السابقة",
+        "retroactiveDate": "تاريخ الاثر الرجعي",
+        "pepQuestion": "هل انت شخص معرض سياسيا للمخاطر؟",
+
+
         "enterData": "أدخل البيانات",
         "compareOffers": "مقارنة العروض",
         "insureNow": "تأمين الآن",
-        "additionalData": "البيانات الإضافية المطلوبة",
+        "additionalData": "معلومات طالب التأمين",
         "expiresOn": "هناك وثيقة صالحة لهذه السيارة تنتهي صلاحيتها في",
         "estimatedVehicleValue": "القيمة المقدرة للمركبة",
         "usePurpose": "الغرض من الاستخدام",
@@ -348,11 +360,28 @@
         "companyDiscount": "{{name}} تخفيض",
         "total": "المجموع",
         "vat": "ضريبة القيمة المضافة",
+        "annualCoverageLimit": "حد التغطية السنوي",
+        "singleClaimLimit": "حد المطالبة الواحدة",
+        "noAdditionalBenefits": "لا يوجد مزايا إضافية",
+        "buyOffer": "اشتري",
+        "priceDetails": "تفاصيل السعر",
+        "offerDetails": "تفاصيل العرض",
+        "insuredDetails": "تفاصيل المؤمن عليه",
+        "insuranceStart": "بدء التأمين",
+        "insuranceEnd": "نهاية التأمين",
+        "nationalAddress": "العنوان الوطني",
+        "specialty": "التخصص",
+        "choosePaymentMethod": "اختر طريقة الدفع",
+        "subscribeNow": "اشترِ الآن",
+        "back": "الخلف",
+        "payment": "الدفع",
+        "mobileNumber": "رقم الجوال",
         "allTotal": "الكل مجموع",
         "comprehensiveUpgrade": " الترقية إلى التأمين الشامل ",
         "discountEntitle": "استحقاق الخصم ",
         "thirdPartyInsurance": " ضد الغير ",
         "comprehensiveInsurance": " التأمين الشامل يبدأ ب {{price}} ",
+        "specialInsurance": " التأمين المميز يبدأ ب {{price}} ",
         "maintenanceType": "نوع الصيانة",
         "companies": "شركات",
         "sorting": "ترتيب",
@@ -384,7 +413,9 @@
       "confirmPassword": "تأكيد كلمة المرور غير مطابقة لكلمة المرور",
       "name": "يجب أن يكون الاسم > 8 أحرف",
       "email": "البريد الإلكتروني يجب أن يكون صالحا",
-      "phone": "يجب أن يكون الهاتف مثل 05xxxxxxxxxx"
+      "phone": "يجب أن يكون الهاتف مثل 05xxxxxxxxxx",
+      "somethingWentWrong": "حدث خطأ ما، يرجى المحاولة مرة أخرى",
+      "noOffers": "لا توجد عروض متاحة حالياً"
     },
     "months": {
       "gregorian": {

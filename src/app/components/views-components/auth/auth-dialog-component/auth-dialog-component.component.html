@@ -1,8 +1,8 @@
 <app-dialog-component [(visible)]="visible">
     <div class="row mx-0 align-items-stretch">
-        <aside class="col-md-6 secondary_bg text-center py-5 text-white">
-            <app-base-image-component alt="logo" path="logo/logo-white.svg"></app-base-image-component>
-            <p class="font_size__18 font_bold my-5"> {{ authDialogService.visibleForm().title| translate}} </p>
+        <aside class="col-md-6 primary_bg text-center py-5 text-white">
+            <app-base-image-component alt="logo" path="logo/gib-logo-white.png" classes="auth-dialog-brand-logo"></app-base-image-component>
+            <p class="font_size__18 font_bold my-5 mt-0"> {{ authDialogService.visibleForm().title| translate}} </p>
             <p class="font_size__13 my-5"> {{authDialogService.visibleForm().subtitle| translate}} </p>
             <app-base-button-component
                 (clicked)="authDialogService.visibleForm().currentComponent === EFormType.login ? authDialogService.openComponent(EFormType.register) : authDialogService.openComponent(EFormType.login)"

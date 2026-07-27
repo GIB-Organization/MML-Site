@@ -1,7 +1,7 @@
 @if(isAssets === true){
-    <img class="img-fluid" [class]="classes" (click)="imageClicked()" src="assets/img/{{path}}" [alt]="alt">
+    <img [class]="classes ? 'img-fluid ' + classes : 'img-fluid'" [ngStyle]="resolvedWidthStyle()" (click)="imageClicked()" src="assets/img/{{path}}" [alt]="alt">
 }
 
 @else {
-    <img class="img-fluid" [class]="classes" (click)="imageClicked()" [src]="path" [alt]="alt">
+    <img [class]="classes ? 'img-fluid ' + classes : 'img-fluid'" [ngStyle]="resolvedWidthStyle()" (click)="imageClicked()" [src]="path" [alt]="alt">
 }

@@ -111,12 +111,17 @@ export class AuthStoreService {
         this.authDialogService.openComponent(EFormType.otp);
         this.store.update({ otp: res.result });
       },
-      complete: () => this.store.setLoading(false),
       error: (err) => {
-        this.toasterService.addError(err.error)
-        this.store.setError(err.error)
         this.store.setLoading(false)
+      if (err.status === 300) {
+        this.toasterService.addError('errors.mobilevertification');
+      } else {
+        this.toasterService.addError(err.error);
       }
+        this.store.setError(err.error)
+      },
+      complete: () => this.store.setLoading(false),
+
     });
   }
   /**
@@ -168,6 +173,7 @@ export class AuthStoreService {
       },
       complete: () => this.store.setLoading(false),
       error: (err) => {
+        this.toasterService.addError('customRequestErrors.invalidEmailOrMobile')
         this.store.setError(err)
         this.store.setLoading(false)
       }

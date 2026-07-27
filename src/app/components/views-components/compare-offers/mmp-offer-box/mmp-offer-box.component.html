@@ -1,0 +1,75 @@
+@if (selected(); as offer) {
+<div class="shadow border border_radius__10 p-3">
+    <div class="row align-items-stretch g-3">
+
+        <!-- Company -->
+        <aside class="col-md-3">
+            <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                <div class="col-7 mb-2">
+                    <app-base-image-component path="success.png" alt="company logo"></app-base-image-component>
+                </div>
+                <h6 class="company_title mb-0 font_size__14 text-center">
+                    {{ $any(offer)[companyNameKey] }}
+                </h6>
+            </div>
+        </aside>
+
+        <!-- Coverage + deductible -->
+        <aside class="col-md-5 border-start border-end">
+            <div class="h-100 d-flex flex-column justify-content-center gap-3">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <p class="grey_color font_size__12 mb-1">{{ 'views.insuranceShow.annualCoverageLimit' | translate }}</p>
+                        <b class="font_size__14">{{ offer.annualCoverageLimit | number }}</b>
+                    </div>
+                    <div class="col-6">
+                        <p class="grey_color font_size__12 mb-1">{{ 'views.insuranceShow.singleClaimLimit' | translate }}</p>
+                        <b class="font_size__14">{{ offer.singleClaimLimit | number }}</b>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="grey_color font_size__12 mb-1">{{ 'views.insuranceShow.endurance' | translate }}</p>
+                    <p-dropdown
+                        [options]="offers()"
+                        [ngModel]="offer.deductibleId"
+                        (ngModelChange)="selectedId.set($event)"
+                        optionValue="deductibleId"
+                        [optionLabel]="deductibleNameKey"
+                        styleClass="w-100"
+                        appendTo="body">
+                    </p-dropdown>
+                </div>
+
+                <p class="secondary_color font_size__13 mb-0">
+                    {{ 'views.insuranceShow.noAdditionalBenefits' | translate }}
+                </p>
+            </div>
+        </aside>
+
+        <!-- Price + buy -->
+        <aside class="col-md-4">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <ul class="list-unstyled mb-3 p-0 font_size__12 font_light">
+                    <li class="d-flex justify-content-between align-items-center py-1">
+                        <span>{{ 'views.insuranceShow.basicInstallment' | translate }}</span>
+                        <b>{{ offer.basicPremium | currency: settingsQuery.currency }}</b>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center py-1">
+                        <span>{{ 'views.insuranceShow.vat' | translate }} {{ offer.vatPercentage | number }}%</span>
+                        <b>{{ offer.vatAmount | currency: settingsQuery.currency }}</b>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center py-1 font_size__15 mt-3 border-top pt-2">
+                        <b>{{ 'views.insuranceShow.total' | translate }}</b>
+                        <b>{{ offer.total | currency: settingsQuery.currency }}</b>
+                    </li>
+                </ul>
+                <app-base-button-component (clicked)="buy()"
+                    classes="btn-primary rounded-pill text-white shadow font_size__14 col-12 py-2">
+                    {{ 'views.insuranceShow.buyOffer' | translate }}
+                </app-base-button-component>
+            </div>
+        </aside>
+    </div>
+</div>
+}

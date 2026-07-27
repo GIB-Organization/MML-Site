@@ -2,6 +2,13 @@ import { EQuotationsTabs, ESortingEnum } from "../core/enums";
 import { EQuotationType } from "../core/enums/quotations.enum";
 import { ICompany } from "./companies.interface";
 
+/** Matches backend QuotationResponseErrorrDto (camelCase JSON: code, message, field). */
+export interface IQuotationError {
+  code?: string;
+  message: string;
+  field?: string;
+}
+
 export interface IQuotation{
   referenceId: string;
   quotationNo: string;
@@ -9,7 +16,12 @@ export interface IQuotation{
   vehicleAgencyRepair:boolean;
   quotationDate: string;
   quotationExpiryDate: string;
+  isAvaliableFromMobileOnly: boolean;
   products: IQuotationProduct[];
+  /** Business / underwriting messages from the insurer (e.g. GIG policyPlans.messages). */
+  errors?: IQuotationError[];
+  /** 1 = success, 0 = business or validation issues (same sense as AICC status checks). */
+  statusCode?: number;
 }
 
 export interface IQuotationProduct {

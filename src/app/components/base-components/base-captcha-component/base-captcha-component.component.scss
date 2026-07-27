@@ -1,7 +1,23 @@
 .custom_captcha {
     display: flex;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: 10px;
+    width: 100%;
+
+    .captcha_code_row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    > input.form-control {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
     ::ng-deep{
             img{
                 width: 40px;
@@ -9,13 +25,14 @@
     }
     canvas{
         border-radius: var(--bs-border-radius);
+        max-width: 140px;
     }
-    .captcha-refresh {
+    .captcha_refresh {
         width: 20px;
         cursor: pointer;
         transform-origin: center;
         transition: all 0.3s;
-        padding-block: 12px;
+        flex-shrink: 0;
 
         &:hover {
             transform: scale(1.1);
@@ -28,5 +45,28 @@
 
     .custom-captcha .customTextField {
         flex-grow: 1 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom_captcha {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+
+        .captcha_code_row {
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        canvas {
+            width: 112px;
+            height: 36px;
+        }
+
+        input.form-control {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
     }
 }

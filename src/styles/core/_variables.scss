@@ -1,8 +1,8 @@
 $white: #fffffe;
 $black: #252D27;
 $grey: #adadad;
-$primaryColor: #ffb449;
-$secondaryColor: #3a5f62;
+$primaryColor: #0049AD;
+$secondaryColor: #000000;
 $fontLight: 'FTLight';
 $fontExtraLight: 'FTExtraLight';
 $fontRegular: 'FTRegular';
@@ -14,7 +14,7 @@ $fontExtraLight: 'FTExtraLight';
 $fontThin: 'FTThin';
 $fontSemiBold: 'FTSemiBold';
 $transition: all 0.3s ease-in-out;
-$primaryColorFilter: brightness(0) saturate(100%) invert(80%) sepia(72%) saturate(876%) hue-rotate(321deg) brightness(101%) contrast(102%);
+$primaryColorFilter: brightness(0) saturate(100%) invert(25%) sepia(97%) saturate(1583%) hue-rotate(192deg) brightness(92%) contrast(101%);
 $whiteColorFilter: brightness(0) invert(1);
 $greyColorFilter: brightness(0) saturate(100%) invert(47%) sepia(7%) saturate(522%) hue-rotate(166deg) brightness(94%) contrast(93%);
 

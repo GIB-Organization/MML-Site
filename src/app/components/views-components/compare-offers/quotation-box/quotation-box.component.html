@@ -1,4 +1,11 @@
 <div class="shadow border border_radius__10">
+    @if (quotation()?.errors?.length) {
+        <div class="alert alert-warning mb-0 rounded-0 rounded-top border-0 border-bottom" role="alert">
+            @for (err of quotation()?.errors ?? []; track $index) {
+                <p class="mb-1 font_size__12">{{ err.message }}</p>
+            }
+        </div>
+    }
     <div class="p-3">
         <div class="row align-items-stretch">
             <aside class="col-md-2">
@@ -17,9 +24,9 @@
                     <p class="grey_color font_size__13 font_light">
                         {{choosedProduct()[quotationStoreQuery.productDescKey]}}
                     </p>
-                    @if(comprehensiveOrThird() === EQuotationsTabs.comprehensive){
+                    @if(choosedProduct().benefits?.length){
                         <div class="row">
-                            @for(item of choosedProduct().benefits; track item){
+                            @for(item of choosedProduct().benefits!; track item.benefitId){
                                 <div class="col-md-12">
                                     <div class="form-check mt-1">
                                         <input class="form-check-input" [checked]="isDefaultBenefit(item)" [disabled]="isDefaultBenefit(item)" type="checkbox" (change)="toggleBenefit(item, $event)" id="benefit-{{choosedProduct().productId}}-{{item.benefitId}}">
@@ -48,7 +55,7 @@
                                 <b>{{ choosedProduct().productPrice | currency: settingsQuery.currency }}</b>
                             </li>
                         </ul>
-                        @if(comprehensiveOrThird() === EQuotationsTabs.comprehensive){
+                        @if(comprehensiveOrThird() === EQuotationsTabs.comprehensive || comprehensiveOrThird() === EQuotationsTabs.special){
                             <div class="row align-items-center">
                                 <div class="col-7">
                                     <app-base-label-component classes="font_size__12" [isPopover]="true" popoverContent="{{'views.insuranceShow.enduranceTooltip' | translate}}"> 
@@ -61,19 +68,29 @@
                             </div>
                         }
                     </div>
-                    <app-base-button-component
+                    @if(!quotation()?.isAvaliableFromMobileOnly){
+                        <app-base-button-component 
                         (clicked)="submit()"
+                        [disabled]="!!quotation()?.errors?.length"
                         classes="btn-primary mt-3 text-white shadow col-12 rounded-pill font_size__13 text-uppercase">
                         {{'public.buy' | translate}} </app-base-button-component>
+                    }
+                    @if(quotation()?.isAvaliableFromMobileOnly){
+                        <app-base-button-component
+                        (clicked)="openMobileDialog = true"
+                        classes="btn-primary mt-3 text-white shadow col-12 rounded-pill font_size__13 text-uppercase">
+                        {{'public.availableOnMobile' | translate}} </app-base-button-component>
+                    }
+
                 </div>
             </aside>
         </div>
     </div>
-    @if(comprehensiveOrThird() !== EQuotationsTabs.comprehensive){
+    @if(comprehensiveOrThird() !== EQuotationsTabs.comprehensive && comprehensiveOrThird() !== EQuotationsTabs.special && comprehensivePrice() != null){
         <div class="box_footer secondary_bg px-4 p-4 rounded-bottom-3">
             <div class="row align-items-center py-3">
                 <aside class="col-md-8 mb-md-0 mb-3">
-                    <h6 class="font_size__15 text-white mb-0 text-md-start text-center"> {{'views.insuranceShow.replaceWithComprehensive' | translate :{price: (comprehensivePrice() | currency : settingsQuery.currency)} }} </h6>
+                    <h6 class="font_size__15 text-white mb-0 text-md-start text-center"> {{'views.insuranceShow.replaceWithComprehensive' | translate :{price: (comprehensivePrice()! | currency : settingsQuery.currency)} }} </h6>
                 </aside>
                 <aside class="col-md-4">
                     <app-base-button-component (clicked)="comprehensiveOrThird.set(EQuotationsTabs.comprehensive)" classes="btn-light text-uppercase rounded-pill col-12 font_size__13"> {{'views.insuranceShow.chooseComprehensive' | translate}} </app-base-button-component>
@@ -82,3 +99,15 @@
         </div>
     }
 </div>
+
+
+<app-dialog-component [(visible)]="openMobileDialog">
+    <div class="bg-white p-4">
+    <h5 class="mb-4">
+        {{ "views.insuranceShow.availableFromMobileDialogTitle" | translate }}
+      </h5>
+      <app-base-label-component classes="mb-2"  for="subjectInput">
+        {{ "views.insuranceShow.availableFromMobileDialogBody" | translate }}
+      </app-base-label-component>
+    </div>
+</app-dialog-component>

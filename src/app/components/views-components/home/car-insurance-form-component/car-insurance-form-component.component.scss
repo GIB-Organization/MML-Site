@@ -1,0 +1,17 @@
+@import 'styles/core/variables';
+
+.car_insurance__form .form_box {
+  min-width: 0;
+}
+
+:host ::ng-deep .insurance-date-label {
+  @media (min-width: $breakpoint-md) {
+    min-height: 50px;
+  }
+}
+
+:host ::ng-deep .p-inputwrapper,
+:host ::ng-deep .p-float-label {
+  min-width: 0;
+  max-width: 100%;
+}

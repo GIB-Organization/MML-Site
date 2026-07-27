@@ -4,10 +4,10 @@
             <div class="row">
                 <aside class="col-md-10 mx-auto">
                     <div class="row">
-                        <aside class="col-md-3 mb-3">
+                        <aside class="col-md-3 mb-3 footer-brand-col">
                             <div>
-                                <app-base-image-component path="logo/logo-white.svg" alt="logo"></app-base-image-component>
-                                <p class="font_size__11 mt-4">{{'layout.footer.description' | translate}}</p>
+                                <app-base-image-component path="logo/gib-logo-white.png" alt="logo" classes="footer-brand-logo"></app-base-image-component>
+                                <p class="font_size__11 mt-0">{{'layout.footer.description' | translate}}</p>
                                 <div class="d-flex mt-4">
                                     @for(link of socialMedia; track link.icon){
                                     <app-base-link-component [external]="true" [path]="link.path">
@@ -48,7 +48,7 @@
                                     </li>
                                     <li class="mb-3">
                                         <app-base-link-component classes="p-0 font_size__13 white_color primary_hover"
-                                            path=""> {{'layout.footer.links.faqs' | translate}} </app-base-link-component>
+                                        path="/" section ="#faqs"> {{'layout.footer.links.faqs' | translate}} </app-base-link-component>
                                     </li>
                                     <li class="mb-3">
                                         <app-base-link-component classes="p-0 font_size__13 white_color primary_hover"

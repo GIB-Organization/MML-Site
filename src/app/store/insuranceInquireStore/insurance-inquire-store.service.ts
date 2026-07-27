@@ -7,8 +7,6 @@ import { ERoutes } from '../../core/enums';
 import { take } from 'rxjs';
 import { IAdditionalData } from '../../models/additionalData.interface';
 import { InsuranceInquireStoreQueryService } from './insurance-inquire-store.query';
-import { CompaniesStoreService } from '../companiesStore/companies-store.service';
-import { ToasterService } from '../../services/toaster/toaster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,6 @@ export class InsuranceInquireStoreService {
   private store = inject(InsuranceInquireStoreStoreService);
   private insuranceInquireStoreQueryService = inject(InsuranceInquireStoreQueryService);
   private router = inject(Router);
-  private companiesStoreService = inject(CompaniesStoreService);
   /**
    * @param  {IInsuranceInquireDTO} data
    */
@@ -26,7 +23,6 @@ export class InsuranceInquireStoreService {
     this.store.setLoading(true)
     this.api.inquireInsurance(data).pipe(take(1)).subscribe({
       next: (res) => {
-        debugger
         this.store.update({inquireResponse: res.result});
         this.router.navigate([`${ERoutes.insuranceShow}/${ERoutes.additionalData}`]);
       },
@@ -41,7 +37,9 @@ export class InsuranceInquireStoreService {
     this.store.setLoading(true)
     this.api.postAdditionalData({...data, refId: this.insuranceInquireStoreQueryService.inquireResponse.refId??''}).pipe(take(1)).subscribe({
       next: (res) => {
-        this.companiesStoreService.setCompanies(res.result);
+        // Pricing (duration/deductible tiers) is stored for a future compare-offers redesign
+        // to render - no MMP UI consumes it yet this phase.
+        this.store.update({pricing: res.result.pricing});
         this.router.navigate([`${ERoutes.insuranceShow}/${ERoutes.compareOffers}`]);
       },
       complete:() => this.store.setLoading(false),

@@ -1,0 +1,13 @@
+:host ::ng-deep img.footer-brand-logo {
+    width: min(240px, 78vw);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .footer-brand-col {
+        margin-top: -18px;
+    }
+}

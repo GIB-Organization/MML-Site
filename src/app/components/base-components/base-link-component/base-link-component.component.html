@@ -3,6 +3,14 @@
         <ng-container *ngTemplateOutlet="content"></ng-container>
     </a>
 }
+@else if (section) {
+    <a
+      href="javascript:void(0)"
+      (click)="scrollToSection()"
+      [class]="classes">
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </a>
+  }
 @else {
     <a [routerLink]="[path]" [routerLinkActive]="activeClasses" class="btn" [class]="classes">
         <ng-container *ngTemplateOutlet="content"></ng-container>

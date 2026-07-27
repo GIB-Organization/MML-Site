@@ -1,0 +1,7 @@
+:host ::ng-deep img.auth-dialog-brand-logo {
+    width: min(200px, 60vw);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: inline-block;
+}

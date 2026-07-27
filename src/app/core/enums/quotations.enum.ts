@@ -1,11 +1,14 @@
 export enum EQuotationsTabs{
     thirdParty = 1,
-    comprehensive = 2
+    comprehensive = 2,
+    special = 3,
 }
 export enum EQuotationType{
     thirdParty= 1,
     comprehensiveAgency = 2,
     comprehensiveWorkshop = 3,
+    specialAgency = 4,
+    specialWorkshop = 5,
 }
 export enum EPriceDetailCode {
     specialDiscount = 1,

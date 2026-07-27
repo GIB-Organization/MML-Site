@@ -1,3 +1,10 @@
 .loading_spinner{
     z-index: 1031;
 }
+
+:host ::ng-deep img.loading-brand-logo {
+    width: min(160px, 50vw);
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}

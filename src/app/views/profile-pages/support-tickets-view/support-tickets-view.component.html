@@ -22,16 +22,17 @@
               <p class="font_size__12">{{'views.profile.supportTicket.subject' | translate}}: <span
                   class="grey_color">{{item.subject}}</span></p>
               <p class="font_size__12">{{'views.profile.supportTicket.details' | translate}}: <span
-                  class="grey_color">{{item.lastMessage}}</span></p>
+                  class="grey_color">{{item.details}}</span></p>
               <p class="font_size__12">{{'views.profile.supportTicket.status' | translate}}: <span
                   [class]="item.status===ETicketStatus.open ? 'primary_color':'secondary_color'">{{'ticketStatus.' + item.status | translate}}</span></p>
-            </div>
-
-            <!-- @if(item.isReplied){
               <div class="col-1 px-2">
-                <i class="pi pi-envelope primary_color"></i>
+                @if(item.isReplied){
+                  <i class="pi pi-envelope primary_color"></i>
+                  <p class="font_size__12">{{'views.profile.supportTicket.ticketReply' | translate}}: <span
+                    class="grey_color">{{item.lastMessage}}</span></p>
+                }
               </div>
-            } -->
+            </div>
           </div>
         </div>
         }

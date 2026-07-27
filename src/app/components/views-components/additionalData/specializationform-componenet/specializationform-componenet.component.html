@@ -1,0 +1,147 @@
+<div class="specialization_form" [formGroup]="additionalDataFormService.form">
+    <div class="row">
+        <aside class="col-md-3 col-6">
+            <div class="mb-4">
+                <app-base-label-component [required]="true" classes="form-label d-block"
+                    for="subProfession">{{'views.insuranceShow.Subspecialty' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.subProfessionId" inputId="subProfession"
+                    [options]="lookupsStoreQuery.lookups[ELookupCategory.SubProfessions]"
+                    [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="referenceId"></p-dropdown>
+            </div>
+        </aside>
+
+        <aside class="col-md-3 col-6">
+            <div class="mb-4">
+                <app-base-label-component [required]="true" classes="form-label d-block"
+                    for="policyPeriod">{{'views.insuranceShow.policyPeriod' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.policyPeriod" inputId="policyPeriod"
+                    [options]="constants.policyPeriod"></p-dropdown>
+            </div>
+        </aside>
+
+        <aside class="col-md-3 col-6">
+            <div class="mb-4">
+                <app-base-label-component [required]="true" classes="form-label d-block"
+                    for="experiencePeriod">{{'views.insuranceShow.experiencePeriod' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.experiencePeriodId" inputId="experiencePeriod"
+                    [options]="lookupsStoreQuery.lookups[ELookupCategory.ExperiencePeriods]"
+                    [optionLabel]="lookupsStoreQuery.lookupNameKey" optionValue="referenceId"></p-dropdown>
+            </div>
+        </aside>
+
+        <aside class="col-md-3 col-6">
+            <div class="mb-4">
+                <app-base-label-component [required]="true" classes="form-label d-block"
+                    for="birthMonth">{{'views.insuranceShow.birthMonth' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.birthMonth" inputId="birthMonth"
+                    [options]="applicantDateLists.months" optionValue="id">
+                    <ng-template let-selectedItem pTemplate="selectedItem">
+                        {{selectedItem.name | translate}}
+                    </ng-template>
+                    <ng-template let-item pTemplate="item">
+                        {{item.name | translate}}
+                    </ng-template>
+                </p-dropdown>
+            </div>
+        </aside>
+
+        <aside class="col-md-3 col-6">
+            <div class="mb-4">
+                <app-base-label-component [required]="true" classes="form-label d-block"
+                    for="birthYear">{{'views.insuranceShow.birthYear' | translate}}</app-base-label-component>
+                <p-dropdown [formControl]="additionalDataFormService.birthYear" inputId="birthYear"
+                    [options]="applicantDateLists.years"></p-dropdown>
+            </div>
+        </aside>
+    </div>
+
+    <div class="declaration_row py-3 border-top">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <app-base-label-component classes="mb-0 font_size__13"> {{'views.insuranceShow.malpracticeClaimQuestion' | translate}} </app-base-label-component>
+            <div class="d-flex">
+                <app-base-button-component (clicked)="additionalDataFormService.malpracticeClaimDeclared.setValue(false)"
+                    classes="rounded-pill font_size__12 px-4 py-2 {{!additionalDataFormService.malpracticeClaimDeclared.value?'btn-dark':'btn-outline-dark'}}"> {{'public.no' | translate}} </app-base-button-component>
+                <app-base-button-component (clicked)="additionalDataFormService.malpracticeClaimDeclared.setValue(true)"
+                    classes="rounded-pill font_size__12 px-4 py-2 ms-2 {{additionalDataFormService.malpracticeClaimDeclared.value?'btn-dark':'btn-outline-dark'}}"> {{'public.yes' | translate}} </app-base-button-component>
+            </div>
+        </div>
+        @if(additionalDataFormService.malpracticeClaimDeclared.value){
+            <div class="mt-3">
+                <textarea [formControl]="additionalDataFormService.malpracticeClaimDetails" class="form-control"
+                    rows="3" placeholder="{{'views.insuranceShow.malpracticeClaimDetails' | translate}}"></textarea>
+                @if(additionalDataFormService.malpracticeClaimDetails.touched && additionalDataFormService.malpracticeClaimDetails.invalid){
+                    <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="declaration_row py-3 border-top">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <app-base-label-component classes="mb-0 font_size__13"> {{'views.insuranceShow.previousInsuranceQuestion' | translate}} </app-base-label-component>
+            <div class="d-flex">
+                <app-base-button-component (clicked)="additionalDataFormService.hasPreviousInsurance.setValue(false)"
+                    classes="rounded-pill font_size__12 px-4 py-2 {{!additionalDataFormService.hasPreviousInsurance.value?'btn-dark':'btn-outline-dark'}}"> {{'public.no' | translate}} </app-base-button-component>
+                <app-base-button-component (clicked)="additionalDataFormService.hasPreviousInsurance.setValue(true)"
+                    classes="rounded-pill font_size__12 px-4 py-2 ms-2 {{additionalDataFormService.hasPreviousInsurance.value?'btn-dark':'btn-outline-dark'}}"> {{'public.yes' | translate}} </app-base-button-component>
+            </div>
+        </div>
+        @if(additionalDataFormService.hasPreviousInsurance.value){
+            <div class="row mt-3">
+                <aside class="col-md-3 col-6">
+                    <div class="mb-3">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="previousPolicyNumber">{{'views.insuranceShow.previousPolicyNumber' | translate}}</app-base-label-component>
+                        <input [formControl]="additionalDataFormService.previousPolicyNumber" type="text" class="form-control" id="previousPolicyNumber" />
+                        @if(additionalDataFormService.previousPolicyNumber.touched && additionalDataFormService.previousPolicyNumber.invalid){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+                <aside class="col-md-3 col-6">
+                    <div class="mb-3">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="previousPolicyEndDate">{{'views.insuranceShow.previousPolicyEndDate' | translate}}</app-base-label-component>
+                        <input readonly [formControl]="additionalDataFormService.previousPolicyEndDate" class="form-control" (click)="d.toggle()" type="text" ngbDatepicker #d="ngbDatepicker" id="previousPolicyEndDate" />
+                        @if(additionalDataFormService.previousPolicyEndDate.touched && additionalDataFormService.previousPolicyEndDate.invalid){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+                <aside class="col-md-3 col-6">
+                    <div class="mb-3">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="previousInsuranceCompanyCode">{{'views.insuranceShow.previousInsuranceCompanyCode' | translate}}</app-base-label-component>
+                        <p-dropdown [formControl]="additionalDataFormService.previousInsuranceCompanyCode" inputId="previousInsuranceCompanyCode"
+                            [options]="companiesStoreQuery.companies" [optionLabel]="companiesStoreQuery.companyNameKey" optionValue="insuranceCompanyID"></p-dropdown>
+                        @if(additionalDataFormService.previousInsuranceCompanyCode.touched && additionalDataFormService.previousInsuranceCompanyCode.invalid){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+                <aside class="col-md-3 col-6">
+                    <div class="mb-3">
+                        <app-base-label-component [required]="true" classes="form-label d-block"
+                            for="retroactiveDate">{{'views.insuranceShow.retroactiveDate' | translate}}</app-base-label-component>
+                        <input readonly [formControl]="additionalDataFormService.retroactiveDate" class="form-control" (click)="r.toggle()" type="text" ngbDatepicker #r="ngbDatepicker" id="retroactiveDate" />
+                        @if(additionalDataFormService.retroactiveDate.touched && additionalDataFormService.retroactiveDate.invalid){
+                            <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                        }
+                    </div>
+                </aside>
+            </div>
+        }
+    </div>
+
+    <div class="declaration_row py-3 border-top">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+            <app-base-label-component classes="mb-0 font_size__13"> {{'views.insuranceShow.pepQuestion' | translate}} </app-base-label-component>
+            <div class="d-flex">
+                <app-base-button-component (clicked)="additionalDataFormService.isPoliticallyExposedPerson.setValue(false)"
+                    classes="rounded-pill font_size__12 px-4 py-2 {{!additionalDataFormService.isPoliticallyExposedPerson.value?'btn-dark':'btn-outline-dark'}}"> {{'public.no' | translate}} </app-base-button-component>
+                <app-base-button-component (clicked)="additionalDataFormService.isPoliticallyExposedPerson.setValue(true)"
+                    classes="rounded-pill font_size__12 px-4 py-2 ms-2 {{additionalDataFormService.isPoliticallyExposedPerson.value?'btn-dark':'btn-outline-dark'}}"> {{'public.yes' | translate}} </app-base-button-component>
+            </div>
+        </div>
+    </div>
+</div>

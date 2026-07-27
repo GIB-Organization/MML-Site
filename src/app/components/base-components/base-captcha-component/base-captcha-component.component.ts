@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Inject, Input, Output, PLATFORM_ID, ViewChild, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Inject, Input, NgZone, Output, PLATFORM_ID, ViewChild, model } from '@angular/core';
 import { BaseImageComponentComponent } from '../base-image-component/base-image-component.component';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,7 +21,10 @@ export class BaseCaptchaComponentComponent {
   captchaTimeout: any = null;
   isBrowser = false;
 
-  constructor(@Inject(PLATFORM_ID) public platform_id: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) public platform_id: Object,
+    private readonly ngZone: NgZone,
+  ) {
     this.isBrowser = isPlatformBrowser(platform_id);
   }
 
@@ -33,13 +36,17 @@ export class BaseCaptchaComponentComponent {
   }
 
   ngOnDestroy(): void {
-    clearTimeout(this.captchaTimeout);
+    if (this.captchaTimeout != null) {
+      clearInterval(this.captchaTimeout);
+    }
   }
 
   setCaptchaTimeout() {
-    this.captchaTimeout = setInterval(() => {
-      this.refreshCaptcha();
-    }, 1 * 60000);
+    this.ngZone.runOutsideAngular(() => {
+      this.captchaTimeout = setInterval(() => {
+        this.ngZone.run(() => this.refreshCaptcha());
+      }, 60 * 1000);
+    });
   }
 
   generateRandomNumber() {
@@ -115,4 +122,19 @@ export class BaseCaptchaComponentComponent {
   captchaCodeChanged(){
     this.codeIsCorrect.set(this.captchaCode === this.randomCode ? true:false)
   }
+
+  allowOnlyNumbers(event: KeyboardEvent) {
+    const charCode = event.key;
+    if (!/^\d$/.test(charCode)) {
+      event.preventDefault();
+    }
 }
+
+enforceMaxLength() {
+  if (this.captchaCode.length > 4) {
+    this.captchaCode = this.captchaCode.slice(0, 4);
+  }
+}
+}
+
+

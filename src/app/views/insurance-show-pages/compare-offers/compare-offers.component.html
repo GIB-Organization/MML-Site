@@ -1,27 +1,20 @@
 <div class="additional_data">
-    <app-title-box-component title="views.insuranceShow.compareOffers"
-        subtitle="views.insuranceShow.offersValid" step="">
+    <app-title-box-component title="views.insuranceShow.compareOffers" subtitle="" step="">
     </app-title-box-component>
-    <div class="mb-4"><app-car-info-box-component></app-car-info-box-component></div>
-    <div class="mb-4">
-        <app-quotations-filter [activeTab]="filter().type" (isAgencyModelChange)="filter().isAgency = $event"
-            (companyModelChange)="filter().company = $event" (sortingModelChange)="filter().sorting = $event"
-            (activeTabChange)="filter().type = $event"></app-quotations-filter>
-    </div>
-    @for(item of quotations() | quotationsFilter: filter().company:filter().sorting; track item){
-    @if(item.mappedQuotations?.[quotationStartegy.chooseQuotationType(filter().type, filter().isAgency)]){
-        <div class="mb-4">
-            <app-defer-block-component>
-                <app-quotation-box 
-                (comprehensiveOrThirdChange)="filter().type = $event" 
-                [comprehensivePrice]="item.mappedQuotations?.[EQuotationsTabs.comprehensive]?.products?.[0]?.productPrice" 
-                [quotation]="item.mappedQuotations?.[quotationStartegy.chooseQuotationType(filter().type, filter().isAgency)]" 
-                [company]="item.company" 
-                [comprehensiveOrThird]="filter().type"
-                [choosedProduct]="item.mappedQuotations?.[quotationStartegy.chooseQuotationType(filter().type, filter().isAgency)]?.products?.[0]??{}">
-            </app-quotation-box>
-            </app-defer-block-component>
+
+    @if (loading()) {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
         </div>
-    }
+    } @else if (hasError()) {
+        <div class="alert alert-warning">{{ 'errors.somethingWentWrong' | translate }}</div>
+    } @else {
+        @for (group of offerGroups(); track group[0].insuranceCompanyId + '-' + group[0].coverageYears) {
+            <div class="mb-4">
+                <app-mmp-offer-box [offers]="group"></app-mmp-offer-box>
+            </div>
+        } @empty {
+            <div class="text-center grey_color py-5">{{ 'errors.noOffers' | translate }}</div>
+        }
     }
 </div>

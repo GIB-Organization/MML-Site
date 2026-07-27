@@ -12,6 +12,14 @@ class ComprehensiveAgencyClass implements IQuotationStartegy{
 class ComprehensiveWorkshopClass implements IQuotationStartegy{
     quotationType: EQuotationType = EQuotationType.comprehensiveWorkshop;
 }
+class SpecialAgencyClass implements IQuotationStartegy{
+    quotationType: EQuotationType = EQuotationType.specialAgency;
+}
+
+class SpecialWorkshopClass implements IQuotationStartegy{
+    quotationType: EQuotationType = EQuotationType.specialWorkshop;
+}
+
 
 export class QuotationStartegyClass{
     quotationType!: EQuotationType;
@@ -26,6 +34,13 @@ export class QuotationStartegyClass{
         else if((type === EQuotationsTabs.comprehensive) && (isAgency == false)){
             this.quotationType = new ComprehensiveWorkshopClass().quotationType;
         }
+        else if((type === EQuotationsTabs.special) && (isAgency == true)){
+            this.quotationType = new SpecialAgencyClass().quotationType;
+        }
+        else if((type === EQuotationsTabs.special) && (isAgency == false)){
+            this.quotationType = new SpecialWorkshopClass().quotationType;
+        }
+
         return this.quotationType;
     }
 }

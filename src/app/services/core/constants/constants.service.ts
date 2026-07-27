@@ -7,6 +7,9 @@ function createArray(n: number) {
   providedIn: 'root'
 })
 export class ConstantsService {
+  // Matches MmpPricingEngine's OfferedDurations (1-3 years) on the backend.
+  policyPeriod: number[] = [1, 2, 3]
+
   chidrenUnder16List: number[] = createArray(16)
   fiveYearsAccidentsList: number[] = createArray(20)
   yearsHoldingLicenseList: number[] = createArray(50)

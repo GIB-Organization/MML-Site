@@ -74,7 +74,7 @@
                 "registerType": "Vehicle Register Type",
                 "form": "Form",
                 "customCard": "Custom Cards",
-                "id": "ID Number / Residence",
+                "id": "ID Number / Iqama / Company",
                 "serialNumber": "Sequence Number",
                 "insuranceDate": "Insurance Start Date",
                 "confirmCode": "Captcha Code",
@@ -90,8 +90,7 @@
                 "policyId":"Policy ID"
             },
             "partnersLogos": {
-                "platform": "{{appName}} Platform ,,,,",
-                "easyFast": "Save your time and secure your car"
+                "platform": "{{appName}} Platform ,,,,"
             },
             "applySteps": {
                 "howTo": "How do you apply for insurance?",
@@ -282,10 +281,22 @@
             "passwordChanged":"Password is successfully changed."
         },
         "insuranceShow":{
+            "Subspecialty": "Subspecialty",
+            "policyPeriod": "Number of years of coverage",
+            "experiencePeriod": "Years of experience",
+            "malpracticeClaimQuestion": "Have malpractice claims or lawsuits been filed against you due to negligence or an error in your professional practice?",
+            "malpracticeClaimDetails": "Claim record details",
+            "previousInsuranceQuestion": "Do you have previous insurance covering medical errors?",
+            "previousPolicyNumber": "Previous policy number",
+            "previousPolicyEndDate": "Previous policy end date",
+            "previousInsuranceCompanyCode": "Previous insurance company name",
+            "retroactiveDate": "Retroactive date",
+            "pepQuestion": "Are you a politically exposed person?",
+
             "enterData":"Enter Data",
             "compareOffers":"Compare Offers",
             "insureNow":"Insure Now",
-            "additionalData":"Additional required data",
+            "additionalData":"Insurance Applicant Information",
             "expiresOn":"There is a valid document for this vehicle that expires on",
             "estimatedVehicleValue":"Estimated vehicle value",
             "usePurpose":"Purpose of Use",
@@ -348,11 +359,28 @@
             "companyDiscount":"{{name}} Discount",
             "total":"Total",
             "vat":"Value added tax",
+            "annualCoverageLimit":"Annual coverage limit",
+            "singleClaimLimit":"Single claim limit",
+            "noAdditionalBenefits":"No additional benefits",
+            "buyOffer":"Buy",
+            "priceDetails":"Price details",
+            "offerDetails":"Offer details",
+            "insuredDetails":"Insured details",
+            "insuranceStart":"Insurance start",
+            "insuranceEnd":"Insurance end",
+            "nationalAddress":"National address",
+            "specialty":"Specialty",
+            "choosePaymentMethod":"Choose payment method",
+            "subscribeNow":"Subscribe now",
+            "back":"Back",
+            "payment":"Payment",
+            "mobileNumber":"Mobile number",
             "allTotal":"All total",
             "comprehensiveUpgrade":" Upgrade to comprehensive insurance ",
             "discountEntitle":"Discount entitlement ",
             "thirdPartyInsurance":"Third Party Insurance",
             "comprehensiveInsurance":" Comprehensive insurance start with {{price}} ",
+            "specialInsurance":" Special insurance start with {{price}} ",
             "maintenanceType":"Maintenance type",        
             "companies":"Companies",
             "sorting":"Sorting",
@@ -384,7 +412,9 @@
         "confirmPassword":"Confirm Password not matching password",
         "name":"Name must be > 8 characters",
         "email":"Email must be valid",
-        "phone":"Phone must be like 05xxxxxxxx"
+        "phone":"Phone must be like 05xxxxxxxx",
+        "somethingWentWrong":"Something went wrong, please try again",
+        "noOffers":"No offers available right now"
     },
     "months":{
         "gregorian":{

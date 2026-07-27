@@ -20,11 +20,12 @@ import { AuthDialogService } from '../../../../services/auth/auth-dialog.service
 import { AuthStoreQuery } from '../../../../store/authStore/auth-store.query';
 import { navigateToCurrentRouteWithNewQueryParams } from '../../../../core/utils/setQueryParams';
 import { ConstantsService } from '../../../../services/core/constants/constants.service';
+import { DialogComponentComponent } from '../../../shared-components/dialog-component/dialog-component.component';
 
 @Component({
   selector: 'app-quotation-box',
   standalone: true,
-  imports: [BaseImageComponentComponent, CompanySpeedRateComponent, TranslateModule, CurrencyPipe, BaseButtonComponentComponent, BaseLabelComponentComponent, DropdownModule, ReactiveFormsModule],
+  imports: [BaseImageComponentComponent, CompanySpeedRateComponent, TranslateModule, CurrencyPipe, BaseButtonComponentComponent, BaseLabelComponentComponent, DropdownModule, ReactiveFormsModule, DialogComponentComponent],
   templateUrl: './quotation-box.component.html',
   styleUrl: './quotation-box.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -44,6 +45,7 @@ export class QuotationBoxComponent{
   company = input<ICompany>()
   choosedProduct = model<Partial<IQuotationProduct>>({});
   choosedBenefits:IBenefit[] = []
+  openMobileDialog: boolean = false;
 
   get EQuotationsTabs(){
     return EQuotationsTabs;
@@ -101,6 +103,9 @@ export class QuotationBoxComponent{
   }
 
   submit(){
+    if (this.quotation()?.errors?.length) {
+      return;
+    }
     this.quotationStoreQuery.setSelectedQuotationData({
       quotation: this.quotation() as IQuotation,
       company: this.company() as ICompany,
@@ -114,6 +119,10 @@ export class QuotationBoxComponent{
       navigateToCurrentRouteWithNewQueryParams(this.route, this.router, `${ERoutes.insuranceShow}/${ERoutes.orderSummary}`)
       this.authDialogService.openLoginDialog()
     }
+  }
+
+  openMobilePopup() {
+
   }
 
 }

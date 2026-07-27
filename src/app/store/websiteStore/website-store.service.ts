@@ -29,15 +29,19 @@ export class WebsiteStoreService {
   }
   
   getFaqs(){
-    return this.api.getFaqs().pipe(take(1)).subscribe({
-      next:(res)=>{
-        this.store.update({faqs:res.result})
-        this.store.setLoading(false)
-      },
-      complete:()=>{this.store.setLoading(false)},
-      error:(err:IErrorResponse)=>{this.store.setLoading(false)}
-  })
-}
+    if(!this.store.getValue().faqs?.length){
+      this.store.setLoading(true)
+      return this.api.getFaqs().pipe(take(1)).subscribe({
+          next:(res)=>{
+            this.store.update({faqs:res.result})
+            this.store.setLoading(false)
+          },
+          complete:()=>{this.store.setLoading(false)},
+          error:(err:IErrorResponse)=>{this.store.setLoading(false)}
+      })
+    }
+    return null
+  }
   getAllBlogs(data:IPagination){
     this.store.setLoading(true)
     return this.api.getAllBlogs(data).pipe(take(1)).subscribe({

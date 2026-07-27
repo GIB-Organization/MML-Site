@@ -15,6 +15,9 @@ export interface IGeneralSettings{
     showMedicalFaults:boolean,
     showMedicalInsurance:boolean,
     showCarInsurance:boolean,
+    medicalFaultsUrl:string,
+    medicalInsuranceUrl:string,
+    carInsuranceUrl:string,
 }
 
 

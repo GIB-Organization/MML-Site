@@ -2,7 +2,7 @@
 @media (max-width: $breakpoint-sm) {
     @for $i from 1 through 100 {
         .font_size__#{$i} {
-            font-size: #{$i * 0.8 * 0.0625}rem;
+            font-size: #{$i * 0.94 * 0.0625}rem;
         }
     }
 } 

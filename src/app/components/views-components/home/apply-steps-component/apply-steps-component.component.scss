@@ -3,6 +3,14 @@
     ::ng-deep{
         img{
             width: 150px;
+            height: 140px ;
         }
+        
+    }
+}
+
+.apply_steps {
+    .underlied_title {
+        --secondaryColor: var(--primaryColor);
     }
 }

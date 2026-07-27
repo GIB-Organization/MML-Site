@@ -13,7 +13,8 @@ export class GregorianDateService implements IDateService {
 
 
   generateArrayOfYears() {
-    let max = new Date().getFullYear()
+    let currentYear = new Date().getFullYear()
+    let max = currentYear - 17
     let min = max - 100
     let years = []
 

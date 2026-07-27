@@ -11,7 +11,8 @@ export class IslamicDateService implements IDateService {
 
 
   generateArrayOfYears() {
-    let max = new Date().getFullYear() - 579 // difference in years between gregorian and islamic
+    let currentYear  = new Date().getFullYear() - 579 // difference in years between gregorian and islamic
+    let max = currentYear - 17;
     let min = max - 100
     let years = []
 

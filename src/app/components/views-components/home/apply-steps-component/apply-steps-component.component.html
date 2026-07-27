@@ -1,6 +1,6 @@
 <div class="apply_steps my-5">
     <div class="container py-5 text-center">
-        <app-underline-title-component>
+        <app-underline-title-component class="underlied_title">
             <span class="font_size__20"> {{'views.home.applySteps.howTo' | translate}} </span>
         </app-underline-title-component>
         <div class="row">
@@ -8,7 +8,7 @@
                 <div class="row">
                     @for(item of steps; track item.title){
                         <aside class="col-md-4 my-3">
-                            <app-card-component [data]="item"></app-card-component>
+                            <app-card-component [data]="item" class="fixed-image-size"></app-card-component>
                         </aside>
                     }
                 </div>

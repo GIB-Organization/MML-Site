@@ -4,6 +4,20 @@ import { EEstimatedDistanceEnum, EMotionVectorEnum, EPartyTypeEnum, EPromoTypeEn
 //request body IAdditionalData
 export interface IAdditionalData{
     refId?:string | null,
+    subProfessionId?: number | null,
+    policyPeriod?: number | null,
+    experiencePeriodId?: number | null,
+    birthMonth?: number | null,
+    birthYear?: number | null,
+    malpracticeClaimDeclared?: boolean | null,
+    malpracticeClaimDetails?: string | null,
+    hasPreviousInsurance?: boolean | null,
+    previousPolicyNumber?: string | null,
+    previousPolicyEndDate?: string | null,
+    previousInsuranceCompanyCode?: number | null,
+    retroactiveDate?: string | null,
+    isPoliticallyExposedPerson?: boolean | null,
+
     estimatedValue?: number | null,
     usePurpose?: string | null ,
     getDiscount?: boolean | null,
@@ -12,8 +26,6 @@ export interface IAdditionalData{
     partyType?: EPartyTypeEnum | null,
     partyId?: number | null,
     promoCode?: string | null,
-    birthMonth?: number | null,
-    birthYear?: number | null,
     drivers?: IDriverDetails[] | null,
     additionalDetails?: IAdditionalDetails,
     isAdditionalData?: boolean | null,
@@ -64,19 +76,33 @@ export interface ICountryLicencse{
 
 
 export interface IAdditionalDataFormGroup{
-    estimatedValue: FormControl<number | null>,
-    usePurpose: FormControl<string | null>, // UsePurposeLookupEnum
-    getDiscount:  FormControl<boolean | null>,
-    promoType:  FormControl<EPromoTypeEnum | null>,
-    workMail:  FormControl<string | null>,
-    partyType:  FormControl<EPartyTypeEnum | null>,
-    partyId:  FormControl<number | null>,
-    promoCode:  FormControl<string | null>,
-    birthMonth:  FormControl<number | null>,
-    birthYear:  FormControl<number | null>,
-    drivers: FormArray<FormGroup<IDriverDetailsFormGroup>>,
-    additionalDetails: FormGroup<IAdditionalDetailsFormGroup>,
-    isAdditionalData:FormControl<boolean | null>,
+    subProfessionId : FormControl<number | null>,
+    policyPeriod : FormControl<number | null>,
+    experiencePeriodId : FormControl<number | null>,
+    birthMonth : FormControl<number | null>,
+    birthYear : FormControl<number | null>,
+    malpracticeClaimDeclared : FormControl<boolean | null>,
+    malpracticeClaimDetails : FormControl<string | null>,
+    hasPreviousInsurance : FormControl<boolean | null>,
+    previousPolicyNumber : FormControl<string | null>,
+    previousPolicyEndDate : FormControl<string | null>,
+    previousInsuranceCompanyCode : FormControl<number | null>,
+    retroactiveDate : FormControl<string | null>,
+    isPoliticallyExposedPerson : FormControl<boolean | null>,
+
+    // estimatedValue: FormControl<number | null>,
+    // usePurpose: FormControl<string | null>, // UsePurposeLookupEnum
+    // getDiscount:  FormControl<boolean | null>,
+    // promoType:  FormControl<EPromoTypeEnum | null>,
+    // workMail:  FormControl<string | null>,
+    // partyType:  FormControl<EPartyTypeEnum | null>,
+    // partyId:  FormControl<number | null>,
+    // promoCode:  FormControl<string | null>,
+    // birthMonth:  FormControl<number | null>,
+    // birthYear:  FormControl<number | null>,
+    // drivers: FormArray<FormGroup<IDriverDetailsFormGroup>>,
+    // additionalDetails: FormGroup<IAdditionalDetailsFormGroup>,
+    // isAdditionalData:FormControl<boolean | null>,
 }
 
 export interface IDriverDetailsFormGroup{

@@ -1,53 +1,35 @@
 <div class="car_insurance__form" [formGroup]="insuranceForm">
-    <div class="form_box secondary_bg text-light border_radius__60 p-4 mt-5">
-        <div class="row py-3 align-items-stretch">
-            <aside class="col-lg-4 col-md-6 my-3">
-                <div class="mb-4 d-flex align-items-center flex-nowrap">
-                    <app-base-label-component classes="form-label mb-0 me-3" [required]="true">
-                        {{'views.home.insuranceForm.insuredId' | translate}} </app-base-label-component>
-                </div>
-                <div class="row mb-2">
-                    <div class="col">
-                        <p-floatLabel>
-                            <p-inputNumber [maxlength]="10" [minlength]="10" formControlName="idNumber" inputStyleClass="form-control" inputId="idInput" [useGrouping]="false">
-                            </p-inputNumber>
-                            <label class="form-label base_label d-flex align-items-center"
-                                for="idInput">
-                                <span class="me-1">{{'views.home.insuranceForm.id' | translate}}</span> 
-                                <span class="required_input text-danger font_size__16 me-1"> * </span>
-                            </label>
-                        </p-floatLabel>
-                        @if(controlNotValid('idNumber')){
-                            <app-input-validation-alert-component> {{'errors.idNumber' | translate}} </app-input-validation-alert-component>
-                        }
-                    </div>
-                </div>
+    <div class="form_box secondary_bg text-light border_radius__60 p-3 p-md-4 mt-5">
+        <div class="row py-3 align-items-start g-3">
+            <aside class="col-lg-4 col-md-12 my-2">
+                <app-sided-icon-component icon="id-card" iconClass="primary_color" classes="mb-2 align-items-center">
+                    <app-base-label-component classes="form-label mb-0" [required]="true"> {{'views.home.insuranceForm.id' | translate}} </app-base-label-component>
+                </app-sided-icon-component>
+                <input formControlName="idNumber" class="form-control" type="text" maxlength="10" placeholder="{{'views.home.insuranceForm.id' | translate}}" />
+                @if(controlNotValid('idNumber')){
+                    <app-input-validation-alert-component> {{'errors.idNumber' | translate}} </app-input-validation-alert-component>
+                }
             </aside>
-            <aside class="col-lg-8 col-md-12 my-3">
-                <div class="h-100 row">
-                    <div class="col">
-                        <div class="d-flex flex-column h-100">
-                                <app-base-label-component style="height: 50px;" classes="form-label"
-                                [required]="true">{{'views.home.insuranceForm.insuranceDate' |
-                                translate}}</app-base-label-component>
-                            <input readonly formControlName="startDate" class="mb-2 date_picker__input form-control" (click)="d.toggle()" type="text" ngbDatepicker
-                            #d="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate" />
-                            @if(controlNotValid('startDate')){
-                                <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
-                            }
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-2">
-                            <app-base-captcha-component (codeIsCorrectChange)="captchaCodeIsCorrect.set($event)" id="baseCaptcha1"></app-base-captcha-component>
-                        </div>
-                    </div>
-                </div>
+            <aside class="col-lg-4 col-md-6 my-2">
+                <app-sided-icon-component icon="calendar" iconClass="primary_color" classes="mb-2 align-items-center">
+                    <app-base-label-component classes="form-label mb-0" [required]="true"> {{'views.home.insuranceForm.insuranceDate' | translate}} </app-base-label-component>
+                </app-sided-icon-component>
+                <input readonly formControlName="startDate" class="date_picker__input form-control" (click)="d.toggle()" type="text" ngbDatepicker
+                    #d="ngbDatepicker" [minDate]="minDate" [maxDate]="maxDate" placeholder="{{'views.home.insuranceForm.insuranceDate' | translate}}" />
+                @if(controlNotValid('startDate')){
+                    <app-input-validation-alert-component> {{'errors.required' | translate}} </app-input-validation-alert-component>
+                }
+            </aside>
+            <aside class="col-lg-4 col-md-6 my-2">
+                <app-sided-icon-component icon="shield" iconClass="primary_color" classes="mb-2 align-items-center">
+                    <app-base-label-component classes="form-label mb-0"> {{'views.home.insuranceForm.confirmCode' | translate}} </app-base-label-component>
+                </app-sided-icon-component>
+                <app-base-captcha-component (codeIsCorrectChange)="captchaCodeIsCorrect.set($event)" id="baseCaptcha1"></app-base-captcha-component>
             </aside>
         </div>
     </div>
     <div class="agree_terms__conditions row mt-5">
-        <aside class="col-md-4 ms-auto">
+        <aside class="col-12 col-md-4 ms-md-auto">
             <div class="form-check mb-4">
                 <input formControlName="agreedTermsConditions" class="form-check-input" type="checkbox" value="" id="inquireTermsConditions" checked>
                 <app-base-label-component classes="form-check-label font_light grey_color font_size__15"

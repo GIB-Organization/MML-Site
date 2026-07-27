@@ -1,9 +1,9 @@
-<div class="faqs_section my-5">
+<div class="faqs_section my-5" id="faqs">
     <section class="py-5 container">
-        <app-underline-title-component class="text-center">
+        <app-underline-title-component class="text-center underlied_title">
             {{'views.home.faqs.title' | translate}}
         </app-underline-title-component>
-        <div class="row">
+        <div class="row" >
             <aside class="col-md-7 mx-auto">
                 <p-accordion [activeIndex]="0" styleClass="faqs_accordion">
                     @for(item of faqs(); track item){

@@ -6,20 +6,21 @@ import { BaseButtonComponentComponent } from '../../../components/base-component
 import { DividerModule } from 'primeng/divider';
 import { LookupsStoreService } from '../../../store/lookupsStore/lookups-store.service';
 import { ELookupCategory } from '../../../core/enums/lookups.enum';
-import { DiscountFormComponentComponent } from '../../../components/views-components/additionalData/discount-form-component/discount-form-component.component';
-import { DriverFormComponentComponent } from '../../../components/views-components/additionalData/driver-form-component/driver-form-component.component';
-import { OwnerFormComponentComponent } from '../../../components/views-components/additionalData/owner-form-component/owner-form-component.component';
+// import { DiscountFormComponentComponent } from '../../../components/views-components/additionalData/discount-form-component/discount-form-component.component';
+// import { DriverFormComponentComponent } from '../../../components/views-components/additionalData/driver-form-component/driver-form-component.component';
+// import { OwnerFormComponentComponent } from '../../../components/views-components/additionalData/owner-form-component/owner-form-component.component';
 import { UpperCasePipe } from '@angular/common';
 import { InsuranceInquireStoreService } from '../../../store/insuranceInquireStore/insurance-inquire-store.service';
 import { AdditionalDataFormService } from '../../../services/additionalDataForm/additional-data-form.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { InsuranceInquireStoreQueryService } from '../../../store/insuranceInquireStore/insurance-inquire-store.query';
 import { BaseLinkComponentComponent } from '../../../components/base-components/base-link-component/base-link-component.component';
+import { SpecializationformComponenetComponent } from '../../../components/views-components/additionalData/specializationform-componenet/specializationform-componenet.component';
 
 @Component({
   selector: 'app-additional-data-view',
   standalone: true,
-  imports: [TranslateModule, BaseAlertComponentComponent, BaseButtonComponentComponent, BaseLinkComponentComponent, DividerModule, DiscountFormComponentComponent, DriverFormComponentComponent, OwnerFormComponentComponent, UpperCasePipe ],
+  imports: [TranslateModule, BaseAlertComponentComponent, BaseButtonComponentComponent, BaseLinkComponentComponent, DividerModule, UpperCasePipe,SpecializationformComponenetComponent ],
   templateUrl: './additional-data-view.component.html',
   styleUrl: './additional-data-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -32,21 +33,15 @@ export class AdditionalDataViewComponent implements OnInit {
   public additionalDataFormService = inject(AdditionalDataFormService)
   public isLoading = toSignal(this.insuranceInquireStoreQueryService.selectLoading());
   requiredLookups:ELookupCategory[] = [
-    ELookupCategory.drivingPercentages,
-    ELookupCategory.educations,
-    ELookupCategory.medicalConditions,
-    ELookupCategory.mileages,
-    ELookupCategory.parkingLocations,
-    ELookupCategory.relationships,
-    ELookupCategory.transmissionTypes,
-    ELookupCategory.vehicleUses,
-    ELookupCategory.violations,
+    ELookupCategory.SubProfessions,
+    ELookupCategory.ExperiencePeriods,
+    ELookupCategory.Declarations,
   ]
  
 
   ngOnInit(): void {
     this.lookupsStoreService.getLookupsByCategoriesIds(this.requiredLookups);
-    this.addressStoreService.getCountries();
-    this.addressStoreService.getCities();
+    // this.addressStoreService.getCountries();
+    // this.addressStoreService.getCities();
   }
 }

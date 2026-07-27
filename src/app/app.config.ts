@@ -3,7 +3,7 @@ import { environment } from '../environments/environment';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { InMemoryScrollingOptions, provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withNoHttpTransferCache } from '@angular/platform-browser';
 import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { translateModuleImport } from './core/config/translate.config';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -28,7 +28,8 @@ export const appConfig: ApplicationConfig = {
       provide: BASE_URL_TOKEN, useValue: environment.apiUrl,
     },
     provideRouter(routes, withInMemoryScrolling(scrollConfig), withComponentInputBinding()), 
-    provideClientHydration(),
+    // disable the SSR HTTP transfer cache so the client always calls the API directly
+    provideClientHydration(withNoHttpTransferCache()),
     provideAnimations(),
     provideHttpClient(
       withFetch(),

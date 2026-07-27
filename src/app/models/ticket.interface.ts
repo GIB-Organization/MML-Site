@@ -4,6 +4,7 @@ import { ETicketStatus } from "../core/enums"
 export interface ITicket {
     id: string,
     subject:string,
+    details: string,
     lastMessage: string,
     isReplied: boolean,
     status: ETicketStatus

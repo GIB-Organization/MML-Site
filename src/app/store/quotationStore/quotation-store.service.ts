@@ -26,9 +26,9 @@ export class QuotationStoreService {
       next: (res) => {
         let mappedQuotations={};
         const QuotationStartegy = new QuotationStartegyClass();
-        res.forEach(item=>{
+        res.filter(item => item !== null && item !== undefined).forEach(item=>{
           mappedQuotations = {...mappedQuotations, [QuotationStartegy.chooseQuotationType(item.productTypeCode, item.vehicleAgencyRepair)]:item}
-        }) 
+        })
         this.store.update(state=>({
           quotations: [...state.quotations, {
             mappedQuotations:mappedQuotations,
