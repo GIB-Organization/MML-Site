@@ -51,6 +51,7 @@
             "links": {
                 "privacyPolicy": "Privacy Policy",
                 "terms": "Terms and Conditions",
+                "partners": "Partners",
                 "faqs": "Common Questions",
                 "contactUs": " Contact Us"
             },
@@ -151,6 +152,10 @@
             "cookies": "Cookies ",
             "cookiesText1": "Cookies are small text files that websites store on your computer, mobile device (smart phone) or tablets. When you visit our site, we use cookies to make our site user-friendly and to develop our site in order to meet your interests and needs.",
             "cookiesText2": "The cookies used on the Site do not include any information that others can read or understand about you, such as your name or any account number or insurance policy number. It does not contain any personal information about you. Most web browsers allow you to turn off the functionality of cookies. If you want to know how this works, please check the help menu in your browser. However, this action will restrict the services that you can use."
+        },
+        "partners": {
+            "title": "Our Partners",
+            "empty": "No partners available yet"
         },
         "termsAndConditions": {
             "termsAndConditions": "Terms and Conditions",

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ContactUsApiService {
   
   private baseUrl = inject(BASE_URL_TOKEN);
-  private path = 'basicInfo'
+  private path = 'mmp'
   private http = inject(HttpClient)
   
   contactUs(data:IContactUs):Observable<IResponse<null>>{

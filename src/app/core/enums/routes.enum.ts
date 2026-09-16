@@ -6,6 +6,7 @@ export enum ERoutes{
     blogPage = 'blog-details',
     privacyPolicy = 'privacy-policy',
     termsConditions = 'terms-conditions',
+    partners = 'partners',
     profile = 'profile',
     cards = 'cards',
     cars = 'cars',

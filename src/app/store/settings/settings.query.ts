@@ -26,6 +26,22 @@ export class SettingsQuery extends Query<ISettingsState> {
     get generalSettings() {
         return this.getValue().generalSettings;
     }
+    get privacyPolicySettings() {
+        return this.getValue().privacyPolicySettings;
+    }
+    get termsSettings() {
+        return this.getValue().termsSettings;
+    }
+    get privacyPolicySettings$() {
+        return this.select(state => state.privacyPolicySettings);
+    }
+    get termsSettings$() {
+        return this.select(state => state.termsSettings);
+    }
+
+    get contentKey(): 'contentAr' | 'contentEn'{
+        return this.language.handleBackendLocalKeys('content')
+    }
 
     get siteTitle(): 'siteTitleAr' | 'siteTitleEn'{
         return this.language.handleBackendLocalKeys('siteTitle')

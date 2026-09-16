@@ -35,3 +35,13 @@ export interface ISeoSettings{
     termsTitle:string,
     termsDescription: string,
 }
+
+export interface IPrivacyPolicySettings{
+    contentAr: string,
+    contentEn: string,
+}
+
+export interface ITermsSettings{
+    contentAr: string,
+    contentEn: string,
+}

@@ -186,6 +186,14 @@ const breadcrumbLayoutRoutes: Routes = [
                 } as IRoutingData
             },
             {
+                path: ERoutes.partners,
+                loadComponent: () => import('./views/partners-view/partners-view.component').then(m => m.PartnersViewComponent),
+                data:{
+                    animation: 'partners',
+                    title: 'views.partners.title'
+                } as IRoutingData
+            },
+            {
                 path: ERoutes.checkout,
                 loadComponent: () => import('./views/payment-view/payment-view.component').then(m => m.PaymentViewComponent),
                 canActivate:[insuranceAdditionalData],

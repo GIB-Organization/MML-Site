@@ -1,0 +1,29 @@
+<div class="partners_view">
+    <section class="container">
+        <h6 class="h3 mb-5 font_semi__bold text-center"> {{'views.partners.title' | translate}} </h6>
+        <div class="row">
+            @for(partner of partners(); track partner.partnerName){
+            <aside class="col-md-3 col-6 mb-4">
+                <div class="partner_card bg-white shadow rounded-4 p-4 h-100 text-center">
+                    <app-base-image-component [isAssets]="false" [alt]="partner.partnerName" path="{{partner.imageUrl}}"
+                        classes="partner_logo mb-3"></app-base-image-component>
+                    <p class="font_size__14 font_semi__bold mb-3"> {{partner.partnerName}} </p>
+                    <div class="text-start font_size__12 grey_color">
+                        @for(phone of partner.phoneNumbers; track phone){
+                        <app-sided-icon-component iconClass="font_size__11" icon="phone"
+                            classes="mb-2"> {{phone}} </app-sided-icon-component>
+                        }
+                        @if(partner.email){
+                        <app-sided-icon-component iconClass="font_size__11" icon="envelope"> {{partner.email}}
+                        </app-sided-icon-component>
+                        }
+                    </div>
+                </div>
+            </aside>
+            }
+            @if(!isLoading() && !partners().length){
+            <p class="text-center grey_color"> {{'views.partners.empty' | translate}} </p>
+            }
+        </div>
+    </section>
+</div>

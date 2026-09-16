@@ -3,7 +3,7 @@ import { BASE_URL_TOKEN } from '../../../core/injection-tokens/base-url.token';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IResponse } from '../../../models/response.interface';
-import { IGeneralSettings, ISeoSettings } from '../../../models/settings.interface';
+import { IGeneralSettings, IPrivacyPolicySettings, ISeoSettings, ITermsSettings } from '../../../models/settings.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,17 @@ export class SettingsApiService {
    */
   getSeoSettings(): Observable<IResponse<ISeoSettings>> {
     return this.http.get<IResponse<ISeoSettings>>(`${this.baseUrl}/${this.path}/getSeoSettings`);
+  }
+  /**
+   * @returns Observable
+   */
+  getPrivacyPolicy(): Observable<IResponse<IPrivacyPolicySettings>> {
+    return this.http.get<IResponse<IPrivacyPolicySettings>>(`${this.baseUrl}/${this.path}/getPrivacyPolicy`);
+  }
+  /**
+   * @returns Observable
+   */
+  getTerms(): Observable<IResponse<ITermsSettings>> {
+    return this.http.get<IResponse<ITermsSettings>>(`${this.baseUrl}/${this.path}/getTerms`);
   }
 }
