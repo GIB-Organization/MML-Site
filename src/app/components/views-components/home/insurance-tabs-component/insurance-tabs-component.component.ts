@@ -26,7 +26,7 @@ export class InsuranceTabsComponentComponent implements OnInit  {
       url: this.generalSettings?.carInsuranceUrl,
     },
     {
-      lang:'medicalInsurance',
+      lang:'medicalInsurance', 
       show: this.generalSettings?.showMedicalInsurance??false,
       url: this.generalSettings?.medicalInsuranceUrl,
     },
