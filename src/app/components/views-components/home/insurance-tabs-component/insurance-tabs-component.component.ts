@@ -48,7 +48,6 @@ export class InsuranceTabsComponentComponent implements OnInit  {
         lang:'carInsurance',
         show: this.generalSettings?.showCarInsurance??false,
         url: this.generalSettings?.carInsuranceUrl,
-        active: true,
       },
       {
         lang:'medicalInsurance',
@@ -59,6 +58,7 @@ export class InsuranceTabsComponentComponent implements OnInit  {
         lang:'medicalFaultsInsurance',
         show: this.generalSettings?.showMedicalFaults??false,
         url: this.generalSettings?.medicalFaultsUrl,
+        active: true,
       },
     ]
     }
