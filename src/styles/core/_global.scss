@@ -285,11 +285,40 @@ body{
     width: 1.5rem;
     height: 1.5rem;
 }
-.p-toast .p-toast-message.p-toast-message-success{
-    background: lighten($color: $primaryColor, $amount: 25%) !important;
-    border: solid var(--primaryColor) !important;
-    border-width: 0 0 0 3px !important;
-    color: var(--primaryColor) !important;
+// Toasts: solid backgrounds with white text/icons so the message stays readable against any page behind it
+.p-toast .p-toast-message{
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .3) !important;
+    border-width: 0 0 0 4px !important;
+    border-style: solid !important;
+    color: #fff !important;
+    .p-toast-message-content,
+    .p-toast-message-text,
+    .p-toast-summary,
+    .p-toast-detail,
+    .p-toast-message-icon,
+    .p-toast-icon-close,
+    .p-toast-icon-close .p-icon{
+        color: #fff !important;
+    }
+    .p-toast-summary{
+        font-weight: 700;
+    }
+    &.p-toast-message-success{
+        background: #1b7a3e !important;
+        border-color: #0f5128 !important;
+    }
+    &.p-toast-message-info{
+        background: var(--primaryColor) !important;
+        border-color: #fff !important;
+    }
+    &.p-toast-message-warn{
+        background: #b45309 !important;
+        border-color: #7c3a06 !important;
+    }
+    &.p-toast-message-error{
+        background: #c62828 !important;
+        border-color: #8e1b1b !important;
+    }
 }
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
     border-color: var(--primaryColor) !important;

@@ -11,6 +11,7 @@ import { authInterceptor } from './core/interceptors/auth/auth.interceptor';
 import { BASE_URL_TOKEN } from './core/injection-tokens/base-url.token';
 import { MessageService } from 'primeng/api';
 import { errorHandlerInterceptor } from './core/interceptors/errorHandler/error-handler.interceptor';
+import { languageInterceptor } from './core/interceptors/language/language.interceptor';
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -37,6 +38,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
       withInterceptors([
+        languageInterceptor,
         authInterceptor, 
         errorHandlerInterceptor,
         refreshTokenInterceptor, 
