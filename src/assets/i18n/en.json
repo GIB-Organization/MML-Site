@@ -240,10 +240,6 @@
             "cards":{
                 "title": "Cards"
             },
-            "cars":{
-                "title": "Cars",
-                "carInfo":"Car Info"
-            },
             "uncompletedOrders":{
                 "title": "Uncompleted Orders"
             },

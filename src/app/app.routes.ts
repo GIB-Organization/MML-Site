@@ -107,14 +107,6 @@ const profileLayoutRoutes : Routes = [
         } as IRoutingData
     },
     {
-        path: ERoutes.cars,
-        loadComponent: () => import('./views/profile-pages/cars-view/cars-view.component').then(m => m.CarsViewComponent),
-        data:{
-            animation: 'profileCars',
-            title: 'views.profile.cars.title',
-        } as IRoutingData
-    },
-    {
         path: ERoutes.uncompletedOrders,
         loadComponent: () => import('./views/profile-pages/uncompleted-orders-view/uncompleted-orders-view.component').then(m => m.UncompletedOrdersViewComponent),
         data:{

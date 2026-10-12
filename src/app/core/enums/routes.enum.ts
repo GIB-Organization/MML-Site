@@ -9,7 +9,6 @@ export enum ERoutes{
     partners = 'partners',
     profile = 'profile',
     cards = 'cards',
-    cars = 'cars',
     uncompletedOrders = 'uncompleted-orders',
     epayments = 'epayments',
     supportTicket = 'support-tickets',

@@ -240,10 +240,6 @@
         "cards": {
           "title": "بطاقات"
         },
-        "cars": {
-          "title": "سيارات",
-          "carInfo": "معلومات السيارة"
-        },
         "uncompletedOrders": {
           "title": "الطلبات غير المكتملة"
         },

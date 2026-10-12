@@ -27,11 +27,6 @@ export class ProfileSidebarComponentComponent {
       icon: 'svg/cards.svg'
     },
     {
-      path: ERoutes.cars,
-      text: `${this.localePath}cars.title`,
-      icon: 'svg/cars.svg'
-    },
-    {
       path: ERoutes.invoices,
       text: `${this.localePath}invoices.title`,
       icon: 'svg/invoice.svg'
