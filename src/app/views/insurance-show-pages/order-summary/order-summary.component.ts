@@ -112,7 +112,7 @@ export class OrderSummaryComponent {
       companyId: offer.insuranceCompanyId ?? 0,
       selectedBenfitCodes: [],
       totalAmount: offer.total ?? 0,
-      referenceId: this.context()?.quotationReferenceNo ?? this.insuranceInquireStoreQuery.inquireResponse.refId ?? '',
+      referenceId: offer.quotationReferenceNo ?? this.context()?.quotationReferenceNo ??this.insuranceInquireStoreQuery.inquireResponse.refId ?? '',
       bankName: this.bankName.value,
       iban: this.iban.value,
       phoneNumber: `${this.phone.value}`,

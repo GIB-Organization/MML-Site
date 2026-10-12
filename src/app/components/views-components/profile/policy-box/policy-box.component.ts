@@ -19,7 +19,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class PolicyBoxComponent {
   ref = inject(DestroyRef);
   policy = input.required<IPolicy>();
-  carPlateChars = computed(()=> `${this.policy().carPlateChars[0]} ${this.policy().carPlateChars[1]} ${this.policy().carPlateChars[2]}`);
+  // MMP (medical malpractice) policies have no vehicle, so the plate/car details are null.
+  hasCar = computed(()=> !!this.policy().carPlateChars);
+  carPlateChars = computed(()=> {
+    const chars = this.policy().carPlateChars;
+    return chars ? `${chars[0]} ${chars[1]} ${chars[2]}` : '';
+  });
   policiesStoreService = inject(PoliciesStoreService)
   policiesStoreQuery = inject(PoliciesStoreQuery)
   isLoading = toSignal(this.policiesStoreQuery.fileIsLoading$)

@@ -10,8 +10,12 @@
         </ul>
     </aside>
     <aside class="col-lg-4 col-md-6">
-        <app-car-pallet-component [plateNumber]="policy().carPlateNumber" [carCharsAr]=" carPlateChars() "></app-car-pallet-component>
-        <p class="font_size__13 mt-2 secondary_color"> {{cardBrand()}} </p>
+        @if (hasCar()) {
+            <app-car-pallet-component [plateNumber]="policy().carPlateNumber" [carCharsAr]=" carPlateChars() "></app-car-pallet-component>
+            <p class="font_size__13 mt-2 secondary_color"> {{cardBrand()}} </p>
+        } @else {
+            <p class="font_size__13 secondary_color"> {{ policy().sequenceNumber }} </p>
+        }
     </aside>
     <aside class="col-lg-2 col-md-6">
         <p class="font_size__13">

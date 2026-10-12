@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { filter, take } from 'rxjs';
+import { catchError, filter, forkJoin, of, take } from 'rxjs';
 import { TitleBoxComponentComponent } from '../../../components/views-components/compare-offers/title-box-component/title-box-component.component';
 import { MmpOfferBoxComponent } from '../../../components/views-components/compare-offers/mmp-offer-box/mmp-offer-box.component';
 import { QuotationApiService } from '../../../services/api/quotationApi/quotation-api.service';
@@ -9,7 +9,7 @@ import { CompaniesStoreQuery } from '../../../store/companiesStore/companies-sto
 import { InsuranceInquireStoreQueryService } from '../../../store/insuranceInquireStore/insurance-inquire-store.query';
 import { AdditionalDataFormService } from '../../../services/additionalDataForm/additional-data-form.service';
 import { ICompany } from '../../../models/companies.interface';
-import { IMmpOffer, IMmpQuoteContext, IMmpQuoteRequest } from '../../../models/mmpOffer.interface';
+import { IMmpOffer, IMmpQuoteContext, IMmpQuoteRequest, IMmpQuoteResult } from '../../../models/mmpOffer.interface';
 
 @Component({
   selector: 'app-compare-offers',
@@ -52,18 +52,30 @@ export class CompareOffersComponent implements OnInit {
   }
 
   private loadOffers(companies: ICompany[]): void {
-    const company = companies.find(c => (c.key ?? '').toLowerCase() === 'tameeni') ?? companies[0];
-    const companyId = company.insuranceCompanyID ?? 0;
+    const companyIds = companies
+      .map(c => c.insuranceCompanyID)
+      .filter((id): id is number => !!id);
 
-    this.api.getMmpQuote(companyId, this.buildRequest(companyId)).pipe(take(1)).subscribe({
-      next: res => {
-        this.offers.set(res?.offers ?? []);
-        this.context.set(res?.quotation ?? null);
-        // Carry the quotation context to the order-summary (insured specialty, references).
-        try { sessionStorage.setItem('mmpQuoteContext', JSON.stringify(res?.quotation ?? null)); } catch { /* ignore */ }
-        this.loading.set(false);
-      },
-      error: () => { this.hasError.set(true); this.loading.set(false); },
+    // Query every company in parallel; a failing company must not hide the others' offers.
+    const requests = companyIds.map(id =>
+      this.api.getMmpQuote(id, this.buildRequest(id)).pipe(
+        take(1),
+        catchError(() => of(null)),
+      ),
+    );
+
+    forkJoin(requests).subscribe(results => {
+      const succeeded = results.filter((r): r is IMmpQuoteResult => !!r);
+      this.offers.set(succeeded.flatMap(r => r.offers ?? []));
+
+      // Specialty/experience names are identical across companies, so the first context is enough.
+      const context = succeeded.find(r => r.quotation)?.quotation ?? null;
+      this.context.set(context);
+      // Carry the quotation context to the order-summary (insured specialty, references).
+      try { sessionStorage.setItem('mmpQuoteContext', JSON.stringify(context)); } catch { /* ignore */ }
+
+      this.hasError.set(succeeded.length === 0);
+      this.loading.set(false);
     });
   }
 
