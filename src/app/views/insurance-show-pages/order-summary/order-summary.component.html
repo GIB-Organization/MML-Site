@@ -118,9 +118,9 @@
                         <div class="col-md-12 mb-3">
                             <app-base-label-component classes="mb-2" [required]="true" for="iban">
                                 {{ 'views.insuranceShow.iban' | translate }} </app-base-label-component>
-                            <input type="text" class="form-control" [formControl]="iban" id="iban" />
+                            <input type="text" class="form-control" [formControl]="iban" id="iban" maxlength="24" dir="ltr" />
                             @if (iban.invalid && iban.touched) {
-                            <app-input-validation-alert-component> {{ 'errors.required' | translate }} </app-input-validation-alert-component>
+                            <app-input-validation-alert-component> {{ (iban.hasError('required') ? 'errors.required' : 'errors.invalidIban') | translate }} </app-input-validation-alert-component>
                             }
                         </div>
                         <div class="col-md-12 mb-3">

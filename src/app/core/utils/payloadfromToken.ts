@@ -3,7 +3,10 @@ import { ILegacyTokenUser, ILoginResponse, IRefreshTokenDTO } from "../../models
 
 export const payloadFromToken = (token:string)=>{
     const arrayToken = token.split('.');
-    const tokenPayload = JSON.parse(atob(arrayToken[1]));
+    // JWT payload is base64url-encoded UTF-8; atob alone yields Latin-1 bytes (garbles Arabic)
+    const base64 = arrayToken[1].replace(/-/g, '+').replace(/_/g, '/');
+    const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    const tokenPayload = JSON.parse(new TextDecoder('utf-8').decode(bytes));
     return tokenPayload
 }
 

@@ -47,7 +47,7 @@ export class OrderSummaryComponent {
 
   form = this.fb.nonNullable.group<ICheckoutDataFormGroup>({
     bankName: this.fb.nonNullable.control(this.authStoreQuery.bankName, [Validators.required]),
-    iban: this.fb.nonNullable.control(this.authStoreQuery.iban, [Validators.required]),
+    iban: this.fb.nonNullable.control(this.authStoreQuery.iban, [Validators.required, VALIDATORS['iban']]),
     phoneNumber: this.fb.nonNullable.control(this.authStoreQuery.phoneNumber, [VALIDATORS['phone']]),
     email: this.fb.nonNullable.control(this.authStoreQuery.email, [VALIDATORS['email']]),
     paymentMethod: this.fb.nonNullable.control(EPaymentsTypes.visa),

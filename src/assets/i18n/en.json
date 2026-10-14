@@ -409,6 +409,7 @@
         "idNumber":"ID Should start with 1 or 2 and be 10 numbers",
         "serialNumber":"Serial Number Must be 6-9 Numbers",
         "required":"Field is Required",
+        "invalidIban":"IBAN must be 24 characters: SA followed by 22 digits",
         "password":"Password must contains lowercase & uppercase characters with at least one number and one special character",
         "confirmPassword":"Confirm Password not matching password",
         "name":"Name must be > 8 characters",

@@ -5,4 +5,5 @@ export const VALIDATORS: { [key: string]: ValidatorFn } = {
     phone: Validators.pattern(/^(05)([0-9]{8})$/),
     password: Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[\w\W]{8,16}$/),
     mobile: Validators.pattern(/^[0-9]{9}$/),
+    iban: Validators.pattern(/^SA[0-9]{22}$/),
 }

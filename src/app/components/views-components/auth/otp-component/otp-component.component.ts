@@ -21,4 +21,11 @@ export class OtpComponentComponent {
   otpFormService = inject(OtpFormService)
   authStoreQuery = inject(AuthStoreQuery);
   isLoading = toSignal(this.authStoreQuery.selectLoading());
+
+  // auto-submit once all 4 digits are entered (typed or pasted)
+  onOtpChange() {
+    if (this.otp.valid && !this.isLoading()) {
+      this.otpFormService.sendOtp(this.otp.value);
+    }
+  }
 }
