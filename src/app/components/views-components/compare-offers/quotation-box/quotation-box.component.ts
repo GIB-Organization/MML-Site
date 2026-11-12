@@ -1,7 +1,6 @@
-import { EPriceDetailCode } from './../../../../core/enums/quotations.enum';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuotationStoreQuery } from './../../../../store/quotationStore/quotation-store.query';
-import { ChangeDetectionStrategy, Component, inject, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, model, signal } from '@angular/core';
 import { BaseImageComponentComponent } from '../../../base-components/base-image-component/base-image-component.component';
 import { CompanySpeedRateComponent } from '../company-speed-rate/company-speed-rate.component';
 import { SettingsQuery } from '../../../../store/settings/settings.query';
@@ -11,7 +10,8 @@ import { BaseButtonComponentComponent } from '../../../base-components/base-butt
 import { EQuotationsTabs } from '../../../../core/enums/quotations.enum';
 import { BaseLabelComponentComponent } from '../../../base-components/base-label-component/base-label-component.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { IBenefit, IPriceDetail, IQuotation, IQuotationProduct } from '../../../../models/quotation.interface';
+import { computeQuoteTotals, isDefaultBenefit } from '../../../../core/utils/quotation-totals';
+import { IBenefit, IQuotation, IQuotationProduct } from '../../../../models/quotation.interface';
 import { CompaniesStoreQuery } from '../../../../store/companiesStore/companies-store.query';
 import { ICompany } from '../../../../models/companies.interface';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -44,62 +44,55 @@ export class QuotationBoxComponent{
   quotation = input<IQuotation>()
   company = input<ICompany>()
   choosedProduct = model<Partial<IQuotationProduct>>({});
-  choosedBenefits:IBenefit[] = []
   openMobileDialog: boolean = false;
+
+  // The product exactly as the insurer returned it, the customer's choice on it, and the product shown (the first two combined).
+  // "derived" is what this component last put into choosedProduct; any other value there (another tab, another product) starts a fresh selection (VULN-074).
+  #base: Partial<IQuotationProduct> | null = null;
+  #derived: Partial<IQuotationProduct> | null = null;
+  #ids = signal<ReadonlySet<string>>(new Set());
+
+  baseProduct = computed(() => {
+    const shown = this.choosedProduct();
+    return shown === this.#derived && this.#base ? this.#base : shown;
+  });
+  selectedIds = computed<ReadonlySet<string>>(() => (this.choosedProduct() === this.#derived ? this.#ids() : new Set<string>()));
+
+  /** The optional benefits that are ticked, in the product's own order. */
+  get choosedBenefits(): IBenefit[] {
+    const ids = this.selectedIds();
+    return (this.baseProduct().benefits ?? []).filter(benefit => ids.has(benefit.benefitId) && !isDefaultBenefit(benefit));
+  }
 
   get EQuotationsTabs(){
     return EQuotationsTabs;
   }
 
-  toggleBenefit(benefit:IBenefit, $event:any){
-    let ckecked = $event.target.checked;
-    let product = this.choosedProduct();
-    if(ckecked){
-      this.choosedBenefits.push(benefit);
-      this.choosedProduct.set({...product, productPrice: ((product.productPrice as number) + this.calculateBenifitWithTax(benefit))});
-      this.benifitVatAdd(benefit)
-    }else{
-      let index = this.choosedBenefits.findIndex(item=>{item.benefitId === benefit.benefitId});
-      this.choosedBenefits.splice(index, 1);
-      this.choosedProduct.set({...product, productPrice: ((product.productPrice as number) - this.calculateBenifitWithTax(benefit))});
-      this.benifitVatRemove(benefit)
-    }
+  toggleBenefit(benefit:IBenefit, $event:Event){
+    const base = this.baseProduct();
+    // only a benefit of this product that can be chosen
+    if (isDefaultBenefit(benefit) || !(base.benefits ?? []).some(item => item.benefitId === benefit.benefitId)) return;
+
+    const next = new Set(this.selectedIds());
+    if (($event.target as HTMLInputElement).checked) next.add(benefit.benefitId); else next.delete(benefit.benefitId);
+
+    const selected = (base.benefits ?? []).filter(item => next.has(item.benefitId) && !isDefaultBenefit(item));
+    const shown: Partial<IQuotationProduct> = { ...base, ...computeQuoteTotals(base, selected, this.constants.taxPercentage) };
+    this.#base = base;
+    this.#derived = shown;
+    this.#ids.set(next);
+    this.choosedProduct.set(shown);
   }
 
   changeProduct(product:IQuotationProduct){
+    this.#base = null;
+    this.#derived = null;
+    this.#ids.set(new Set());
     this.choosedProduct.set(product);
-    this.choosedBenefits = [];
   }
-
-  
 
   isDefaultBenefit(benifit:IBenefit){
-    return benifit.benefitPrice === 0
-  }
-
-  get getTaxPriceDetailIndex():number | null{
-    return this.choosedProduct().priceDetails?.findIndex(item=> item.priceTypeCode === EPriceDetailCode.vat)??null;
-  }
-
-  calculateBenifitWithTax(benefit:IBenefit):number{
-    return benefit.benefitPrice + (benefit.benefitPrice * this.constants.taxPercentage / 100);
-  }
-
-  benifitVatAdd(benefit:IBenefit){
-    if(this.getTaxPriceDetailIndex){
-      let priceDetails:IPriceDetail[] = JSON.parse(JSON.stringify(this.choosedProduct().priceDetails??[]));
-      let priceDetail = priceDetails[this.getTaxPriceDetailIndex];
-      priceDetail.priceValue = priceDetail.priceValue + (benefit.benefitPrice * this.constants.taxPercentage / 100);
-      this.choosedProduct.update(value=>({...value, priceDetails: priceDetails}))
-    }
-  }
-  benifitVatRemove(benefit:IBenefit){
-    if(this.getTaxPriceDetailIndex){
-      let priceDetails:IPriceDetail[] = JSON.parse(JSON.stringify(this.choosedProduct().priceDetails??[]));
-      let priceDetail = priceDetails[this.getTaxPriceDetailIndex];
-      priceDetail.priceValue = priceDetail.priceValue - (benefit.benefitPrice * this.constants.taxPercentage / 100);
-      this.choosedProduct.update(value=>({...value, priceDetails: priceDetails}))
-    }
+    return isDefaultBenefit(benifit)
   }
 
   submit(){

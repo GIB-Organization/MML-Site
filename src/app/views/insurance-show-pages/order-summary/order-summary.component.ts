@@ -120,7 +120,7 @@ export class OrderSummaryComponent {
       paymentMethod: this.paymentMethodId.value,
     };
     this.paymentStoreQuery.setPaymentMethod = (this.paymentMethodId.value as EPaymentsTypes);
-    this.paymentStoreService.createCheckout(DATA, this.ref);
+    this.paymentStoreService.createCheckout(DATA, this.ref, offer.quoteToken);
   }
 
   private readSession<T>(key: string): T | null {

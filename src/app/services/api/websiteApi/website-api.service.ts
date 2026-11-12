@@ -10,6 +10,8 @@ import { IPartner } from '../../../models/partner.interface';
 import { FilterApiService } from '../filterApi/filter-api.service';
 import { IFilter } from '../../../models/layout-models/filter.interface';
 
+import { buildParams } from '../../../core/utils/httpParams';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +33,7 @@ export class WebsiteApiService {
     return this.http.get<IResponse<IPartner[]>>(`${this.baseUrl}/${this.partnersPath}/getAllPartners`);
   }
   getBlogBySlug(slug:string):Observable<IResponse<IBlog>>{
-    return this.http.get<IResponse<IBlog>>(`${this.baseUrl}/${this.blogPath}/getBySlug?slug=${slug}`);
+    return this.http.get<IResponse<IBlog>>(`${this.baseUrl}/${this.blogPath}/getBySlug`, { params: buildParams({ slug: slug }) });
   }
   getAllBlogs(data:IFilter):Observable<IPagingResponse<IBlog[]>>{
     return this.filterApiService.getFilteredData(`${this.baseUrl}/${this.blogPath}/getAllBlogs`, data)

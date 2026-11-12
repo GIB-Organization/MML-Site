@@ -13,6 +13,11 @@ export class InvoicesApiService {
   private path = 'invoices'
   private http = inject(HttpClient)
   
+  /** The PDF is private (VULN-024): it is fetched with the Bearer token, an anchor cannot carry one. */
+  downloadInvoice(id:string):Observable<Blob>{
+    return this.http.get(`${this.baseUrl}/${this.path}/${encodeURIComponent(id)}/download`, { responseType: 'blob' });
+  }
+
   getAllInvoices():Observable<IResponse<IInvoice[]>>{
     return this.http.get<IResponse<IInvoice[]>>(`${this.baseUrl}/${this.path}/getAllInvoices`);
   }

@@ -18,4 +18,14 @@ export class LoginFormService {
   get password(){
     return this.form.controls.password;
   }
+
+  /** Empties the form and marks it untouched (VULN-073): nothing the user typed outlives the dialog step that needed it. */
+  clear(){
+    this.form.reset({ email: '', password: '' });
+  }
+
+  /** After a failed attempt: the password goes, the e-mail stays so the user does not retype it. */
+  clearSecrets(){
+    this.password.reset('');
+  }
 }

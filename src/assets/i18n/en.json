@@ -1,4 +1,16 @@
 {
+    "contactChange": {
+        "change": "Change",
+        "newEmail": "New e-mail",
+        "newPhone": "New mobile number",
+        "currentPassword": "Current password",
+        "sendCode": "Send code",
+        "code": "Verification code",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "hint": "We will send a code to the new value. Your other devices will be signed out after the change.",
+        "done": "Updated successfully"
+    },
     "appName": "GIB",
     "public": {
         "name": "Full Name",
@@ -7,26 +19,28 @@
         "subject": "Subject",
         "message": "Message",
         "emptyData": " No Data To View Currently! ",
-        "nationalId":"National ID",
+        "nationalId": "National ID",
         "save": "Save",
-        "password":"Password",
-        "confirmPassword":"Confirm Password",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
         "send": "Send",
-        "id":"Identification Number",
-        "verify":"Verify",
-        "cancel":"Cancel",
-        "buy":"Buy",
-        "yes":"Yes",
+        "resend": "Resend code",
+        "resendIn": "Resend code in {{seconds}}s",
+        "id": "Identification Number",
+        "verify": "Verify",
+        "cancel": "Cancel",
+        "buy": "Buy",
+        "yes": "Yes",
         "no": "No",
-        "code":"Code",
-        "successProccess":"Success Proccess",
-        "success":"Success",
-        "errorProccess":"Error please try later",
-        "error":"Error",
-        "download":"Download",
-        "delete":"Delete",
-        "search":"Search",
-        "or":"OR"
+        "code": "Code",
+        "successProccess": "Success Proccess",
+        "success": "Success",
+        "errorProccess": "Error please try later",
+        "error": "Error",
+        "download": "Download",
+        "delete": "Delete",
+        "search": "Search",
+        "or": "OR"
     },
     "layout": {
         "navbar": {
@@ -61,7 +75,7 @@
     },
     "views": {
         "home": {
-            "title":"Home",
+            "title": "Home",
             "insuranceTabs": {
                 "carInsurance": "Car Insurance",
                 "medicalInsurance": "Medical Insurance",
@@ -81,14 +95,14 @@
                 "confirmCode": "Captcha Code",
                 "termsConditionsAgree": "I agree with terms and conditions",
                 "showOffers": "Show Offers",
-                "termsConditionsTooltip":" I agree to grant your insurance company the right to inquire from Najm Insurance Services / or the National Information Center or any other relevant official bodies about my data and vehicle data or any other related data. ",
-                "vehicleYear":"Vehicle Year",
-                "customsNumber":"Customs Number",
-                "sellerId":"Seller ID",
-                "birthYear":"Birth Year",
-                "birthMonth":"Birth Month",
-                "newOne":"The New Owner",
-                "policyId":"Policy ID"
+                "termsConditionsTooltip": " I agree to grant your insurance company the right to inquire from Najm Insurance Services / or the National Information Center or any other relevant official bodies about my data and vehicle data or any other related data. ",
+                "vehicleYear": "Vehicle Year",
+                "customsNumber": "Customs Number",
+                "sellerId": "Seller ID",
+                "birthYear": "Birth Year",
+                "birthMonth": "Birth Month",
+                "newOne": "The New Owner",
+                "policyId": "Policy ID"
             },
             "partnersLogos": {
                 "platform": "{{appName}} Platform ,,,,"
@@ -125,7 +139,7 @@
             "title": "Contact Us",
             "description": "Send any inquiry you have so that we can communicate with you and answer it",
             "contactDirect": "Or contact us directly",
-            "messageRecieved":"We recieved your message successfully and our team will be in contact with you."
+            "messageRecieved": "We recieved your message successfully and our team will be in contact with you."
         },
         "blog": {
             "title": "Blog"
@@ -219,69 +233,69 @@
             "companyInformation2": "{{appName}} Electronic Insurance Brokerage Company, Commercial Registration No. 010782181, headquartered in Riyadh - Imam Abdullah bin Saud bin Abdulaziz Street - Building No. 3349 - P.O. Box 8234 - Zip Code 13225",
             "companyInformation3": "Note/ All terms and conditions do not conflict with the rules and regulations of the Central Bank of Saudi Arabia."
         },
-        "profile":{
-            "title":"Profile",
-            "signout":"Sign Out",
-            "invoices":{
-                "title":"invoices",
-                "invoiceId":"Invoice ID",
-                "invoiceDetails":"Invoice Details"
+        "profile": {
+            "title": "Profile",
+            "signout": "Sign Out",
+            "invoices": {
+                "title": "invoices",
+                "invoiceId": "Invoice ID",
+                "invoiceDetails": "Invoice Details"
             },
-            "quotations":{
+            "quotations": {
                 "title": "Policies",
-                "policyId":"Policy ID",
-                "companyName":"Company Name",
-                "status":"Status",
-                "startDate":"Policy Start Date",
-                "endDate":"Policy End Date",
-                "najmStatus":"Najm Policy Status",
-                "leftDays":"Days left"
+                "policyId": "Policy ID",
+                "companyName": "Company Name",
+                "status": "Status",
+                "startDate": "Policy Start Date",
+                "endDate": "Policy End Date",
+                "najmStatus": "Najm Policy Status",
+                "leftDays": "Days left"
             },
-            "cards":{
+            "cards": {
                 "title": "Cards"
             },
-            "uncompletedOrders":{
+            "uncompletedOrders": {
                 "title": "Uncompleted Orders"
             },
-            "epayments":{
+            "epayments": {
                 "title": "E-payments"
             },
-            "supportTicket":{
+            "supportTicket": {
                 "title": "Support tickets",
-                "addTicket":"Add Ticket",
-                "howToAddTicket":"How To Add Ticket",
-                "subject":"Subject",
-                "details":"Details",
-                "uploadFile":"Upload File",
-                "status":"Status"
+                "addTicket": "Add Ticket",
+                "howToAddTicket": "How To Add Ticket",
+                "subject": "Subject",
+                "details": "Details",
+                "uploadFile": "Upload File",
+                "status": "Status"
             },
-            "personalInfo":{
+            "personalInfo": {
                 "title": "Personal Info",
                 "changePassword": "Change Password",
-                "oldPassword":"Old Password",
-                "newPassword":"New Password",
-                "confirmPassword":"Confirm Password"
+                "oldPassword": "Old Password",
+                "newPassword": "New Password",
+                "confirmPassword": "Confirm Password"
             }
         },
-        "auth":{
-            "welcome":"Welcome!",
-            "welcomeBack":"Welcome back!",
-            "enterPersonalInfo":"Enter your personal account information or if you do not have an account, register now",
-            "newAccount":"New Account",
+        "auth": {
+            "welcome": "Welcome!",
+            "welcomeBack": "Welcome back!",
+            "enterPersonalInfo": "Enter your personal account information or if you do not have an account, register now",
+            "newAccount": "New Account",
             "registerAccount": "Register your information to get a new account, or if you have an account, log in",
-            "login":"Log In",
-            "noProblem":"No problem!",
-            "ifForgot":"If you forgot your password, you can reset it",
+            "login": "Log In",
+            "noProblem": "No problem!",
+            "ifForgot": "If you forgot your password, you can reset it",
             "forgotPassword": "Forgot Password?",
-            "reset":"Reset Password",
-            "resetDesc":"Please enter the code you received on your phone and your new password",
-            "register":"Register",
-            "codeSent":"Code Sent",
-            "enterCodeDesc":"Please enter code sent on your phone number",
-            "enterCode":"Enter Code",
-            "passwordChanged":"Password is successfully changed."
+            "reset": "Reset Password",
+            "resetDesc": "Please enter the code you received on your phone and your new password",
+            "register": "Register",
+            "codeSent": "Code Sent",
+            "enterCodeDesc": "Please enter code sent on your phone number",
+            "enterCode": "Enter Code",
+            "passwordChanged": "Password is successfully changed."
         },
-        "insuranceShow":{
+        "insuranceShow": {
             "Subspecialty": "Subspecialty",
             "policyPeriod": "Number of years of coverage",
             "experiencePeriod": "Years of experience",
@@ -293,209 +307,210 @@
             "previousInsuranceCompanyCode": "Previous insurance company name",
             "retroactiveDate": "Retroactive date",
             "pepQuestion": "Are you a politically exposed person?",
-
-            "enterData":"Enter Data",
-            "compareOffers":"Compare Offers",
-            "insureNow":"Insure Now",
-            "additionalData":"Insurance Applicant Information",
-            "expiresOn":"There is a valid document for this vehicle that expires on",
-            "estimatedVehicleValue":"Estimated vehicle value",
-            "usePurpose":"Purpose of Use",
-            "discountBelong":"Choose here if you belong to one of these parties in order to obtain special discounts on the insurance policy",
-            "verifyAffiliate":"To verify your affiliation with one of the participating entities, please enter the private entity's mail, ID number or promotional code to complete the verification process",
-            "addDriver":"Add Driver",
-            "noAdditionalDrivers":"No additional driver required to be added in compulsory insurance (against third parties) in the case of the driver is 18 years or older and has a valid license, and it is mandatory in the case of comprehensive insurance.",
-            "additionalDataButton":"Additional Data",
-            "cancelAddDriver":"Cancel Add Driver",
-            "driverId":"Driver ID / Residence number",
-            "birthYear":"Birth year",
-            "birthMonth":"Birth month",
-            "eduLevel":"Education level",
-            "childsUnder16":"Number of children under 16",
-            "drivePercent":"Driving percentage",
-            "driveRestrictions":"Restrictions according to driver's license",
-            "5yearsAccidents":"Accidents number in the last 5 years",
-            "relation":"Relative relation",
-            "anyViolations":"Are there violations on the driver?",
-            "violationType":"Violation types",
-            "isOwnerAddress":"Is the Address the same as the owner?",
-            "hisAddress":"Address",
-            "anotherCountryLicense":"Driver have license in another country?",
-            "country":"Country",
-            "licenseHoldYears":"Number of years holding the license",
-            "docOwner":"Additional information for the document owner",
-            "trafficViolations":"Does the owner of the document have traffic violations?",
-            "nationalAddressSameCity":"Is the city of work the same as the city of the national address?",
-            "licenseInAnotherCountry":"Do you have a valid license in another country?",
-            "vehicleModify":"Do you have modifications to the vehicle?",
-            "nightParking":"Parking place at night",
-            "annualDistance":"Estimated distance traveled annually",
-            "motionVector":"Motion vector",
-            "otherViolations":"Any other violations",
-            "sameWorkCity":"Same work city?",
-            "previousStep":"Previous Step",
-            "showOffers":"Show Offers",
-            "workMail":"Work Mail",
-            "promoCode":"Promo Code",
-            "enterEmail":"Enter Your Email",
-            "workCity":"Work City",
-            "residenceCity":"Residence City",
-            "whatAreModifications":"What are the modifications?",
-            "orderSummary":"Order Summary",
-            "offersValid":"These offers are valid for {{h}} hours {{m}} minutes {{s}} seconds",
-            "applicantName":"Insurance applicant's name",
-            "applicantId":"Insurance applicant ID number",
-            "vehicleDesc":"Vehicle Description",
-            "docStartDate":"Document start date",
-            "docExpireDate":"Document Expiry Date",
-            "requesterEmail":"Document requester's email",
-            "requesterNumber":"The document requester's phone",
-            "iban":"International Account Number (IBAN)",
-            "bankName":"Bank name",
-            "termsConditions":"I acknowledge that I have read and agreed to the terms of the insurance policy and that I do not want comprehensive insurance, without any liability for your insurance, and I acknowledge that the information entered above is correct and is my own, as a verification link will be sent via e-mail to send the insurance policy.",
-            "payNow":"Pay Now",
-            "claimsDiscount":"No Claims Discount",
-            "specialDiscount":"Special discount",
-            "basicInstallment":"Basic installment",
-            "companyDiscount":"{{name}} Discount",
-            "total":"Total",
-            "vat":"Value added tax",
-            "annualCoverageLimit":"Annual coverage limit",
-            "singleClaimLimit":"Single claim limit",
-            "noAdditionalBenefits":"No additional benefits",
-            "buyOffer":"Buy",
-            "priceDetails":"Price details",
-            "offerDetails":"Offer details",
-            "insuredDetails":"Insured details",
-            "insuranceStart":"Insurance start",
-            "insuranceEnd":"Insurance end",
-            "nationalAddress":"National address",
-            "specialty":"Specialty",
-            "choosePaymentMethod":"Choose payment method",
-            "subscribeNow":"Subscribe now",
-            "back":"Back",
-            "payment":"Payment",
-            "mobileNumber":"Mobile number",
-            "allTotal":"All total",
-            "comprehensiveUpgrade":" Upgrade to comprehensive insurance ",
-            "discountEntitle":"Discount entitlement ",
-            "thirdPartyInsurance":"Third Party Insurance",
-            "comprehensiveInsurance":" Comprehensive insurance start with {{price}} ",
-            "specialInsurance":" Special insurance start with {{price}} ",
-            "maintenanceType":"Maintenance type",        
-            "companies":"Companies",
-            "sorting":"Sorting",
-            "agency":"Agency",
-            "workshop":"Workshop",
-            "companySpeed":"connection speed with NAGM is {{speed}}",
+            "enterData": "Enter Data",
+            "compareOffers": "Compare Offers",
+            "insureNow": "Insure Now",
+            "additionalData": "Insurance Applicant Information",
+            "expiresOn": "There is a valid document for this vehicle that expires on",
+            "estimatedVehicleValue": "Estimated vehicle value",
+            "usePurpose": "Purpose of Use",
+            "discountBelong": "Choose here if you belong to one of these parties in order to obtain special discounts on the insurance policy",
+            "verifyAffiliate": "To verify your affiliation with one of the participating entities, please enter the private entity's mail, ID number or promotional code to complete the verification process",
+            "addDriver": "Add Driver",
+            "noAdditionalDrivers": "No additional driver required to be added in compulsory insurance (against third parties) in the case of the driver is 18 years or older and has a valid license, and it is mandatory in the case of comprehensive insurance.",
+            "additionalDataButton": "Additional Data",
+            "cancelAddDriver": "Cancel Add Driver",
+            "driverId": "Driver ID / Residence number",
+            "birthYear": "Birth year",
+            "birthMonth": "Birth month",
+            "eduLevel": "Education level",
+            "childsUnder16": "Number of children under 16",
+            "drivePercent": "Driving percentage",
+            "driveRestrictions": "Restrictions according to driver's license",
+            "5yearsAccidents": "Accidents number in the last 5 years",
+            "relation": "Relative relation",
+            "anyViolations": "Are there violations on the driver?",
+            "violationType": "Violation types",
+            "isOwnerAddress": "Is the Address the same as the owner?",
+            "hisAddress": "Address",
+            "anotherCountryLicense": "Driver have license in another country?",
+            "country": "Country",
+            "licenseHoldYears": "Number of years holding the license",
+            "docOwner": "Additional information for the document owner",
+            "trafficViolations": "Does the owner of the document have traffic violations?",
+            "nationalAddressSameCity": "Is the city of work the same as the city of the national address?",
+            "licenseInAnotherCountry": "Do you have a valid license in another country?",
+            "vehicleModify": "Do you have modifications to the vehicle?",
+            "nightParking": "Parking place at night",
+            "annualDistance": "Estimated distance traveled annually",
+            "motionVector": "Motion vector",
+            "otherViolations": "Any other violations",
+            "sameWorkCity": "Same work city?",
+            "previousStep": "Previous Step",
+            "showOffers": "Show Offers",
+            "workMail": "Work Mail",
+            "promoCode": "Promo Code",
+            "enterEmail": "Enter Your Email",
+            "workCity": "Work City",
+            "residenceCity": "Residence City",
+            "whatAreModifications": "What are the modifications?",
+            "orderSummary": "Order Summary",
+            "offersValid": "These offers are valid for {{h}} hours {{m}} minutes {{s}} seconds",
+            "applicantName": "Insurance applicant's name",
+            "applicantId": "Insurance applicant ID number",
+            "vehicleDesc": "Vehicle Description",
+            "docStartDate": "Document start date",
+            "docExpireDate": "Document Expiry Date",
+            "requesterEmail": "Document requester's email",
+            "requesterNumber": "The document requester's phone",
+            "iban": "International Account Number (IBAN)",
+            "bankName": "Bank name",
+            "termsConditions": "I acknowledge that I have read and agreed to the terms of the insurance policy and that I do not want comprehensive insurance, without any liability for your insurance, and I acknowledge that the information entered above is correct and is my own, as a verification link will be sent via e-mail to send the insurance policy.",
+            "payNow": "Pay Now",
+            "claimsDiscount": "No Claims Discount",
+            "specialDiscount": "Special discount",
+            "basicInstallment": "Basic installment",
+            "companyDiscount": "{{name}} Discount",
+            "total": "Total",
+            "vat": "Value added tax",
+            "annualCoverageLimit": "Annual coverage limit",
+            "singleClaimLimit": "Single claim limit",
+            "noAdditionalBenefits": "No additional benefits",
+            "buyOffer": "Buy",
+            "priceDetails": "Price details",
+            "offerDetails": "Offer details",
+            "insuredDetails": "Insured details",
+            "insuranceStart": "Insurance start",
+            "insuranceEnd": "Insurance end",
+            "nationalAddress": "National address",
+            "specialty": "Specialty",
+            "choosePaymentMethod": "Choose payment method",
+            "subscribeNow": "Subscribe now",
+            "back": "Back",
+            "payment": "Payment",
+            "mobileNumber": "Mobile number",
+            "allTotal": "All total",
+            "comprehensiveUpgrade": " Upgrade to comprehensive insurance ",
+            "discountEntitle": "Discount entitlement ",
+            "thirdPartyInsurance": "Third Party Insurance",
+            "comprehensiveInsurance": " Comprehensive insurance start with {{price}} ",
+            "specialInsurance": " Special insurance start with {{price}} ",
+            "maintenanceType": "Maintenance type",
+            "companies": "Companies",
+            "sorting": "Sorting",
+            "agency": "Agency",
+            "workshop": "Workshop",
+            "companySpeed": "connection speed with NAGM is {{speed}}",
             "replaceWithComprehensive": "Replace with comprehensive insurance at a price {{price}}",
-            "chooseComprehensive":"Choose Comprehensive",
-            "endurance":"Endurance value",
-            "enduranceTooltip":"Deductable is the amount of money you agreed to pay for car repairs or replacement after accident",
-            "noCut":"No Insurance Cut"
+            "chooseComprehensive": "Choose Comprehensive",
+            "endurance": "Endurance value",
+            "enduranceTooltip": "Deductable is the amount of money you agreed to pay for car repairs or replacement after accident",
+            "noCut": "No Insurance Cut"
         },
-        "paymentStatus":{
-            "paymentStatus":"Payment Status",
-            "goToPolicies":"Go to your policies!",
-            "success":"Payment confirmed. Enjoy your coverage.",
-            "fail":"We were unable to process your payment. Please try again later",
-            "pending":"We are awaiting confirmation of your pending payment."
+        "paymentStatus": {
+            "paymentStatus": "Payment Status",
+            "goToPolicies": "Go to your policies!",
+            "success": "Payment confirmed. Enjoy your coverage.",
+            "fail": "We were unable to process your payment. Please try again later",
+            "pending": "We are awaiting confirmation of your pending payment."
         },
-        "checkout":{
-            "checkout":"Checkout"
+        "checkout": {
+            "checkout": "Checkout"
         }
     },
-    "errors":{
-        "idNumber":"ID Should start with 1 or 2 and be 10 numbers",
-        "serialNumber":"Serial Number Must be 6-9 Numbers",
-        "required":"Field is Required",
-        "invalidIban":"IBAN must be 24 characters: SA followed by 22 digits",
-        "password":"Password must contains lowercase & uppercase characters with at least one number and one special character",
-        "confirmPassword":"Confirm Password not matching password",
-        "name":"Name must be > 8 characters",
-        "email":"Email must be valid",
-        "phone":"Phone must be like 05xxxxxxxx",
-        "somethingWentWrong":"Something went wrong, please try again",
-        "noOffers":"No offers available right now"
+    "errors": {
+        "idNumber": "ID Should start with 1 or 2 and be 10 numbers",
+        "serialNumber": "Serial Number Must be 6-9 Numbers",
+        "required": "Field is Required",
+        "invalidIban": "IBAN must be 24 characters: SA followed by 22 digits",
+        "password": "Password must contains lowercase & uppercase characters with at least one number and one special character",
+        "confirmPassword": "Confirm Password not matching password",
+        "name": "Name must be > 8 characters",
+        "email": "Email must be valid",
+        "phone": "Phone must be like 05xxxxxxxx",
+        "somethingWentWrong": "Something went wrong, please try again",
+        "otpDeliveryFailed": "We could not send the verification code. Please try again in a moment",
+        "tooManyRequests": "Too many attempts. Please wait a moment and try again",
+        "noOffers": "No offers available right now"
     },
-    "months":{
-        "gregorian":{
-            "1":"January",
-            "2":"February",
-            "3":"March",
-            "4":"April",
-            "5":"May",
-            "6":"June",
-            "7":"July",
-            "8":"August",
-            "9":"September",
-            "10":"October",
-            "11":"November",
-            "12":"December"
+    "months": {
+        "gregorian": {
+            "1": "January",
+            "2": "February",
+            "3": "March",
+            "4": "April",
+            "5": "May",
+            "6": "June",
+            "7": "July",
+            "8": "August",
+            "9": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December"
         },
-        "hijri":{
-            "1":"Muḥarram",
-            "2":"Ṣafar",
-            "3":"Rabīʿ al-Awwal",
-            "4":"Rabīʿ al-Thānī",
-            "5":"Jumādā al-Awwal",
-            "6":"Jumādā al-Thānī",
-            "7":"Rajab",
-            "8":"Shaʿbān",
-            "9":"Ramaḍān",
-            "10":"Shawwāl",
-            "11":"Dhū al-Qaʿdah",
-            "12":"Dhū al-Ḥijjah"
+        "hijri": {
+            "1": "Muḥarram",
+            "2": "Ṣafar",
+            "3": "Rabīʿ al-Awwal",
+            "4": "Rabīʿ al-Thānī",
+            "5": "Jumādā al-Awwal",
+            "6": "Jumādā al-Thānī",
+            "7": "Rajab",
+            "8": "Shaʿbān",
+            "9": "Ramaḍān",
+            "10": "Shawwāl",
+            "11": "Dhū al-Qaʿdah",
+            "12": "Dhū al-Ḥijjah"
         }
     },
-    "partyTypeEnum":{
-        "1":"{{companyName}}",
-        "2":"Email"
+    "partyTypeEnum": {
+        "1": "{{companyName}}",
+        "2": "Email"
     },
-    "sortingEnum":{
-        "asc":"Ascending",
-        "des":"Descending"
+    "sortingEnum": {
+        "asc": "Ascending",
+        "des": "Descending"
     },
-    "priceDetailsCodes":{
-        "1":"Special Discount",
-        "2":"No Claim Discount",
-        "3":"Loyality Discount",
-        "4":"Additional Loading",
-        "5":"Additional Age Contribution",
-        "6":"Admin Fees",
-        "7":"Basic Premium",
-        "8":"VAT",
-        "9":"Our Commission",
-        "10":"Good Driving Discount",
-        "11":"Schemes",
-        "12":"Customized Discount 1",
-        "13":"Customized Discount 1"
+    "priceDetailsCodes": {
+        "1": "Special Discount",
+        "2": "No Claim Discount",
+        "3": "Loyality Discount",
+        "4": "Additional Loading",
+        "5": "Additional Age Contribution",
+        "6": "Admin Fees",
+        "7": "Basic Premium",
+        "8": "VAT",
+        "9": "Our Commission",
+        "10": "Good Driving Discount",
+        "11": "Schemes",
+        "12": "Customized Discount 1",
+        "13": "Customized Discount 1"
     },
-    "policyStatusEnum":{
-        "1":"Active",
+    "policyStatusEnum": {
+        "1": "Active",
         "2": "Expired"
     },
-    "policyNajmStatus":{
-        "1":"Pending",
-        "2":"Failed",
-        "3":"Success"
+    "policyNajmStatus": {
+        "1": "Pending",
+        "2": "Failed",
+        "3": "Success"
     },
-    "policyTabsStatus":{
-        "1":"Active",
-        "2":"To Renew",
-        "3":"Expired",
-        "4":"Under Version"
+    "policyTabsStatus": {
+        "1": "Active",
+        "2": "To Renew",
+        "3": "Expired",
+        "4": "Under Version"
     },
-    "ticketStatus":{
-        "1":"Processing",
-        "2":"Closed"
+    "ticketStatus": {
+        "1": "Processing",
+        "2": "Closed"
     },
-    "httpErrors":{
-        "401":"Your session has expired. Please log in again."
+    "httpErrors": {
+        "401": "Your session has expired. Please log in again."
     },
-    "customRequestErrors":{
-        "wrongPassword":"Old password is not correct",
-        "invalidUserOrPassword":"Invalid username or password...",
-        "invalidEmailOrId":"Invalid email or national Id..."
+    "customRequestErrors": {
+        "wrongPassword": "Old password is not correct",
+        "invalidUserOrPassword": "Invalid username or password...",
+        "invalidEmailOrId": "Invalid email or national Id..."
     }
 }

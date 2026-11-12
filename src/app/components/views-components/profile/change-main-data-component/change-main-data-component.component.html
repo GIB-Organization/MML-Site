@@ -12,25 +12,52 @@
                 }
             </div>
             <div class="mb-3">
-                <app-base-label-component for="phone" classes="form-label" [required]="true"> {{'public.phone' |
+                <app-base-label-component for="phone" classes="form-label"> {{'public.phone' |
                     translate}} </app-base-label-component>
-                <input [minlength]="10" [maxlength]="10" InputNumber type="phone" [formControl]="phoneNumber" class="form-control" id="phone">
-                @if(!phoneNumber.valid && phoneNumber.touched){
-                <app-input-validation-alert-component> {{'errors.phone' | translate}}
-                </app-input-validation-alert-component>
-                }
+                <div class="d-flex gap-2">
+                    <input type="phone" [formControl]="phoneNumber" class="form-control" id="phone" readonly>
+                    <button type="button" class="btn btn-outline-primary rounded-pill px-4" (click)="startChange('phone')">{{ 'contactChange.change' | translate }}</button>
+                </div>
             </div>
             <div class="mb-3">
-                <app-base-label-component for="email" classes="form-label" [required]="true"> {{'public.email' |
+                <app-base-label-component for="email" classes="form-label"> {{'public.email' |
                     translate}} </app-base-label-component>
-                <input type="email" [formControl]="email" class="form-control" id="email">
-                @if(!email.valid && email.touched){
-                <app-input-validation-alert-component> {{'errors.email' | translate}}
-                </app-input-validation-alert-component>
-                }
+                <div class="d-flex gap-2">
+                    <input type="email" [formControl]="email" class="form-control" id="email" readonly>
+                    <button type="button" class="btn btn-outline-primary rounded-pill px-4" (click)="startChange('email')">{{ 'contactChange.change' | translate }}</button>
+                </div>
             </div>
         </form>
+
+        @if (channel(); as ch) {
+        <div class="border rounded p-3 mt-3">
+            <p class="grey_color font_size__13">{{ 'contactChange.hint' | translate }}</p>
+            @if (!challengeId()) {
+            <div class="mb-2">
+                <app-base-label-component for="newValue" classes="form-label" [required]="true"> {{ (ch === 'email' ? 'contactChange.newEmail' : 'contactChange.newPhone') | translate }} </app-base-label-component>
+                <input [formControl]="change.controls.newValue" class="form-control" id="newValue" [attr.type]="ch === 'email' ? 'email' : 'tel'" [attr.maxlength]="ch === 'email' ? 100 : 10">
+            </div>
+            <div class="mb-3">
+                <app-base-label-component for="currentPassword" classes="form-label" [required]="true"> {{ 'contactChange.currentPassword' | translate }} </app-base-label-component>
+                <input type="password" autocomplete="current-password" [formControl]="change.controls.currentPassword" class="form-control" id="currentPassword">
+            </div>
+            <div class="d-flex gap-2">
+                <app-base-button-component [disabled]="change.controls.newValue.invalid || change.controls.currentPassword.invalid" [loading]="busy()" (clicked)="sendCode()" classes="px-4 btn-primary rounded-pill white_color font_size__14">{{ 'contactChange.sendCode' | translate }}</app-base-button-component>
+                <button type="button" class="btn btn-light rounded-pill px-4" (click)="cancelChange()">{{ 'contactChange.cancel' | translate }}</button>
+            </div>
+            } @else {
+            <div class="mb-3">
+                <app-base-label-component for="changeCode" classes="form-label" [required]="true"> {{ 'contactChange.code' | translate }} </app-base-label-component>
+                <input dir="ltr" inputmode="numeric" maxlength="6" autocomplete="one-time-code" [formControl]="change.controls.code" class="form-control" id="changeCode">
+            </div>
+            <div class="d-flex gap-2">
+                <app-base-button-component [disabled]="change.controls.code.invalid" [loading]="busy()" (clicked)="confirmCode()" classes="px-4 btn-primary rounded-pill white_color font_size__14">{{ 'contactChange.confirm' | translate }}</app-base-button-component>
+                <button type="button" class="btn btn-light rounded-pill px-4" (click)="cancelChange()">{{ 'contactChange.cancel' | translate }}</button>
+            </div>
+            }
+        </div>
+        }
     </app-shadow-box-component>
-    <app-base-button-component [disabled]="form.invalid || !form.dirty" [loading]="isLoading()" (clicked)="submit()" classes="px-5 btn-primary rounded-pill white_color font_size__14 shadow-sm"> {{
+    <app-base-button-component [disabled]="fullName.invalid || !fullName.dirty" [loading]="isLoading()" (clicked)="submit()" classes="px-5 btn-primary rounded-pill white_color font_size__14 shadow-sm"> {{
         'public.save' | translate }} </app-base-button-component>
 </div>

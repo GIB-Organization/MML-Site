@@ -1,37 +1,42 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+import { Injector, inject } from '@angular/core';
 import { catchError, switchMap, throwError } from 'rxjs';
-import { AuthApiService } from '../../../services/api/authApi/auth-api.service';
-import { AuthStoreQuery } from '../../../store/authStore/auth-store.query';
 import { ErrorCodes } from '../../enums';
-import { ILoginResponse, IRefreshTokenDTO } from '../../../models/auth.interface';
-import { setHttpHeaders } from '../../utils/setHttpHeaders';
-import { IResponse } from '../../../models/response.interface';
+import { SessionEndedError, SessionExpiredError, TokenRefreshService } from '../../../services/auth/token-refresh.service';
+import { UnAuthorizedErrorResponse } from '../../classes/ErrorHandling';
+import { BASE_URL_TOKEN } from '../../injection-tokens/base-url.token';
+import { isApiRequest, isAuthFree } from '../../utils/isApiRequest';
+import { withAuth } from '../../utils/setHttpHeaders';
+import { REPLAYED } from './refresh-context';
 
+/**
+ * A 401 on a request that carried the user's token is answered with ONE shared refresh (TokenRefreshService) and a single replay
+ * (VULN-068). It never runs for requests that had no session, for the public sign-in routes, for other hosts, or for a request
+ * that is already a replay. A failed refresh ends the session once: the error handler does it for the refresh call itself
+ * (toast and sign-out), this interceptor only does it when there was no refresh token to try.
+ */
 export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const authApiService = inject(AuthApiService);
-  const authStoreQuery = inject(AuthStoreQuery);
+  const refresher = inject(TokenRefreshService);
+  // looked up only when a session has to end: AuthStoreService is being built when the first requests of the app go out (VULN-064 start-up), so asking for it here would be circular
+  const injector = inject(Injector);
+  const bases = [inject(BASE_URL_TOKEN)];
+
   return next(req).pipe(
-    catchError((error) => {
-      if (error.status === ErrorCodes.unauthorized && !error.url.includes(authApiService.refreshPath)) {
-        return authApiService.refreshToken(authStoreQuery.token).pipe(
-          switchMap((res:IResponse<IRefreshTokenDTO>) => {
-            const USER : ILoginResponse = {
-              ...authStoreQuery.user,
-              token: res.result
-            }
-              authStoreQuery.setUser = USER
-              return next(setHttpHeaders(req, res?.result.accessToken));
-          }),
-          catchError((error) => {
-            return throwError({
-              ...error,
-              status: ErrorCodes.unauthorized
-            });
-          })
-        );
-      }
-      return throwError(error);
+    catchError((error: HttpErrorResponse) => {
+      const sentBearer = req.headers.get('Authorization');
+      const eligible = error?.status === ErrorCodes.unauthorized && !!sentBearer && !req.context.get(REPLAYED)
+        && isApiRequest(req.url, ...bases) && !isAuthFree(req.url);
+      if (!eligible) return throwError(() => error);
+
+      return refresher.refresh(sentBearer).pipe(
+        catchError((refreshError) => {
+          if (refreshError instanceof SessionExpiredError) injector.get(UnAuthorizedErrorResponse).handleErrorResponse(error);
+          // the caller gets the 401 it was given (a real HttpErrorResponse), never a copy that lost its type
+          return throwError(() => (refreshError instanceof SessionEndedError ? refreshError : error));
+        }),
+        // the replay sits outside the handler above: its own errors reach the caller unchanged
+        switchMap((accessToken) => next(withAuth(req.clone({ context: req.context.set(REPLAYED, true) }), accessToken)))
+      );
     })
   );
 };

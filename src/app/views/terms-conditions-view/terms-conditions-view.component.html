@@ -2,6 +2,6 @@
     <section class="container">
         <h6 class="h3 mb-5 font_semi__bold text-center"> {{'views.termsAndConditions.termsAndConditions' | translate}} </h6>
         <div class="mt-5 grey_color font_size__13 font_light"
-            [innerHTML]="sanitizer.bypassSecurityTrustHtml(settings()?.[settingsQuery.contentKey] ?? '')"></div>
+            [innerHTML]="settings()?.[settingsQuery.contentKey] | safeHtml"></div>
     </section>
 </div>

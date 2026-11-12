@@ -1,7 +1,6 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, TransferState, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { langType } from '../../core/enums/language.enum';
-import { TransferState } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'

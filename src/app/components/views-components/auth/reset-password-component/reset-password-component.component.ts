@@ -28,7 +28,7 @@ export class ResetPasswordComponentComponent {
   isLoading = toSignal(this.authStoreQuery.selectLoading())
 
   form = this.fb.nonNullable.group<IResetPasswordFormGroup>({
-    otp: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(4)]),
+    otp: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
     newPassword: this.fb.nonNullable.control('', [VALIDATORS['password'], Validators.required]),
     confirmPassword: this.fb.nonNullable.control('', [VALIDATORS['password'], Validators.required]),
   })

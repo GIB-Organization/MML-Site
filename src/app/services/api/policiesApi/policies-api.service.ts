@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPolicy } from '../../../models/policy.interface';
 
+import { buildParams } from '../../../core/utils/httpParams';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,7 @@ export class PoliciesApiService {
     return this.http.get<IPolicy[]>(`${this.baseUrl}/${this.path}/getAllPolicy`)
   }
   getPolicyFile(id:string): Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/${this.path}/getPolicyFileById?policyId=${id}`)
+    return this.http.get<any>(`${this.baseUrl}/${this.path}/getPolicyFileById`, { params: buildParams({ policyId: id }) })
   }
 
   

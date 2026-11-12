@@ -1,0 +1,29 @@
+# VULN-070: a weekly look at dependencies, so updates arrive in small steps instead of one 18-month jump.
+# Angular, PrimeNG and the SSR packages are upgraded by hand, one major at a time (docs/dependency-upgrade-runbook.md); only patch
+# and minor updates are proposed for everything else.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: '@angular/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@angular-devkit/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: primeng
+        update-types: ['version-update:semver-major']
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+      - dependency-name: zone.js
+        update-types: ['version-update:semver-minor', 'version-update:semver-major']
+    groups:
+      angular-patches:
+        patterns: ['@angular/*', '@angular-devkit/*']
+        update-types: ['patch', 'minor']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

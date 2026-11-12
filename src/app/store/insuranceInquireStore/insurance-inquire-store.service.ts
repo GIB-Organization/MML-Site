@@ -35,7 +35,7 @@ export class InsuranceInquireStoreService {
    */
   additionalDataPost(data:IAdditionalData){
     this.store.setLoading(true)
-    this.api.postAdditionalData({...data, refId: this.insuranceInquireStoreQueryService.inquireResponse.refId??''}).pipe(take(1)).subscribe({
+    this.api.postAdditionalData({...data, refId: this.insuranceInquireStoreQueryService.inquireResponse.refId??''}, this.insuranceInquireStoreQueryService.inquireResponse.quoteToken).pipe(take(1)).subscribe({
       next: (res) => {
         // Pricing (duration/deductible tiers) is stored for a future compare-offers redesign
         // to render - no MMP UI consumes it yet this phase.

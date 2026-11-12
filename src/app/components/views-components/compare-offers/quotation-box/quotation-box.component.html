@@ -29,7 +29,7 @@
                             @for(item of choosedProduct().benefits!; track item.benefitId){
                                 <div class="col-md-12">
                                     <div class="form-check mt-1">
-                                        <input class="form-check-input" [checked]="isDefaultBenefit(item)" [disabled]="isDefaultBenefit(item)" type="checkbox" (change)="toggleBenefit(item, $event)" id="benefit-{{choosedProduct().productId}}-{{item.benefitId}}">
+                                        <input class="form-check-input" [checked]="isDefaultBenefit(item) || selectedIds().has(item.benefitId)" [disabled]="isDefaultBenefit(item)" type="checkbox" (change)="toggleBenefit(item, $event)" id="benefit-{{choosedProduct().productId}}-{{item.benefitId}}">
                                         <label class="form-check-label font_light grey_color font_size__12" for="benefit-{{choosedProduct().productId}}-{{item.benefitId}}">
                                             {{item?.[quotationStoreQuery.benefitNameKey]}} <span class="secondary_color font_bold"> ({{ item.benefitPrice | currency : settingsQuery.currency }}) </span>
                                         </label>

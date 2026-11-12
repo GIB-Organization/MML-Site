@@ -1,0 +1,33 @@
+# VULN-045: build, unit tests and a dependency report on every change.
+name: website-ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: No bypassSecurityTrust in the application (VULN-065)
+        run: "! grep -rnE 'bypassSecurityTrust(Url|Html|Script|Style|ResourceUrl)' src/app --include=*.ts --include=*.html"
+      - name: No query string built by hand in the API services (VULN-072)
+        run: "! grep -rnE '[?&][A-Za-z]+=[$][{]' src/app/services/api --include=*.ts"
+      - run: npm run build
+      - name: A development build must not contain the production API (VULN-069)
+        run: |
+          npx ng build --configuration development --output-path dist-dev
+          ! grep -rl "mml.itarm-insurance.com" dist-dev
+      - name: Staging build
+        run: npx ng build --configuration staging --output-path dist-staging
+      - run: npx ng test --watch=false --browsers=ChromeHeadless
+      - name: Dependency report (not blocking yet)
+        run: npm audit --omit=dev --audit-level=high
+        continue-on-error: true

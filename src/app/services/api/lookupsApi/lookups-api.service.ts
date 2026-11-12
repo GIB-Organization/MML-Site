@@ -6,6 +6,8 @@ import { ILookup, ILookupCategories } from '../../../models/lookup.interface';
 import { Observable } from 'rxjs';
 import { ICity, ICountry, IRegion } from '../../../models/address.interface';
 
+import { buildParams } from '../../../core/utils/httpParams';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +25,7 @@ export class LookupsApiService {
    * @param  {ELookupCategory} id
    */
   getLookupById(id:ELookupCategory):Observable<ILookup>{
-    return this.http.get<ILookup>(`${this.baseUrl}/${this.path}?id=${id}`);
+    return this.http.get<ILookup>(`${this.baseUrl}/${this.path}`, { params: buildParams({ id: id }) });
   }
   
 }

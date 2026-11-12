@@ -8,7 +8,7 @@ const initValue = ():IPaymentStore =>{
 @Injectable({
   providedIn: 'root'
 })
-@StoreConfig({name:'PaymentStore'})
+@StoreConfig({name:'PaymentStore', resettable: true})
 export class PaymentStore extends Store<IPaymentStore>{
 
   constructor() { 

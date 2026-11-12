@@ -41,6 +41,17 @@ export class RegisterFormService {
     return this.form.controls.agreeTerms;
   }
 
+  /** Empties the form and marks it untouched (VULN-073). */
+  clear(){
+    this.form.reset({ fullName: '', nationalId: null, phoneNumber: null, email: '', password: '', confirmPassword: '', agreeTerms: true });
+  }
+
+  /** After a failed attempt: both passwords go, the rest stays. */
+  clearSecrets(){
+    this.password.reset('');
+    this.confirmPassword.reset('');
+  }
+
   get formIsValid(){
     return this.form.valid && this.password.value === this.confirmPassword.value
   }

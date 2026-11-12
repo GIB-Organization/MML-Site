@@ -10,6 +10,11 @@ export class OtpFormService {
   public OtpStartegy = inject(OtpStartegy)
   public authDialogService = inject(AuthDialogService)
 
+  resend(){
+    this.OtpStartegy.setStartegy(this.authDialogService.otpDialogType);
+    this.OtpStartegy.strategy.resend();
+  }
+
   sendOtp(otp:number|null){
     this.OtpStartegy.setStartegy(this.authDialogService.otpDialogType);
     this.OtpStartegy.strategy.sendOtp(otp);

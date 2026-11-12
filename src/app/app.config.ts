@@ -1,13 +1,15 @@
 import { refreshTokenInterceptor } from './core/interceptors/refreshToken/refresh-token.interceptor';
 import { environment } from '../environments/environment';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, inject } from '@angular/core';
+import { AuthStoreService } from './store/authStore/auth-store.service';
 import { InMemoryScrollingOptions, provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { translateModuleImport } from './core/config/translate.config';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { authInterceptor } from './core/interceptors/auth/auth.interceptor';
+import { sessionInterceptor } from './core/interceptors/session/session.interceptor';
 import { BASE_URL_TOKEN } from './core/injection-tokens/base-url.token';
 import { MessageService } from 'primeng/api';
 import { errorHandlerInterceptor } from './core/interceptors/errorHandler/error-handler.interceptor';
@@ -21,8 +23,13 @@ const scrollConfig: InMemoryScrollingOptions = {
 export const appConfig: ApplicationConfig = {
   providers: [
     MessageService,
+    // a reload keeps the customer signed in by trading the refresh token for an access token before the first page (VULN-064)
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: () => { const auth = inject(AuthStoreService); return () => auth.restoreSession(); },
+    },
     importProvidersFrom([
-      HttpClientModule, 
       translateModuleImport()
     ]),
     {
@@ -39,7 +46,8 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptors([
         languageInterceptor,
-        authInterceptor, 
+        authInterceptor,
+        sessionInterceptor,
         errorHandlerInterceptor,
         refreshTokenInterceptor, 
       ]), 

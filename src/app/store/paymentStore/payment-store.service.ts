@@ -15,9 +15,9 @@ export class PaymentStoreService {
   private store = inject(PaymentStore);
   private router = inject(Router);
 
-  createCheckout(data:ICreateCheckoutDTO, ref:DestroyRef){
+  createCheckout(data:ICreateCheckoutDTO, ref:DestroyRef, quoteToken?: string){
     this.store.setLoading(true)
-    return this.api.createPaymentCheckout(data).pipe(takeUntilDestroyed(ref)).subscribe({
+    return this.api.createPaymentCheckout(data, quoteToken).pipe(takeUntilDestroyed(ref)).subscribe({
         next:(res)=>{
             this.store.update({
               checkoutId:res.checkoutId

@@ -1,0 +1,33 @@
+name: Security checks
+
+# VULN-070: runs on every push and pull request. The audit gate fails when the production dependency tree gets MORE critical or high
+# findings than audit-baseline.json (see docs/dependency-upgrade-runbook.md); the full audit is informational.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 5 * * 1'   # weekly, so new advisories show up without a code change
+
+jobs:
+  audit-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Production dependency audit (blocking ratchet)
+        run: node scripts/audit-gate.mjs
+      - name: Full audit including build tools (informational)
+        run: npm audit --package-lock-only || true
+
+  server-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --ignore-scripts
+      - name: Server request checks (host allowlist, headers)
+        run: npm run test:server

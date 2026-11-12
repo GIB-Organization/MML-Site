@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { EOtpType } from '../../core/enums';
 import { AuthStoreService } from '../../store/authStore/auth-store.service';
-import { ILoginDTO, IRegisterDTO } from '../../models/auth.interface';
+import { ILoginDTO, ILoginOtp, IRegisterDTO, IRegisterOtp } from '../../models/auth.interface';
 import { RegisterFormService } from './register-form.service';
 import { LoginFormService } from './login-form.service';
 
@@ -9,6 +9,8 @@ export interface IOtpStrategy {
   form: any,
   type: EOtpType,
   sendOtp(otp:number|null): void;
+  /** Asks the server for a fresh code (the previous one stops working). */
+  resend(): void;
   authStoreService: AuthStoreService,
 }
 
@@ -40,6 +42,10 @@ export class RegisterOtp implements IOtpStrategy {
   type: EOtpType = EOtpType.register;
   authStoreService = inject(AuthStoreService);
   formService = inject(RegisterFormService);
+  resend() {
+    const value = this.formService.form.value;
+    this.authStoreService.sendRegisterOtp({ nationalId: `${value.nationalId}`, phoneNumber: `${value.phoneNumber}` } as IRegisterOtp);
+  }
   sendOtp(otp:number | null) {
     this.authStoreService.register({
       ...this.formService.form.value, 
@@ -59,6 +65,10 @@ export class LoginOtp implements IOtpStrategy {
   type: EOtpType = EOtpType.login;
   authStoreService = inject(AuthStoreService);
   formService = inject(LoginFormService);
+  resend() {
+    const value = this.formService.form.value;
+    this.authStoreService.sendLoginOtp({ email: value.email, password: value.password } as ILoginOtp);
+  }
   sendOtp(otp:number | null) {
     this.authStoreService.login({
       ...this.formService.form.value,

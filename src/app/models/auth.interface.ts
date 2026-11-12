@@ -53,9 +53,31 @@ export type IRegisterOtp = Pick<IRegisterDTO, 'nationalId' | 'phoneNumber'>;
 export type ILoginOtp = Pick<IRegisterDTO, 'email' | 'password'>;
 
 export interface IChangeInfo{
-  phoneNumber: string,
+  phoneNumber?: string,
   fullName: string,
-  email: string
+  email?: string
+}
+/** E-mail and mobile number change in two steps: password + code on the NEW value (VULN-015). */
+export interface IContactChangeRequest{
+  channel: 'email' | 'phone',
+  newValue: string,
+  currentPassword: string
+}
+export interface IContactChangeConfirm{
+  challengeId: string,
+  channel: 'email' | 'phone',
+  newValue: string,
+  code: string
+}
+/** The signed-in customer's own details, from GET account/profile (VULN-042): they are no longer carried inside the access token. */
+export interface IProfile {
+  userId?: string;
+  fullName?: string;
+  email?: string;
+  phoneNumber?: string;
+  nationalId?: string;
+  bankName?: string;
+  iban?: string;
 }
 export interface IChangeInfoFormGroup{
   phoneNumber: FormControl<string | null>,
@@ -77,11 +99,11 @@ export interface IChangePasswordFormGroup{
 export interface ILegacyTokenUser{
   nameid: string;
   fullName: string;
-  phoneNumber: string;
-  email: string;
-  nationalId: string;
-  bankName: string;
-  iban: string;
+  phoneNumber?: string;
+  email?: string;
+  nationalId?: string;
+  bankName?: string;
+  iban?: string;
   expireTime?: string;
   nbf?: number;
   exp?: number;
@@ -99,8 +121,18 @@ export interface IForgotPasswordFormGroup{
   nationalId: FormControl<string | null>
 }
 
+/** What the server returns after a code was requested. The code itself is only delivered by SMS (VULN-002, VULN-011). */
+export interface IOtpSendResponse {
+  challengeId: string,
+  expiresInSeconds: number,
+  resendAfterSeconds?: number,
+}
+
+export type IForgotPasswordResult = IOtpSendResponse;
+
 export interface IResetPassword{
   otp: string,
+  challengeId?: string,
   newPassword:string,
 }
 

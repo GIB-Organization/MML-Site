@@ -9,7 +9,7 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
 import { InvoiceStoreQuery } from '../../../store/invoiceStore/invoice-store.query';
 import { InvoiceStoreService } from '../../../store/invoiceStore/invoice-store.service';
-import { BaseLinkComponentComponent } from '../../../components/base-components/base-link-component/base-link-component.component';
+import { BaseButtonComponentComponent } from '../../../components/base-components/base-button-component/base-button-component.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LoadingContentComponentComponent } from '../../../components/shared-components/loading-content-component/loading-content-component.component';
 import { DownloadService } from '../../../services/download/download.service';
@@ -18,7 +18,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-invoices-view',
   standalone: true,
-  imports: [LoadingContentComponentComponent, DeferBlockComponentComponent, EmptyDataComponentComponent, ShadowBoxComponentComponent, InputNumberModule, TranslateModule, CurrencyPipe, DividerModule, DatePipe, BaseLinkComponentComponent],
+  imports: [LoadingContentComponentComponent, DeferBlockComponentComponent, EmptyDataComponentComponent, ShadowBoxComponentComponent, InputNumberModule, TranslateModule, CurrencyPipe, DividerModule, DatePipe, BaseButtonComponentComponent],
   templateUrl: './invoices-view.component.html',
   styleUrl: './invoices-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -66,7 +66,8 @@ export class CompareOffersComponent implements OnInit {
 
     forkJoin(requests).subscribe(results => {
       const succeeded = results.filter((r): r is IMmpQuoteResult => !!r);
-      this.offers.set(succeeded.flatMap(r => r.offers ?? []));
+      // each company's quote has its own token; it travels with its offers so the checkout can present it (VULN-022)
+      this.offers.set(succeeded.flatMap(r => (r.offers ?? []).map(o => ({ ...o, quoteToken: r.quoteToken }))));
 
       // Specialty/experience names are identical across companies, so the first context is enough.
       const context = succeeded.find(r => r.quotation)?.quotation ?? null;

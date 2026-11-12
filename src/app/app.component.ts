@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
   authStoreService = inject(AuthStoreService);
   contentLoading = signal(true);
   ngOnInit(): void {
-      this.authStoreService.getUserFromLocal();
+    // the session is restored by APP_INITIALIZER (app.config.ts) before the first page
   }
   constructor(){
     afterRender(()=>{

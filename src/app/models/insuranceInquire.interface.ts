@@ -16,6 +16,8 @@ export interface ITermsConditionsAgree{
 
 export interface IInsuranceInquireResponse {
   refId?: string;
+  // proves this browser started the quotation; sent as X-Quote-Token to the calls that work on it (VULN-022)
+  quoteToken?: string;
   idNumber?: string;
   startDate?: string;
   firstName?: string;

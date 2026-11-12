@@ -12,6 +12,8 @@ export interface IMmpOfferFeature {
 }
 
 export interface IMmpOffer {
+  // proves this browser created the quote this offer belongs to; sent as X-Quote-Token at checkout (VULN-022)
+  quoteToken?: string;
   insuranceCompanyId: number;
   companyKey: string;
   companyNameAr: string;
@@ -53,6 +55,7 @@ export interface IMmpQuoteContext {
 
 export interface IMmpQuoteResult {
   status: boolean;
+  quoteToken?: string;
   errors?: { field?: string; message?: string }[];
   quotation: IMmpQuoteContext;
   offers: IMmpOffer[];

@@ -6,12 +6,13 @@ import { WebsiteStoreQuery } from '../../store/websiteStore/website-store.query'
 import { DatePipe } from '@angular/common';
 import { LoadingContentComponentComponent } from '../../components/shared-components/loading-content-component/loading-content-component.component';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DomSanitizer, Title } from '@angular/platform-browser';
+import { SafeHtmlPipe } from '../../core/pipes/safeHtml/safe-html.pipe';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-single-view',
   standalone: true,
-  imports: [BaseImageComponentComponent, SidedIconComponentComponent, DatePipe, LoadingContentComponentComponent],
+  imports: [SafeHtmlPipe, BaseImageComponentComponent, SidedIconComponentComponent, DatePipe, LoadingContentComponentComponent],
   templateUrl: './blog-single-view.component.html',
   styleUrl: './blog-single-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +21,6 @@ import { DomSanitizer, Title } from '@angular/platform-browser';
 export class BlogSingleViewComponent implements OnInit{
   slug = input<string>('')
   title = inject(Title)
-  sanitizer = inject(DomSanitizer)
   websiteStoreService = inject(WebsiteStoreService)
   websiteStoreQuery = inject(WebsiteStoreQuery)
   blog = toSignal(this.websiteStoreQuery.blog$);
